@@ -1,0 +1,39 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { ui, type Locale } from '../i18n/ui';
+
+interface Props {
+  entries: CollectionEntry<'publications'>[];
+  locale: Locale;
+}
+const { entries, locale } = Astro.props;
+const t = ui[locale];
+
+const byYear = new Map<number, CollectionEntry<'publications'>[]>();
+for (const e of entries) {
+  const y = e.data.date.getFullYear();
+  if (!byYear.has(y)) byYear.set(y, []);
+  byYear.get(y)!.push(e);
+}
+const years = [...byYear.keys()].sort((a, b) => b - a);
+const fmt = (d: Date) => d.toISOString().slice(0, 10);
+---
+{entries.length === 0 ? (
+  <p class="text-neutral-500">{t['empty']}</p>
+) : (
+  years.map((year) => (
+    <section class="mb-10">
+      <h3 class="mb-4 font-serif text-2xl font-semibold">{year}</h3>
+      <ul class="space-y-4">
+        {byYear.get(year)!.map((e) => (
+          <li>
+            <a href={e.data.url} target="_blank" rel="noopener" class="text-accent hover:underline">
+              {locale === 'zh' ? e.data.titleZh : e.data.titleEn}
+            </a>
+            <p class="text-sm text-neutral-500">{e.data.outlet} · {fmt(e.data.date)}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))
+)}

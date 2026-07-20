@@ -1,4 +1,6 @@
 ---
+import { getCollection } from 'astro:content';
+import PublicationList from '../../components/PublicationList.astro';
 import BaseLayout from '../../components/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
 import SectionHeader from '../../components/SectionHeader.astro';
@@ -8,6 +10,9 @@ import { localizePath } from '../../i18n/utils';
 const locale = 'zh' as const;
 const t = ui[locale];
 const outlets = ['《纽约时报》', 'BBC', '《南华早报》', 'CGTN', '凤凰卫视', 'China-US Focus'];
+const latest = (await getCollection('publications'))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
 ---
 <BaseLayout title="文晶 — 清华大学战略与安全研究中心研究员" locale={locale} description={t['hero.tagline']}>
   <Hero locale={locale} />
@@ -23,6 +28,12 @@ const outlets = ['《纽约时报》', 'BBC', '《南华早报》', 'CGTN', '凤
         <a href={localizePath('/book', locale)} class="mt-3 inline-block text-sm font-medium text-accent hover:underline">{t['home.viewAll']}</a>
       </div>
     </div>
+  </section>
+
+  <section class="mt-14">
+    <SectionHeader title={t['home.publications.title']} />
+    <PublicationList entries={latest} locale={locale} />
+    <a href={localizePath('/publications', locale)} class="text-sm font-medium text-accent hover:underline">{t['home.viewAll']}</a>
   </section>
 
   <section class="mt-14">
