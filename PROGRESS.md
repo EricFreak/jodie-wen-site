@@ -4,14 +4,12 @@
 
 ## 当前状态
 
-**网站已实现并构建通过**（分支 `feat/site-implementation`，Task 1–12 完成，16 页 × 中英双语全部落地）。
+**网站已上线**：`https://jodie-wen.vercel.app`（Vercel，2026-07-20，16 路由复验全部 200，图片资源正常）。
 
-验证命令（全部通过）：
-
-```bash
-npm run build        # 构建 16 页纯静态产物
-npx astro check      # 0 errors / 0 warnings / 0 hints
-```
+- 部署方式：Vercel 连接 GitHub 仓库 `EricFreak/jodie-wen-site`，push 到 main 自动构建部署（Astro 零配置）；PR 分支有预览链接
+- Vercel Authentication（部署保护）已关闭，站点公开可访问
+- 注意：`*.vercel.app` 国内访问不稳定；将来可绑自有域名彻底解决
+- 本地：`npm run dev` 预览；`npm run build` + `npx astro check` 验证（全部通过）
 
 终验结果（2026-07-20）：16 路由全部可达、语言切换链接成对正确、坏数据被 content schema 拦截、24 条外链经代理抽查全部可达。
 待补充素材完整清单：[`docs/pending-assets.md`](docs/pending-assets.md)。
