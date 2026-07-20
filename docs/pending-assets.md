@@ -6,7 +6,7 @@
 
 ## 图片
 
-- [ ] 肖像照（首页 Hero、About 页）— 首页 Hero 当前为灰色占位块（`src/components/Hero.astro`）；提供照片后 About 页可一并补入
+- [x] 肖像照（首页 Hero、About 页）— 已提供并接入（`public/images/portrait.jpg`，426×640/41KB；Hero 方形裁切 `object-cover object-top`，About 页 h-64 w-48 展示）2026-07-20
 - [ ] 《美国的中东政策研究（2009-2017）》书封图（首页、Book 页）— 当前为灰色占位块（`src/pages/index.astro`、`src/pages/zh/index.astro`、`src/pages/book.astro`、`src/pages/zh/book.astro`）
 
 ## 链接

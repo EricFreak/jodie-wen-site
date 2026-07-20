@@ -8,11 +8,14 @@ const locale = 'en' as const;
 <BaseLayout title="About — Jodie Wen" locale={locale} description="Biography of Dr. Jodie Wen, Fellow at CISS, Tsinghua University.">
   <SectionHeader as="h1" title="About" />
 
-  <div class="measure space-y-4 text-neutral-700">
+  <div class="flex flex-col gap-6 sm:flex-row">
+    <img src="/images/portrait.jpg" alt="Portrait of Dr. Jodie Wen" class="h-64 w-48 shrink-0 rounded-md object-cover object-top" />
+    <div class="measure space-y-4 text-neutral-700">
     <p>Dr. Jodie Wen (Wen Jing) is a Fellow at the Center for International Security and Strategy (CISS), Tsinghua University, where she also serves as Director of International Communication for the China Forum, a platform dedicated to facilitating high-level exchanges on China-related issues both domestically and internationally.</p>
     <p>Specializing in U.S. foreign policy, Middle East politics, and international communication, Dr. Wen holds a Ph.D. in Middle East Studies from Peking University, conducted postdoctoral research in Law at Tsinghua University, and was a visiting scholar at the University of Oxford from 2021 to 2022. In January 2026, she published her latest book on U.S. Middle East policy.</p>
     <p>Dr. Wen is actively engaged in international forums as well as Track II dialogues involving China, the United States, and the Middle East. She frequently provides analysis and commentary for leading media outlets, including The New York Times, BBC, South China Morning Post, CGTN, Phoenix TV, and China-US Focus.</p>
     <p>Prior to her academic career, Dr. Wen had a distinguished background in journalism. She worked as a senior journalist and news anchor, reporting from more than 40 countries across Europe, Asia, and the Middle East—including the United Kingdom, Germany, Belgium, Japan, South Korea, Pakistan, Iraq, Iran, Turkey, and Lebanon—for both news coverage and field-based research.</p>
+    </div>
   </div>
 
   <div class="mt-14">

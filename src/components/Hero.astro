@@ -9,7 +9,7 @@ const { locale } = Astro.props;
 const t = ui[locale];
 ---
 <section class="flex flex-col gap-8 py-6 md:flex-row md:items-center">
-  <div class="h-48 w-48 shrink-0 rounded-md bg-neutral-200" role="img" aria-label="Portrait placeholder"></div>
+  <img src="/images/portrait.jpg" alt={locale === 'zh' ? '文晶肖像' : 'Portrait of Dr. Jodie Wen'} class="h-48 w-48 shrink-0 rounded-md object-cover object-top" />
   <div>
     <h1 class="font-serif text-4xl font-bold">{locale === 'zh' ? '文晶' : 'Jodie Wen'}</h1>
     <p class="mt-2 text-lg text-neutral-600">{t['hero.kicker']}</p>
