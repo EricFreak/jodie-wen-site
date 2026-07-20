@@ -42,10 +42,10 @@ npx astro check      # 0 errors / 0 warnings / 0 hints
 
 ## 待用户补充的素材
 
-肖像照、书封图、书籍购买链接、文晶Talk 平台链接、搜集不到的采访/文章链接（实施后会出完整清单）
+以 [`docs/pending-assets.md`](docs/pending-assets.md) 为权威完整清单（肖像照、书封图、文晶Talk 平台链接、未核实到的文章/采访/活动链接）。书籍购买链接已在实施中解决（当当网，见 Book 页），不再需要补充。
 
 ## 如何继续
 
 1. VSCode 打开本目录：`/Users/eric/kimi-projects/jodie-wen-site/`
-2. 用 Kimi Code（或其他 agent）时说：「读 PROGRESS.md 和 docs/superpowers/specs/ 下的规格，继续实施」
-3. 若继续走 Superpowers 流程：下一步是调用 `writing-plans` 技能生成实施计划
+2. 用 Kimi Code（或其他 agent）时说：「读 PROGRESS.md 和 docs/superpowers/specs/ 下的规格」
+3. 补充素材：按 `docs/pending-assets.md` 逐项替换占位；补充后 `npm run build` 验证
