@@ -1,6 +1,16 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../components/BaseLayout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import ActivityList from '../../components/ActivityList.astro';
+import { ui } from '../../i18n/ui';
+
+const locale = 'zh' as const;
+const t = ui[locale];
+const entries = (await getCollection('activities'))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
-<BaseLayout title="活动 — 文晶" locale="zh">
-  <h1 class="font-serif text-3xl font-bold">活动</h1>
+<BaseLayout title="活动 — 文晶" locale={locale} description={t['activities.subtitle']}>
+  <SectionHeader title={t['activities.title']} subtitle={t['activities.subtitle']} />
+  <ActivityList entries={entries} locale={locale} />
 </BaseLayout>
