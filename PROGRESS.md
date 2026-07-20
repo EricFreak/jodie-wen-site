@@ -36,7 +36,8 @@ npx astro check      # 0 errors / 0 warnings / 0 hints
 
 ## 环境注意
 
-- **GitHub 直连不通**，需走本地代理 `http://127.0.0.1:7890`（curl/git 加 `-x` / `http.proxy`）
+- 远程仓库：`https://github.com/EricFreak/jodie-wen-site`（Public，2026-07-20 首次推送，origin/main 跟踪 main）
+- **GitHub 直连不通**，需走本地代理 `http://127.0.0.1:7890`（curl 加 `-x`；本仓库已设 `git config http.proxy http://127.0.0.1:7890`，push/pull 直接可用；gh 命令需 `HTTPS_PROXY` 环境变量）
 - npm  registry 直连是否正常未验证；若慢可换国内镜像
 - superpowers 插件仓库在 `~/.kimi-code/superpowers`（已配 git 代理）
 
