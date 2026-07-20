@@ -14,7 +14,7 @@ const mentions = all.filter((e) => e.data.type === 'mention');
 const outlets = ['《纽约时报》', 'BBC', '《南华早报》', 'CGTN', '凤凰卫视', 'China-US Focus'];
 ---
 <BaseLayout title="媒体 — 文晶" locale={locale} description="文晶的媒体采访、视频与引用报道。">
-  <SectionHeader title={t['media.title']} />
+  <SectionHeader as="h1" title={t['media.title']} />
 
   <h3 class="mb-6 font-serif text-2xl font-semibold">{t['media.videos']}</h3>
   {features.length === 0

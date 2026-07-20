@@ -74,5 +74,3 @@ export const ui = {
     'empty': '内容整理中',
   },
 } as const;
-
-export type UIKey = keyof (typeof ui)['en'];

@@ -8,6 +8,6 @@ const locale = 'en' as const;
 const t = ui[locale];
 ---
 <BaseLayout title="Contact — Jodie Wen" locale={locale} description="Contact information for Dr. Jodie Wen.">
-  <SectionHeader title={t['contact.title']} />
+  <SectionHeader as="h1" title={t['contact.title']} />
   <ContactBlock locale={locale} />
 </BaseLayout>

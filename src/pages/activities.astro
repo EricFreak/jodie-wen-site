@@ -11,6 +11,6 @@ const entries = (await getCollection('activities'))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 <BaseLayout title="Activities — Jodie Wen" locale={locale} description={t['activities.subtitle']}>
-  <SectionHeader title={t['activities.title']} subtitle={t['activities.subtitle']} />
+  <SectionHeader as="h1" title={t['activities.title']} subtitle={t['activities.subtitle']} />
   <ActivityList entries={entries} locale={locale} />
 </BaseLayout>

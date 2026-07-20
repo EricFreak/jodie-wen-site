@@ -14,7 +14,7 @@ const mentions = all.filter((e) => e.data.type === 'mention');
 const outlets = ['The New York Times', 'BBC', 'South China Morning Post', 'CGTN', 'Phoenix TV', 'China-US Focus'];
 ---
 <BaseLayout title="Media — Jodie Wen" locale={locale} description="Interviews, videos and media mentions of Dr. Jodie Wen.">
-  <SectionHeader title={t['media.title']} />
+  <SectionHeader as="h1" title={t['media.title']} />
 
   <h3 class="mb-6 font-serif text-2xl font-semibold">{t['media.videos']}</h3>
   {features.length === 0

@@ -11,6 +11,6 @@ const entries = (await getCollection('publications'))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 <BaseLayout title="发表 — 文晶" locale={locale} description={t['publications.subtitle']}>
-  <SectionHeader title={t['publications.title']} subtitle={t['publications.subtitle']} />
+  <SectionHeader as="h1" title={t['publications.title']} subtitle={t['publications.subtitle']} />
   <PublicationList entries={entries} locale={locale} />
 </BaseLayout>

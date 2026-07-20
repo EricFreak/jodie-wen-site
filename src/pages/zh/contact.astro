@@ -8,6 +8,6 @@ const locale = 'zh' as const;
 const t = ui[locale];
 ---
 <BaseLayout title="联系 — 文晶" locale={locale} description="文晶的联系方式。">
-  <SectionHeader title={t['contact.title']} />
+  <SectionHeader as="h1" title={t['contact.title']} />
   <ContactBlock locale={locale} />
 </BaseLayout>

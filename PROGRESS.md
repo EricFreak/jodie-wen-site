@@ -13,7 +13,7 @@ npm run build        # 构建 16 页纯静态产物
 npx astro check      # 0 errors / 0 warnings / 0 hints
 ```
 
-终验记录（16 路由可达、语言切换链接成对、坏数据 schema 拦截、外链抽查）见 `.superpowers/sdd/task-12-report.md`。
+终验结果（2026-07-20）：16 路由全部可达、语言切换链接成对正确、坏数据被 content schema 拦截、24 条外链经代理抽查全部可达。
 待补充素材完整清单：[`docs/pending-assets.md`](docs/pending-assets.md)。
 
 ## 规格文档
