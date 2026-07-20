@@ -6,8 +6,10 @@ const locale = 'zh' as const;
 ---
 <BaseLayout title="著作 — 文晶" locale={locale} description="文晶专著《美国的中东政策研究（2009-2017）》。">
   <SectionHeader as="h1" title="著作" />
-  <div class="flex flex-col gap-8 sm:flex-row">
-    <img src="/images/book-cover.jpg" alt="《美国的中东政策研究（2009-2017）》封面" class="h-72 w-52 shrink-0 rounded-md object-contain" />
+  <div class="flex flex-col gap-8 sm:flex-row sm:items-center" id="book-cover">
+    <a href="#cover-zoom" class="w-fit shrink-0 cursor-zoom-in">
+      <img src="/images/book-cover.jpg" alt="《美国的中东政策研究（2009-2017）》封面" class="h-96 w-auto rounded-md" />
+    </a>
     <div>
       <h3 class="font-serif text-2xl font-semibold">《美国的中东政策研究（2009-2017）》</h3>
       <p class="mt-1 text-neutral-500">学术专著 · 2026 年 1 月出版</p>
@@ -20,5 +22,11 @@ const locale = 'zh' as const;
         <p class="mt-1 text-sm text-neutral-600">世界知识出版社 · 2026 年 1 月 · ISBN 9787501269600 · <a href="https://product.dangdang.com/30001244.html" target="_blank" rel="noopener" class="text-accent hover:underline">当当网购买</a></p>
       </div>
     </div>
+  </div>
+  <div id="cover-zoom" class="fixed inset-0 z-50 hidden items-center justify-center bg-neutral-900/70 p-6 target:flex">
+    <a href="#book-cover" class="absolute inset-0 cursor-zoom-out" aria-label="关闭放大封面"></a>
+    <a href="#book-cover" class="relative cursor-zoom-out">
+      <img src="/images/book-cover.jpg" alt="《美国的中东政策研究（2009-2017）》封面（放大）" class="max-h-[90vh] max-w-full rounded-md object-contain" />
+    </a>
   </div>
 </BaseLayout>

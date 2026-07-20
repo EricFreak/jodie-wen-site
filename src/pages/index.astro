@@ -17,16 +17,24 @@ const latest = (await getCollection('publications'))
 <BaseLayout title="Jodie Wen — CISS Fellow, Tsinghua University" locale={locale} description={t['hero.tagline']}>
   <Hero locale={locale} />
 
-  <section class="mt-14">
+  <section class="mt-14" id="book-cover">
     <SectionHeader title={t['home.book.title']} />
-    <div class="flex flex-col gap-6 sm:flex-row">
-      <img src="/images/book-cover.jpg" alt="Cover of Studies of U.S. Middle East Policy (2009–2017)" class="h-56 w-40 shrink-0 rounded-md object-contain" />
+    <div class="flex flex-col gap-6 sm:flex-row sm:items-center">
+      <a href="#cover-zoom" class="w-fit shrink-0 cursor-zoom-in">
+        <img src="/images/book-cover.jpg" alt="Cover of Studies of U.S. Middle East Policy (2009–2017)" class="h-72 w-auto rounded-md" />
+      </a>
       <div>
         <h3 class="font-serif text-xl font-semibold">Studies of U.S. Middle East Policy (2009–2017)</h3>
         <p class="mt-1 text-sm text-neutral-500">《美国的中东政策研究（2009-2017）》 · January 2026</p>
         <p class="measure mt-3 text-neutral-700">A systematic study of U.S. policy toward the Middle East from 2009 to 2017, drawing on Dr. Wen's research and field experience in the region.</p>
         <a href={localizePath('/book', locale)} class="mt-3 inline-block text-sm font-medium text-accent hover:underline">{t['home.viewAll']}</a>
       </div>
+    </div>
+    <div id="cover-zoom" class="fixed inset-0 z-50 hidden items-center justify-center bg-neutral-900/70 p-6 target:flex">
+      <a href="#book-cover" class="absolute inset-0 cursor-zoom-out" aria-label="Close enlarged cover"></a>
+      <a href="#book-cover" class="relative cursor-zoom-out">
+        <img src="/images/book-cover.jpg" alt="Cover of Studies of U.S. Middle East Policy (2009–2017), enlarged" class="max-h-[90vh] max-w-full rounded-md object-contain" />
+      </a>
     </div>
   </section>
 
