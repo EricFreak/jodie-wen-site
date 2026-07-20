@@ -1,6 +1,13 @@
 ---
 import BaseLayout from '../../components/BaseLayout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import ContactBlock from '../../components/ContactBlock.astro';
+import { ui } from '../../i18n/ui';
+
+const locale = 'zh' as const;
+const t = ui[locale];
 ---
-<BaseLayout title="联系 — 文晶" locale="zh">
-  <h1 class="font-serif text-3xl font-bold">联系</h1>
+<BaseLayout title="联系 — 文晶" locale={locale} description="文晶的联系方式。">
+  <SectionHeader title={t['contact.title']} />
+  <ContactBlock locale={locale} />
 </BaseLayout>
