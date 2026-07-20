@@ -492,7 +492,9 @@ Run: `npm run build && npx astro check`
 Expected: `0 errors`；以下断言全部退出码 0：
 
 ```bash
-for f in index about book publications media activities talk contact; do
+test -f dist/index.html || { echo "MISSING dist/index.html"; exit 1; }
+test -f dist/zh/index.html || { echo "MISSING dist/zh/index.html"; exit 1; }
+for f in about book publications media activities talk contact; do
   test -f "dist/$f/index.html" || { echo "MISSING dist/$f/index.html"; exit 1; }
   test -f "dist/zh/$f/index.html" || { echo "MISSING dist/zh/$f/index.html"; exit 1; }
 done
@@ -1656,7 +1658,9 @@ Expected: 成功，`0 errors`。
 - [ ] **Step 2: 16 路由全部可达**
 
 ```bash
-for f in index about book publications media activities talk contact; do
+test -f dist/index.html || { echo "MISSING dist/index.html"; exit 1; }
+test -f dist/zh/index.html || { echo "MISSING dist/zh/index.html"; exit 1; }
+for f in about book publications media activities talk contact; do
   test -f "dist/$f/index.html" || { echo "MISSING dist/$f/index.html"; exit 1; }
   test -f "dist/zh/$f/index.html" || { echo "MISSING dist/zh/$f/index.html"; exit 1; }
 done
