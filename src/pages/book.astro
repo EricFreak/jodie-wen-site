@@ -1,6 +1,24 @@
 ---
 import BaseLayout from '../components/BaseLayout.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+
+const locale = 'en' as const;
 ---
-<BaseLayout title="Book — Jodie Wen" locale="en">
-  <h1 class="font-serif text-3xl font-bold">Book</h1>
+<BaseLayout title="Book — Jodie Wen" locale={locale} description="Studies of U.S. Middle East Policy (2009–2017), a monograph by Dr. Jodie Wen.">
+  <SectionHeader title="The Book" />
+  <div class="flex flex-col gap-8 sm:flex-row">
+    <div class="h-72 w-52 shrink-0 rounded-md bg-neutral-200" role="img" aria-label="Book cover placeholder"></div>
+    <div>
+      <h3 class="font-serif text-2xl font-semibold">Studies of U.S. Middle East Policy (2009–2017)</h3>
+      <p class="mt-1 text-neutral-500">《美国的中东政策研究（2009-2017）》 · Chinese-language monograph · January 2026</p>
+      <div class="measure mt-4 space-y-4 text-neutral-700">
+        <p>Drawing on years of research and fieldwork across the Middle East, this book offers a systematic study of U.S. policy toward the region from 2009 to 2017, tracing its evolution, drivers, and impact on regional order.</p>
+        <p>Dr. Wen is a Fellow at the Center for International Security and Strategy (CISS), Tsinghua University, specializing in U.S. foreign policy and Middle East politics.</p>
+      </div>
+      <div class="mt-6">
+        <h4 class="text-sm font-semibold uppercase tracking-wide text-neutral-500">Publication</h4>
+        <p class="mt-1 text-sm text-neutral-600">World Affairs Press (世界知识出版社) · January 2026 · ISBN 9787501269600 · <a href="https://product.dangdang.com/30001244.html" target="_blank" rel="noopener" class="text-accent hover:underline">Buy on Dangdang</a></p>
+      </div>
+    </div>
+  </div>
 </BaseLayout>
