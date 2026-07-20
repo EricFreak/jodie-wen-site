@@ -1,6 +1,37 @@
 ---
 import BaseLayout from '../../components/BaseLayout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import TimelineItem from '../../components/TimelineItem.astro';
+
+const locale = 'zh' as const;
 ---
-<BaseLayout title="关于 — 文晶" locale="zh">
-  <h1 class="font-serif text-3xl font-bold">关于</h1>
+<BaseLayout title="关于 — 文晶" locale={locale} description="文晶，清华大学战略与安全研究中心研究员、中国论坛国际传播主任。">
+  <SectionHeader title="关于" />
+
+  <div class="measure space-y-4 text-neutral-700">
+    <p>文晶，清华大学战略与安全研究中心（CISS）研究员、中国论坛国际传播主任。中国论坛是致力于推动国内外就中国议题开展高层次交流的平台。</p>
+    <p>文晶为清华大学法学博士后、北京大学中东研究方向博士、牛津大学全球与区域研究院访问学者（2021–2022）。主要研究领域：美国外交、中东政治与国际传播。2026 年 1 月出版专著《美国的中东政策研究（2009-2017）》。</p>
+    <p>她曾多次参与外交部、中宣部等部委重大研究课题，多次作为中国学者代表参加国际论坛及中美、中东二轨对话，是央视、凤凰卫视、东方卫视等多家媒体的特约评论员，并常为《纽约时报》、BBC、《南华早报》、CGTN、China-US Focus 等媒体提供分析评论。</p>
+    <p>从事学术工作之前，文晶曾是资深记者与新闻主播，在欧洲、亚洲和中东地区 40 多个国家——包括英国、德国、比利时、日本、韩国、巴基斯坦、伊拉克、伊朗、土耳其、黎巴嫩等——进行新闻报道和田野调查。</p>
+  </div>
+
+  <div class="mt-14">
+    <SectionHeader title="经历与教育" />
+    <ul>
+      <TimelineItem period="现任" title="研究员" org="清华大学战略与安全研究中心（CISS）" description="兼任中国论坛国际传播主任。" />
+      <TimelineItem period="2021–2022" title="访问学者" org="牛津大学全球与区域研究院" />
+      <TimelineItem title="法学博士后" org="清华大学" />
+      <TimelineItem title="中东研究博士" org="北京大学" />
+      <TimelineItem title="资深记者、新闻主播" description="在欧美、中东和东南亚地区 40 多个国家进行新闻报道和田野调查。" />
+    </ul>
+  </div>
+
+  <div class="mt-14">
+    <SectionHeader title="研究领域" />
+    <ul class="flex flex-wrap gap-3">
+      <li class="rounded-md bg-neutral-100 px-3 py-2 text-sm text-neutral-700">美国外交</li>
+      <li class="rounded-md bg-neutral-100 px-3 py-2 text-sm text-neutral-700">中东政治</li>
+      <li class="rounded-md bg-neutral-100 px-3 py-2 text-sm text-neutral-700">国际传播</li>
+    </ul>
+  </div>
 </BaseLayout>
