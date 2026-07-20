@@ -1,0 +1,34 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { ui, type Locale } from '../i18n/ui';
+
+interface Props {
+  entry: CollectionEntry<'media'>;
+  locale: Locale;
+}
+const { entry, locale } = Astro.props;
+const t = ui[locale];
+const d = entry.data;
+const title = locale === 'zh' ? d.titleZh : d.titleEn;
+const embedBlocked =
+  (locale === 'zh' && d.platform === 'youtube') ||
+  (locale === 'en' && d.platform === 'bilibili');
+const showEmbed = Boolean(d.embedUrl) && !embedBlocked;
+const fmt = (dt: Date) => dt.toISOString().slice(0, 10);
+---
+{showEmbed ? (
+  <figure class="mb-8">
+    <div class="aspect-video w-full overflow-hidden rounded-md bg-neutral-100">
+      <iframe src={d.embedUrl!} title={title} class="h-full w-full" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <figcaption class="mt-2 text-sm text-neutral-600">
+      {title} · {d.outlet} · {fmt(d.date)} ·
+      <a href={d.url} target="_blank" rel="noopener" class="text-accent hover:underline">{t['link.source']}</a>
+    </figcaption>
+  </figure>
+) : (
+  <div class="mb-4 rounded-md border border-neutral-200 p-4">
+    <a href={d.url} target="_blank" rel="noopener" class="font-medium text-accent hover:underline">{title}</a>
+    <p class="mt-1 text-sm text-neutral-500">{d.outlet} · {fmt(d.date)}</p>
+  </div>
+)}
