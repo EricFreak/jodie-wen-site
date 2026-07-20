@@ -7,7 +7,7 @@
 ## 图片
 
 - [x] 肖像照（首页 Hero、About 页）— 已提供并接入（`public/images/portrait.jpg`，426×640/41KB；Hero 方形裁切 `object-cover object-top`，About 页 h-64 w-48 展示）2026-07-20
-- [x] 《美国的中东政策研究（2009-2017）》书封图（首页、Book 页）— 已提供并接入（`public/images/book-cover.jpg`，源自白底高清 3D 渲染图，836×1200/81KB；首页 h-72、Book 页 h-96 展示，flex `items-center` 垂直居中，纯 CSS `:target` 点击放大查看）2026-07-20
+- [x] 《美国的中东政策研究（2009-2017）》书封图（首页、Book 页）— 已提供并接入（`public/images/book-cover.jpg`，源自白底高清 3D 渲染图，836×1200/81KB；首页 h-72、Book 页 h-96 展示，flex `items-center` 垂直居中，纯 CSS checkbox 点击放大查看（无锚点、不改变滚动位置））2026-07-20
 
 ## 链接
 

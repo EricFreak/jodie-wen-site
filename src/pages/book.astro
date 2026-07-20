@@ -6,10 +6,11 @@ const locale = 'en' as const;
 ---
 <BaseLayout title="Book — Jodie Wen" locale={locale} description="Studies of U.S. Middle East Policy (2009–2017), a monograph by Dr. Jodie Wen.">
   <SectionHeader as="h1" title="The Book" />
-  <div class="flex flex-col gap-8 sm:flex-row sm:items-center" id="book-cover">
-    <a href="#cover-zoom" class="w-fit shrink-0 cursor-zoom-in">
+  <div class="flex flex-col gap-8 sm:flex-row sm:items-center">
+    <input type="checkbox" id="cover-zoom" class="peer sr-only" />
+    <label for="cover-zoom" class="w-fit shrink-0 cursor-zoom-in rounded-md peer-focus-visible:ring-2 peer-focus-visible:ring-accent">
       <img src="/images/book-cover.jpg" alt="Cover of Studies of U.S. Middle East Policy (2009–2017)" class="h-96 w-auto rounded-md" />
-    </a>
+    </label>
     <div>
       <h3 class="font-serif text-2xl font-semibold">Studies of U.S. Middle East Policy (2009–2017)</h3>
       <p class="mt-1 text-neutral-500">《美国的中东政策研究（2009-2017）》 · Chinese-language monograph · January 2026</p>
@@ -22,11 +23,8 @@ const locale = 'en' as const;
         <p class="mt-1 text-sm text-neutral-600">World Affairs Press (世界知识出版社) · January 2026 · ISBN 9787501269600 · <a href="https://product.dangdang.com/30001244.html" target="_blank" rel="noopener" class="text-accent hover:underline">Buy on Dangdang</a></p>
       </div>
     </div>
-  </div>
-  <div id="cover-zoom" class="fixed inset-0 z-50 hidden items-center justify-center bg-neutral-900/70 p-6 target:flex">
-    <a href="#book-cover" class="absolute inset-0 cursor-zoom-out" aria-label="Close enlarged cover"></a>
-    <a href="#book-cover" class="relative cursor-zoom-out">
+    <label for="cover-zoom" class="fixed inset-0 z-50 hidden cursor-zoom-out items-center justify-center bg-neutral-900/70 p-6 peer-checked:flex">
       <img src="/images/book-cover.jpg" alt="Cover of Studies of U.S. Middle East Policy (2009–2017), enlarged" class="max-h-[90vh] max-w-full rounded-md object-contain" />
-    </a>
+    </label>
   </div>
 </BaseLayout>
