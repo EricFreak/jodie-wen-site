@@ -1,0 +1,22 @@
+---
+import { ui, type Locale } from '../i18n/ui';
+import { localizePath } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = ui[locale];
+---
+<section class="flex flex-col gap-8 py-6 md:flex-row md:items-center">
+  <div class="h-48 w-48 shrink-0 rounded-md bg-neutral-200" role="img" aria-label="Portrait placeholder"></div>
+  <div>
+    <h1 class="font-serif text-4xl font-bold">{locale === 'zh' ? '文晶' : 'Jodie Wen'}</h1>
+    <p class="mt-2 text-lg text-neutral-600">{t['hero.kicker']}</p>
+    <p class="measure mt-4 text-neutral-700">{t['hero.tagline']}</p>
+    <div class="mt-6 flex gap-3">
+      <a href={localizePath('/book', locale)} class="rounded-md bg-accent px-4 py-2 text-sm font-medium text-white hover:opacity-90">{t['hero.cta.book']}</a>
+      <a href={localizePath('/contact', locale)} class="rounded-md border border-accent px-4 py-2 text-sm font-medium text-accent hover:bg-accent hover:text-white">{t['hero.cta.contact']}</a>
+    </div>
+  </div>
+</section>

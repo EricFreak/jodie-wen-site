@@ -1,6 +1,35 @@
 ---
 import BaseLayout from '../components/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import { ui } from '../i18n/ui';
+import { localizePath } from '../i18n/utils';
+
+const locale = 'en' as const;
+const t = ui[locale];
+const outlets = ['The New York Times', 'BBC', 'South China Morning Post', 'CGTN', 'Phoenix TV', 'China-US Focus'];
 ---
-<BaseLayout title="Jodie Wen — CISS Fellow, Tsinghua University" locale="en">
-  <h1 class="font-serif text-3xl font-bold">Jodie Wen</h1>
+<BaseLayout title="Jodie Wen — CISS Fellow, Tsinghua University" locale={locale} description={t['hero.tagline']}>
+  <Hero locale={locale} />
+
+  <section class="mt-14">
+    <SectionHeader title={t['home.book.title']} />
+    <div class="flex flex-col gap-6 sm:flex-row">
+      <div class="h-56 w-40 shrink-0 rounded-md bg-neutral-200" role="img" aria-label="Book cover placeholder"></div>
+      <div>
+        <h3 class="font-serif text-xl font-semibold">Studies of U.S. Middle East Policy (2009–2017)</h3>
+        <p class="mt-1 text-sm text-neutral-500">《美国的中东政策研究（2009-2017）》 · January 2026</p>
+        <p class="measure mt-3 text-neutral-700">A systematic study of U.S. policy toward the Middle East from 2009 to 2017, drawing on Dr. Wen's research and field experience in the region.</p>
+        <a href={localizePath('/book', locale)} class="mt-3 inline-block text-sm font-medium text-accent hover:underline">{t['home.viewAll']}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-14">
+    <SectionHeader title={t['home.media.title']} />
+    <ul class="flex flex-wrap gap-3">
+      {outlets.map((o) => <li class="rounded-md border border-neutral-200 px-3 py-2 text-sm text-neutral-600">{o}</li>)}
+    </ul>
+    <a href={localizePath('/media', locale)} class="mt-3 inline-block text-sm font-medium text-accent hover:underline">{t['home.viewAll']}</a>
+  </section>
 </BaseLayout>
