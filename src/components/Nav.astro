@@ -1,0 +1,56 @@
+---
+import { ui, type Locale } from '../i18n/ui';
+import { getAlternatePath, localizePath } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+  currentPath: string;
+}
+const { locale, currentPath } = Astro.props;
+const t = ui[locale];
+
+const items = [
+  { path: '/', label: t['nav.home'] },
+  { path: '/about', label: t['nav.about'] },
+  { path: '/book', label: t['nav.book'] },
+  { path: '/publications', label: t['nav.publications'] },
+  { path: '/media', label: t['nav.media'] },
+  { path: '/activities', label: t['nav.activities'] },
+  { path: '/talk', label: t['nav.talk'] },
+  { path: '/contact', label: t['nav.contact'] },
+];
+
+const normalize = (p: string) => (p.length > 1 ? p.replace(/\/+$/, '') : p);
+const current = normalize(currentPath);
+const isCurrent = (path: string) => normalize(localizePath(path, locale)) === current;
+const alternatePath = getAlternatePath(currentPath);
+---
+<header class="relative border-b border-neutral-200">
+  <nav class="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
+    <a href={localizePath('/', locale)} class="font-serif text-xl font-bold">
+      {locale === 'zh' ? '文晶' : 'Jodie Wen'}
+    </a>
+    <input type="checkbox" id="nav-toggle" class="peer hidden" />
+    <label for="nav-toggle" class="cursor-pointer text-2xl leading-none md:hidden" aria-label="Menu">☰</label>
+    <ul class="absolute left-0 right-0 top-full z-10 hidden flex-col gap-1 border-b border-neutral-200 bg-white px-4 py-3 peer-checked:flex md:static md:flex md:flex-row md:items-center md:gap-5 md:border-0 md:p-0">
+      {items.map((item) => (
+        <li>
+          <a
+            href={localizePath(item.path, locale)}
+            class:list={[
+              'block py-1 text-sm',
+              isCurrent(item.path) ? 'font-semibold text-accent' : 'text-neutral-700 hover:text-accent',
+            ]}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+      <li>
+        <a href={alternatePath} class="block py-1 text-sm font-semibold text-accent hover:underline">
+          {t['lang.switch']}
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
