@@ -7,11 +7,11 @@
 ## 图片
 
 - [x] 肖像照（首页 Hero、About 页）— 已提供并接入（`public/images/portrait.jpg`，426×640/41KB；Hero 方形裁切 `object-cover object-top`，About 页 h-64 w-48 展示）2026-07-20
-- [ ] 《美国的中东政策研究（2009-2017）》书封图（首页、Book 页）— 当前为灰色占位块（`src/pages/index.astro`、`src/pages/zh/index.astro`、`src/pages/book.astro`、`src/pages/zh/book.astro`）
+- [x] 《美国的中东政策研究（2009-2017）》书封图（首页、Book 页）— 已提供并接入（`public/images/book-cover.jpg`，3D 立体封面 693×800/30KB，`object-contain` 白底无缝展示）2026-07-20
 
 ## 链接
 
-- [ ] 文晶Talk 平台与代表内容链接（Talk 页）— 品牌存在（搜狗微信可见第三方公众号引用），但公众号/视频号等稳定官方 URL 未核实到；`src/pages/talk.astro` 与 `src/pages/zh/talk.astro` 的 `links` 数组为空，页面走空态文案，提供链接后填入即可
+- [ ] 文晶Talk 代表文章链接（Talk 页）— 公众号二维码已接入（`public/images/wenjing-talk-qr.jpg`，TalkIntro `qrImage` prop，2026-07-20）；代表文章链接（`mp.weixin.qq.com/s/...`）仍待提供，拿到后填入 `src/pages/talk.astro` 与 `src/pages/zh/talk.astro` 的 `links` 数组即可
 - [ ] 采访视频嵌入 ID（Media 页）— YouTube/B站 embed ID 未核实到（CGTN《欣视点》2026-03-30 期在 YouTube 有超过 6 万播放但视频 ID 未能确认，B站搜索被反爬）；当前 8 条全部为链接卡片降级、无 iframe；提供视频 ID 后填入对应 `src/content/media/*.md` 的 `embedUrl` 字段即可启用嵌入
 - [ ] SCMP 已收录条目（`src/content/media/2023-scmp-blinken-saudi-arabia.md`）直接链接被反爬/付费墙，读者可能打不开；URL 有 CISS 官网逐字引用佐证故予保留，如有可读替代链接（或本人存档）可替换
 
