@@ -1,0 +1,24 @@
+---
+import { ui, type Locale } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  links: { label: string; url: string }[];
+}
+const { locale, links } = Astro.props;
+const t = ui[locale];
+---
+<div class="measure">
+  <slot />
+  {links.length === 0 ? (
+    <p class="mt-6 text-neutral-500">{t['empty']}</p>
+  ) : (
+    <ul class="mt-6 space-y-3">
+      {links.map((l) => (
+        <li>
+          <a href={l.url} target="_blank" rel="noopener" class="text-accent hover:underline">{l.label}</a>
+        </li>
+      ))}
+    </ul>
+  )}
+</div>
