@@ -17,7 +17,7 @@ const fmt = (d: Date) => d.toISOString().slice(0, 10);
     {entries.map((e) => (
       <li class="border-l-2 border-accent pl-4">
         <h3 class="font-semibold">{locale === 'zh' ? e.data.titleZh : e.data.titleEn}</h3>
-        <p class="mt-1 text-sm text-neutral-600">{e.data.event} · {e.data.location} · {fmt(e.data.date)}</p>
+        <p class="mt-1 text-sm text-neutral-600">{locale === 'zh' ? e.data.eventZh : e.data.event} · {locale === 'zh' ? e.data.locationZh : e.data.location} · {fmt(e.data.date)}</p>
         {e.data.url && (
           <a href={e.data.url} target="_blank" rel="noopener" class="text-sm text-accent hover:underline">{t['link.source']}</a>
         )}

@@ -3,6 +3,8 @@ titleEn: "Keynote on opportunities and challenges in China–Philippines cross-c
 titleZh: "就“中菲跨文化交流的机遇与挑战”作主旨发言"
 event: "China–Philippines Gen-Z Cross-Cultural Online Dialogue"
 location: "Online"
+eventZh: "中菲Z世代跨文化线上对话"
+locationZh: "线上"
 date: 2022-12-04
 url: "https://ciss.tsinghua.edu.cn/info/new_communication_iqt/2000000005649"
 ---

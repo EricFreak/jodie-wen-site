@@ -43,7 +43,7 @@
 
 - `publications`：`titleEn`/`titleZh`/`outlet`/`date`/`url`/`lang`
 - `media`：`titleEn`/`titleZh`/`type`(video/interview/mention)/`outlet`/`date`/`url`/`embedUrl`(可选)/`platform`(youtube/bilibili/cgtv/other)
-- `activities`：`titleEn`/`titleZh`/`event`/`location`/`date`/`url`(可选)
+- `activities`：`titleEn`/`titleZh`/`event`/`location`/`eventZh`/`locationZh`（活动与地点的中文译名）/`date`/`url`(可选)
 
 长文内容（bio 全文、书籍简介、文晶Talk 介绍）**不进集合**，直接写在对应页面的 Astro 模板里（英文页写英文，`/zh/` 页写中文）。
 

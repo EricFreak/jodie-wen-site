@@ -34,6 +34,8 @@ const activities = defineCollection({
     titleZh: z.string(),
     event: z.string(),
     location: z.string(),
+    eventZh: z.string(),
+    locationZh: z.string(),
     date: z.coerce.date(),
     url: z.string().url().optional(),
   }),
