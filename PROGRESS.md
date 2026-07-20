@@ -4,8 +4,17 @@
 
 ## 当前状态
 
-Superpowers 头脑风暴流程已完成，**设计规格已获用户批准并提交 git**。
-下一步：按规格实施（原定调用 superpowers 的 `writing-plans` 技能生成实施计划，被用户暂停切换到 VSCode）。
+**网站已实现并构建通过**（分支 `feat/site-implementation`，Task 1–12 完成，16 页 × 中英双语全部落地）。
+
+验证命令（全部通过）：
+
+```bash
+npm run build        # 构建 16 页纯静态产物
+npx astro check      # 0 errors / 0 warnings / 0 hints
+```
+
+终验记录（16 路由可达、语言切换链接成对、坏数据 schema 拦截、外链抽查）见 `.superpowers/sdd/task-12-report.md`。
+待补充素材完整清单：[`docs/pending-assets.md`](docs/pending-assets.md)。
 
 ## 规格文档
 
