@@ -8,12 +8,12 @@
 为文晶（Jodie Wen，清华大学战略与安全研究中心 CISS Fellow、中国论坛国际传播主任）建设的**个人宣传网站**，集中展示其学术履历、专著、发表文章、媒体采访、「文晶Talk」自媒体品牌与国际论坛活动。
 
 - 受众：国际学术界与政策圈、中外媒体、会议邀请方。
-- 成功标准：访客 1 分钟内了解其身份与专长，能找到文章/视频/联系方式；**中英双语完整对应**。
+- 成功标准：访客 1 分钟内了解其身份与专长，能找到文章/视频/联系方式；**中英阿三语完整对应**（阿语文案为 AI 翻译，待用户校对）。
 - 内容版块参考 bilal-y-saab.com 的信息架构（视觉不参考）。
 
 ## 2. 当前状态（重要）
 
-**实现已完成，构建通过。** 目录结构已按 §4 落地（`src/pages` 8 页 × 中英双语、`src/components` 11 个组件、`src/content` 三个集合共 23 条真实条目），§5 所列构建与验证命令均已生效。
+**实现已完成，构建通过。** 目录结构已按 §4 落地（`src/pages` 8 页 × 中英阿三语、`src/components` 11 个组件、`src/content` 三个集合共 23 条真实条目），§5 所列构建与验证命令均已生效。2026-07-21 新增阿拉伯语第三语言（`/ar/`，RTL），共 24 路由。
 
 - `docs/superpowers/specs/2026-07-20-jodie-wen-personal-site-design.md` —— 已获用户批准的完整设计规格（目标、技术栈、架构、视觉、验证方案）；规格与本文如有出入，以规格文档为准。
 - `docs/pending-assets.md` —— 待用户补充的素材清单（肖像照、书封图、文晶Talk 平台链接等）。
@@ -27,13 +27,15 @@
 
 ## 4. 架构要点
 
-### 双语路由（Astro 内置 i18n）
+### 三语路由（Astro 内置 i18n）
 
-- `defaultLocale: 'en'`（国际受众优先），`locales: ['en', 'zh']`，`prefixDefaultLocale: false`
-- 英文 `/about`，中文 `/zh/about`；导航栏固定 EN ⇄ 中文 切换链接，指向当前页的另一语言路径
-- UI 字符串集中在 `src/i18n/ui.ts` 字典，按 locale 取用
+- `defaultLocale: 'en'`（国际受众优先），`locales: ['en', 'zh', 'ar']`，`prefixDefaultLocale: false`
+- 英文 `/about`，中文 `/zh/about`，阿语 `/ar/about`；导航栏固定 EN / 中文 / العربية 三向切换链接，指向当前页的另两种语言路径
+- 阿语页 `<html lang="ar" dir="rtl">`，英文/中文页显式 `dir="ltr"`；方向相关样式一律用 Tailwind 逻辑属性（`ms-/me-/ps-/pe-/start-/end-` 等），不用物理方向类
+- UI 字符串集中在 `src/i18n/ui.ts` 字典（三语），按 locale 取用；路由工具在 `src/i18n/utils.ts`
+- 阿语文案（UI 字典与长文页面）为 AI 翻译，**待用户校对**
 
-### 页面（8 个页面 × 2 语言一一对应）
+### 页面（8 个页面 × 3 语言一一对应）
 
 `/`（首页 Hero + 精选入口）、`/about`（履历）、`/book`（专著《美国的中东政策研究（2009-2017）》）、`/publications`（文章列表，按年份分组，静态展示不做交互过滤）、`/media`（采访视频 + 链接 + 媒体墙）、`/activities`（论坛/二轨对话）、`/talk`（文晶Talk）、`/contact`（邮箱 jodiewen@tsinghua.edu.cn，**不做联系表单**）。
 
