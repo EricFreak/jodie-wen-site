@@ -41,10 +41,10 @@
 
 ## 待用户补充的素材
 
-以 [`docs/pending-assets.md`](docs/pending-assets.md) 为权威完整清单（肖像照、书封图、文晶Talk 平台链接、未核实到的文章/采访/活动链接）。书籍购买链接已在实施中解决（当当网，见 Book 页），不再需要补充。
+以 [`docs/pending-assets.md`](docs/pending-assets.md) 为权威完整清单。肖像照与书封图已接入完毕；剩余：文晶Talk 代表文章链接、采访视频嵌入 ID、SCMP 可读替代链接、未核实到的文章/采访/活动线索。书籍购买链接已解决（当当网，见 Book 页）。
 
 ## 如何继续
 
 1. VSCode 打开本目录：`/Users/eric/kimi-projects/jodie-wen-site/`
-2. 用 Kimi Code（或其他 agent）时说：「读 PROGRESS.md 和 docs/superpowers/specs/ 下的规格」
-3. 补充素材：按 `docs/pending-assets.md` 逐项替换占位；补充后 `npm run build` 验证
+2. 用 Kimi Code（或其他 agent）时说：「读 PROGRESS.md 继续这个项目」
+3. 补充素材：把文件/链接交给 agent，按 `docs/pending-assets.md` 逐项接入；改完 push 到 main 即自动部署上线
