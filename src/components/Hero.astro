@@ -7,13 +7,21 @@ interface Props {
 }
 const { locale } = Astro.props;
 const t = ui[locale];
+
+const credentials = locale === 'zh'
+  ? ['北京大学中东研究博士', '牛津大学访问学者', '清华大学法学博士后', '资深媒体人']
+  : ['Ph.D. in Middle East Studies, PKU', 'Oxford Visiting Scholar', 'Postdoc in Law, Tsinghua', 'Former Senior Journalist'];
 ---
 <section class="flex flex-col gap-8 py-6 md:flex-row md:items-center">
-  <img src="/images/portrait.jpg" alt={locale === 'zh' ? '文晶肖像' : 'Portrait of Dr. Jodie Wen'} class="h-48 w-48 shrink-0 rounded-md object-cover object-top" />
+  <img src="/images/portrait.jpg" alt={locale === 'zh' ? '文晶肖像' : 'Portrait of Dr. Jodie Wen'} class="h-72 w-auto shrink-0 rounded-md" />
   <div>
     <h1 class="font-serif text-4xl font-bold">{locale === 'zh' ? '文晶' : 'Jodie Wen'}</h1>
     <p class="mt-2 text-lg text-neutral-600">{t['hero.kicker']}</p>
     <p class="measure mt-4 text-neutral-700">{t['hero.tagline']}</p>
+    <p class="measure mt-3 text-neutral-700">{t['hero.bio']}</p>
+    <ul class="mt-4 flex flex-wrap gap-2">
+      {credentials.map((c) => <li class="rounded-md bg-neutral-100 px-2.5 py-1 text-xs text-neutral-600">{c}</li>)}
+    </ul>
     <div class="mt-6 flex gap-3">
       <a href={localizePath('/book', locale)} class="rounded-md bg-accent px-4 py-2 text-sm font-medium text-white hover:opacity-90">{t['hero.cta.book']}</a>
       <a href={localizePath('/contact', locale)} class="rounded-md border border-accent px-4 py-2 text-sm font-medium text-accent hover:bg-accent hover:text-white">{t['hero.cta.contact']}</a>
