@@ -12,7 +12,7 @@ const d = entry.data;
 const title = locale === 'zh' ? d.titleZh : d.titleEn;
 const embedBlocked =
   (locale === 'zh' && d.platform === 'youtube') ||
-  (locale === 'en' && d.platform === 'bilibili');
+  (locale !== 'zh' && d.platform === 'bilibili');
 const showEmbed = Boolean(d.embedUrl) && !embedBlocked;
 const fmt = (dt: Date) => dt.toISOString().slice(0, 10);
 ---

@@ -15,7 +15,7 @@ const fmt = (d: Date) => d.toISOString().slice(0, 10);
 ) : (
   <ul class="space-y-6">
     {entries.map((e) => (
-      <li class="border-l-2 border-accent pl-4">
+      <li class="border-s-2 border-accent ps-4">
         <h3 class="font-semibold">{locale === 'zh' ? e.data.titleZh : e.data.titleEn}</h3>
         <p class="mt-1 text-sm text-neutral-600">{locale === 'zh' ? e.data.eventZh : e.data.event} · {locale === 'zh' ? e.data.locationZh : e.data.location} · {fmt(e.data.date)}</p>
         {e.data.url && (
