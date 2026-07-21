@@ -30,7 +30,7 @@
 ### 三语路由（Astro 内置 i18n）
 
 - `defaultLocale: 'en'`（国际受众优先），`locales: ['en', 'zh', 'ar']`，`prefixDefaultLocale: false`
-- 英文 `/about`，中文 `/zh/about`，阿语 `/ar/about`；导航栏固定 EN / 中文 / العربية 三向切换链接，指向当前页的另两种语言路径
+- 英文 `/about`，中文 `/zh/about`，阿语 `/ar/about`；桌面端导航语言切换为 `<details>` 下拉（触发器显示当前语言，面板列出另两种语言路径），移动端汉堡菜单内保持 EN / 中文 / العربية 平铺链接
 - 阿语页 `<html lang="ar" dir="rtl">`，英文/中文页显式 `dir="ltr"`；方向相关样式一律用 Tailwind 逻辑属性（`ms-/me-/ps-/pe-/start-/end-` 等），不用物理方向类
 - UI 字符串集中在 `src/i18n/ui.ts` 字典（三语），按 locale 取用；路由工具在 `src/i18n/utils.ts`
 - 阿语文案（UI 字典与长文页面）为 AI 翻译，**待用户校对**

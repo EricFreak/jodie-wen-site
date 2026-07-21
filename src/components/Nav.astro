@@ -48,7 +48,31 @@ const langNames: Record<Locale, string> = { en: 'EN', zh: '中文', ar: 'الع�
           </a>
         </li>
       ))}
-      <li class="flex items-center gap-3">
+      {/* 桌面端：details 下拉（仅列另外两个语言） */}
+      <li class="relative hidden md:block">
+        <details class="group">
+          <summary class="flex cursor-pointer list-none items-center gap-1 py-1 text-sm font-semibold text-accent group-open:before:fixed group-open:before:inset-0 group-open:before:z-10 group-open:before:cursor-default group-open:before:content-[''] [&::-webkit-details-marker]:hidden">
+            {langNames[locale]}
+            <span class="text-xs transition-transform group-open:rotate-180">▾</span>
+          </summary>
+          <ul class="absolute end-0 top-full z-20 mt-1 min-w-28 rounded-md border border-neutral-200 bg-white py-1 shadow-md">
+            {locales
+              .filter((loc) => loc !== locale)
+              .map((loc) => (
+                <li>
+                  <a
+                    href={localizePath(neutralPath, loc)}
+                    class="block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-50 hover:text-accent"
+                  >
+                    {langNames[loc]}
+                  </a>
+                </li>
+              ))}
+          </ul>
+        </details>
+      </li>
+      {/* 移动端：汉堡菜单内平铺三链接 */}
+      <li class="flex items-center gap-3 md:hidden">
         {locales.map((loc) =>
           loc === locale ? (
             <span class="py-1 text-sm font-semibold text-accent">{langNames[loc]}</span>
