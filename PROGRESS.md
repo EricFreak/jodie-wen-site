@@ -4,9 +4,9 @@
 
 ## 当前状态
 
-**网站已上线**：`https://jodie-wen.vercel.app`（Vercel，2026-07-20，16 路由复验全部 200，图片资源正常）。
+**网站已上线**：`https://jodie-wen.vercel.app`（Vercel，8 页 × 3 语言共 24 路由，图片资源正常）。
 
-- 2026-07-21：新增阿拉伯语第三语言（`/ar/`，RTL），8 页 × 3 语言共 24 路由，构建与三向语言切换断言全部通过；**阿语文案为 AI 翻译，待用户校对**（尚未部署上线，push 到 main 即自动部署）
+- 2026-07-21：新增阿拉伯语第三语言（`/ar/`，RTL），已 push 部署并线上复验（`/ar/`、`/ar/about` 200，`lang="ar" dir="rtl"` 生效，英中页无回归）；桌面端语言切换改为 `<details>` 下拉（触发器=当前语言，面板列另两种语言），移动端汉堡菜单内保持平铺。**阿语文案为 AI 翻译，待用户校对**；终审遗留小项：ar 版 `hero.kicker` 跟随中文版含中国论坛职务（英文版无，校对时确认是否对齐）、book 页 h1→h3 标题层级为三语共有结构、favicon.ico 缺失 404（可入 pending-assets）
 
 - 部署方式：Vercel 连接 GitHub 仓库 `EricFreak/jodie-wen-site`，push 到 main 自动构建部署（Astro 零配置）；PR 分支有预览链接
 - Vercel Authentication（部署保护）已关闭，站点公开可访问
@@ -20,7 +20,12 @@
 
 完整设计规格：[`docs/superpowers/specs/2026-07-20-jodie-wen-personal-site-design.md`](docs/superpowers/specs/2026-07-20-jodie-wen-personal-site-design.md)
 
-实施前请完整阅读。核心决策：
+增量规格（2026-07-21）：
+
+- 阿拉伯语第三语言：[`docs/superpowers/specs/2026-07-21-arabic-locale-design.md`](docs/superpowers/specs/2026-07-21-arabic-locale-design.md)（实施计划同名文件在 `docs/superpowers/plans/`）
+- 语言切换下拉化：[`docs/superpowers/specs/2026-07-21-language-switcher-dropdown-design.md`](docs/superpowers/specs/2026-07-21-language-switcher-dropdown-design.md)
+
+原始规格核心决策：
 
 - **技术栈**：Astro 5 + Tailwind CSS，静态输出（本机已有 Node v26.3.1）
 - **双语**：Astro i18n 路由，英文为默认（`/about`），中文在 `/zh/` 前缀下；导航有 EN⇄中文 切换
