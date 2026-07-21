@@ -12,7 +12,7 @@ interface Props {
 const { title, locale, description } = Astro.props;
 ---
 <!doctype html>
-<html lang={locale === 'zh' ? 'zh-CN' : 'en'}>
+<html lang={locale === 'zh' ? 'zh-CN' : locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

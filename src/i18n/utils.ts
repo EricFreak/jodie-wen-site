@@ -1,18 +1,25 @@
-import { defaultLocale, type Locale } from './ui';
+import { defaultLocale, locales, type Locale } from './ui';
 
 export function getLocaleFromPath(pathname: string): Locale {
-  return pathname === '/zh' || pathname.startsWith('/zh/') ? 'zh' : defaultLocale;
-}
-
-/** 当前页面对应的另一语言路径（规格 §4.1：导航语言切换指向同页另一语言） */
-export function getAlternatePath(pathname: string): string {
-  if (getLocaleFromPath(pathname) === 'zh') {
-    return pathname.replace(/^\/zh/, '') || '/';
+  for (const loc of locales) {
+    if (loc === defaultLocale) continue;
+    if (pathname === `/${loc}` || pathname.startsWith(`/${loc}/`)) return loc;
   }
-  return pathname === '/' ? '/zh/' : `/zh${pathname}`;
+  return defaultLocale;
 }
 
-/** 把无前缀路径转换为指定 locale 的路由路径 */
+/** 剥离路径中的语言前缀，得到中性路径（/ar/about/ → /about/，/zh/ → /，/about/ 原样） */
+export function stripLocalePrefix(pathname: string): string {
+  for (const loc of locales) {
+    if (loc === defaultLocale) continue;
+    if (pathname === `/${loc}` || pathname.startsWith(`/${loc}/`)) {
+      return pathname.replace(new RegExp(`^/${loc}`), '') || '/';
+    }
+  }
+  return pathname;
+}
+
+/** 把中性路径转换为指定 locale 的路由路径（'/' → '/ar/'，'/about' → '/ar/about'） */
 export function localizePath(path: string, locale: Locale): string {
-  return locale === 'zh' ? (path === '/' ? '/zh/' : `/zh${path}`) : path;
+  return locale === defaultLocale ? path : path === '/' ? `/${locale}/` : `/${locale}${path}`;
 }

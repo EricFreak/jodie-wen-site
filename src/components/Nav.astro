@@ -1,6 +1,6 @@
 ---
-import { ui, type Locale } from '../i18n/ui';
-import { getAlternatePath, localizePath } from '../i18n/utils';
+import { ui, locales, type Locale } from '../i18n/ui';
+import { localizePath, stripLocalePrefix } from '../i18n/utils';
 
 interface Props {
   locale: Locale;
@@ -23,7 +23,8 @@ const items = [
 const normalize = (p: string) => (p.length > 1 ? p.replace(/\/+$/, '') : p);
 const current = normalize(currentPath);
 const isCurrent = (path: string) => normalize(localizePath(path, locale)) === current;
-const alternatePath = getAlternatePath(currentPath);
+const neutralPath = stripLocalePrefix(currentPath);
+const langNames: Record<Locale, string> = { en: 'EN', zh: '中文', ar: 'العربية' };
 ---
 <header class="relative border-b border-neutral-200">
   <nav class="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
@@ -47,10 +48,16 @@ const alternatePath = getAlternatePath(currentPath);
           </a>
         </li>
       ))}
-      <li>
-        <a href={alternatePath} class="block py-1 text-sm font-semibold text-accent hover:underline">
-          {t['lang.switch']}
-        </a>
+      <li class="flex items-center gap-3">
+        {locales.map((loc) =>
+          loc === locale ? (
+            <span class="py-1 text-sm font-semibold text-accent">{langNames[loc]}</span>
+          ) : (
+            <a href={localizePath(neutralPath, loc)} class="py-1 text-sm text-neutral-700 hover:text-accent">
+              {langNames[loc]}
+            </a>
+          ),
+        )}
       </li>
     </ul>
   </nav>
