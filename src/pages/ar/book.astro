@@ -1,6 +1,30 @@
 ---
 import BaseLayout from '../../components/BaseLayout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+
+const locale = 'ar' as const;
 ---
-<BaseLayout title="الكتاب — جودي ون" locale="ar">
-  <h1 class="font-serif text-3xl font-bold">الكتاب</h1>
+<BaseLayout title="الكتاب — جودي ون" locale={locale} description="كتاب «دراسات سياسة الولايات المتحدة في الشرق الأوسط (2009-2017)» للدكتورة جودي ون.">
+  <SectionHeader as="h1" title="الكتاب" />
+  <div class="flex flex-col gap-8 sm:flex-row sm:items-center">
+    <input type="checkbox" id="cover-zoom" class="peer sr-only" />
+    <label for="cover-zoom" class="w-fit shrink-0 cursor-zoom-in rounded-md peer-focus-visible:ring-2 peer-focus-visible:ring-accent">
+      <img src="/images/book-cover.jpg" alt="غلاف كتاب «دراسات سياسة الولايات المتحدة في الشرق الأوسط (2009-2017)»" class="h-96 w-auto rounded-md" />
+    </label>
+    <div>
+      <h3 class="font-serif text-2xl font-semibold">دراسات سياسة الولايات المتحدة في الشرق الأوسط (2009-2017)</h3>
+      <p class="mt-1 text-neutral-500">《美国的中东政策研究（2009-2017）》 · كتاب أكاديمي صادر باللغة الصينية · يناير 2026</p>
+      <div class="measure mt-4 space-y-4 text-neutral-700">
+        <p>بالاستناد إلى سنوات من البحث والعمل الميداني في الشرق الأوسط، يقدّم هذا الكتاب دراسة منهجية لسياسة الولايات المتحدة تجاه المنطقة في الفترة من 2009 إلى 2017، متتبعًا تطورها ومحركاتها وأثرها في النظام الإقليمي.</p>
+        <p>الدكتورة ون باحثة في مركز الأمن الدولي والاستراتيجية (CISS) بجامعة تسينغهوا، ومتخصصة في السياسة الخارجية الأمريكية وسياسات الشرق الأوسط.</p>
+      </div>
+      <div class="mt-6">
+        <h4 class="text-sm font-semibold uppercase tracking-wide text-neutral-500">بيانات النشر</h4>
+        <p class="mt-1 text-sm text-neutral-600">دار نشر المعرفة العالمية (World Affairs Press 世界知识出版社) · يناير 2026 · ISBN 9787501269600 · <a href="https://product.dangdang.com/30001244.html" target="_blank" rel="noopener" class="text-accent hover:underline">الشراء عبر Dangdang</a></p>
+      </div>
+    </div>
+    <label for="cover-zoom" class="fixed inset-0 z-50 hidden cursor-zoom-out items-center justify-center bg-neutral-900/70 p-6 peer-checked:flex">
+      <img src="/images/book-cover.jpg" alt="غلاف كتاب «دراسات سياسة الولايات المتحدة في الشرق الأوسط (2009-2017)» (مكبّر)" class="max-h-[90vh] max-w-full rounded-md object-contain" />
+    </label>
+  </div>
 </BaseLayout>

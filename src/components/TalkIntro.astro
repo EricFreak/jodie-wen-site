@@ -13,8 +13,8 @@ const t = ui[locale];
   <slot />
   {qrImage && (
     <figure class="mt-8">
-      <img src={qrImage} alt={locale === 'zh' ? '文晶Talk 微信公众号二维码' : 'Wenjing Talk WeChat official account QR code'} class="h-44 w-44 rounded-md border border-neutral-200" />
-      <figcaption class="mt-2 text-sm text-neutral-600">{locale === 'zh' ? '微信扫码关注「文晶Talk」' : 'Scan with WeChat to follow Wenjing Talk'}</figcaption>
+      <img src={qrImage} alt={locale === 'zh' ? '文晶Talk 微信公众号二维码' : locale === 'ar' ? 'رمز الاستجابة السريعة لحساب Wenjing Talk على WeChat' : 'Wenjing Talk WeChat official account QR code'} class="h-44 w-44 rounded-md border border-neutral-200" />
+      <figcaption class="mt-2 text-sm text-neutral-600">{locale === 'zh' ? '微信扫码关注「文晶Talk」' : locale === 'ar' ? 'امسح الرمز بتطبيق WeChat لمتابعة Wenjing Talk' : 'Scan with WeChat to follow Wenjing Talk'}</figcaption>
     </figure>
   )}
   {links.length === 0 && !qrImage ? (

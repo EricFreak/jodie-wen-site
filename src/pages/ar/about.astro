@@ -1,6 +1,40 @@
 ---
 import BaseLayout from '../../components/BaseLayout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import TimelineItem from '../../components/TimelineItem.astro';
+
+const locale = 'ar' as const;
 ---
-<BaseLayout title="نبذة عني — جودي ون" locale="ar">
-  <h1 class="font-serif text-3xl font-bold">نبذة عني</h1>
+<BaseLayout title="نبذة عني — جودي ون" locale={locale} description="جودي ون، باحثة في مركز الأمن الدولي والاستراتيجية (CISS) بجامعة تسينغهوا، ومديرة التواصل الدولي في منتدى الصين.">
+  <SectionHeader as="h1" title="نبذة عني" />
+
+  <div class="flex flex-col gap-6 sm:flex-row sm:items-start">
+    <img src="/images/portrait.jpg" alt="صورة جودي ون" class="h-96 w-auto shrink-0 rounded-md" />
+    <div class="measure space-y-4 text-neutral-700">
+    <p>الدكتورة جودي ون (ون جينغ) باحثة في مركز الأمن الدولي والاستراتيجية (CISS) بجامعة تسينغهوا، وتشغل أيضًا منصب مديرة التواصل الدولي في منتدى الصين، وهو منصة تُعنى بتيسير التبادلات رفيعة المستوى حول القضايا المتعلقة بالصين داخل البلاد وخارجها.</p>
+    <p>متخصصة في السياسة الخارجية الأمريكية وسياسات الشرق الأوسط والتواصل الدولي، تحمل الدكتورة ون درجة الدكتوراه في دراسات الشرق الأوسط من جامعة بكين، وأجرت بحوث ما بعد الدكتوراه في القانون بجامعة تسينغهوا، وكانت باحثة زائرة بجامعة أكسفورد في الفترة من 2021 إلى 2022. وفي يناير 2026، نشرت أحدث كتبها حول سياسة الولايات المتحدة في الشرق الأوسط.</p>
+    <p>تشارك الدكتورة ون بنشاط في المنتديات الدولية وحوارات المسار الثاني التي تجمع الصين والولايات المتحدة ودول الشرق الأوسط. وتقدّم باستمرار التحليلات والتعليقات لكبريات وسائل الإعلام، من بينها ذا نيويورك تايمز وBBC وساوث تشاينا مورنينغ بوست وCGTN وتلفزيون فينيكس وChina-US Focus.</p>
+    <p>قبل مسيرتها الأكاديمية، كانت للدكتورة ون مسيرة صحفية متميزة، إذ عملت صحفية أولى ومذيعة أخبار، وغطّت الأخبار من أكثر من 40 دولة في أوروبا وآسيا والشرق الأوسط — منها المملكة المتحدة وألمانيا وبلجيكا واليابان وكوريا الجنوبية وباكستان والعراق وإيران وتركيا ولبنان — في تغطيات إخبارية وبحوث ميدانية.</p>
+    </div>
+  </div>
+
+  <div class="mt-14">
+    <SectionHeader title="المسيرة والتعليم" />
+    <ul>
+      <TimelineItem period="حاليًا" title="باحثة" org="مركز الأمن الدولي والاستراتيجية (CISS)، جامعة تسينغهوا" description="ومديرة التواصل الدولي في منتدى الصين." />
+      <TimelineItem period="2021–2022" title="باحثة زائرة" org="معهد أكسفورد للدراسات العالمية والإقليمية، جامعة أكسفورد" />
+      <TimelineItem title="باحثة ما بعد الدكتوراه في القانون" org="جامعة تسينغهوا" />
+      <TimelineItem title="دكتوراه في دراسات الشرق الأوسط" org="جامعة بكين" />
+      <TimelineItem title="صحفية أولى ومذيعة أخبار" description="غطّت الأخبار وأجرت بحوثًا ميدانية في أكثر من 40 دولة في أوروبا وآسيا والشرق الأوسط." />
+    </ul>
+  </div>
+
+  <div class="mt-14">
+    <SectionHeader title="مجالات البحث" />
+    <ul class="flex flex-wrap gap-3">
+      <li class="rounded-md bg-neutral-100 px-3 py-2 text-sm text-neutral-700">السياسة الخارجية الأمريكية</li>
+      <li class="rounded-md bg-neutral-100 px-3 py-2 text-sm text-neutral-700">سياسات الشرق الأوسط</li>
+      <li class="rounded-md bg-neutral-100 px-3 py-2 text-sm text-neutral-700">التواصل الدولي</li>
+    </ul>
+  </div>
 </BaseLayout>

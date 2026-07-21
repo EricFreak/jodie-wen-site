@@ -1,6 +1,18 @@
 ---
 import BaseLayout from '../../components/BaseLayout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import TalkIntro from '../../components/TalkIntro.astro';
+import { ui } from '../../i18n/ui';
+
+const locale = 'ar' as const;
+const t = ui[locale];
+const links: { label: string; url: string }[] = [
+  // 文晶Talk 平台链接待用户补充（见 docs/pending-assets.md）
+];
 ---
-<BaseLayout title="Wenjing Talk — جودي ون" locale="ar">
-  <h1 class="font-serif text-3xl font-bold">Wenjing Talk</h1>
+<BaseLayout title="Wenjing Talk — جودي ون" locale={locale} description="Wenjing Talk (文晶Talk)، العلامة الإعلامية المستقلة التي أسستها جودي ون.">
+  <SectionHeader as="h1" title={t['talk.title']} />
+  <TalkIntro locale={locale} links={links} qrImage="/images/wenjing-talk-qr.jpg">
+    <p class="text-neutral-700">Wenjing Talk (文晶Talk) هي العلامة الإعلامية المستقلة التي أسستها الدكتورة جودي ون خلال سنوات عملها صحفية أولى، وتقدّم تقاريرها وتعليقاتها في الشؤون الدولية مع تركيز على الشرق الأوسط، مستندة إلى عمل ميداني في أكثر من 40 دولة في أوروبا وآسيا والشرق الأوسط.</p>
+  </TalkIntro>
 </BaseLayout>
