@@ -1,6 +1,16 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../components/BaseLayout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import PublicationList from '../../components/PublicationList.astro';
+import { ui } from '../../i18n/ui';
+
+const locale = 'ar' as const;
+const t = ui[locale];
+const entries = (await getCollection('publications'))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
-<BaseLayout title="المنشورات — جودي ون" locale="ar">
-  <h1 class="font-serif text-3xl font-bold">المنشورات</h1>
+<BaseLayout title="المنشورات — جودي ون" locale={locale} description={t['publications.subtitle']}>
+  <SectionHeader as="h1" title={t['publications.title']} subtitle={t['publications.subtitle']} />
+  <PublicationList entries={entries} locale={locale} />
 </BaseLayout>

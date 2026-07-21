@@ -1,6 +1,52 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../components/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import PublicationList from '../../components/PublicationList.astro';
+import { ui } from '../../i18n/ui';
+import { localizePath } from '../../i18n/utils';
+
+const locale = 'ar' as const;
+const t = ui[locale];
+const latest = (await getCollection('publications'))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+const outlets = ['The New York Times', 'BBC', 'South China Morning Post', 'CGTN', 'Phoenix TV', 'China-US Focus'];
 ---
-<BaseLayout title="جودي ون — باحثة في مركز CISS، جامعة تسينغهوا" locale="ar">
-  <h1 class="font-serif text-3xl font-bold">جودي ون</h1>
+<BaseLayout title="جودي ون — باحثة في مركز CISS، جامعة تسينغهوا" locale={locale} description={t['hero.tagline']}>
+  <Hero locale={locale} />
+
+  <section class="mt-14">
+    <SectionHeader title={t['home.book.title']} />
+    <div class="flex flex-col gap-6 sm:flex-row sm:items-center">
+      <input type="checkbox" id="cover-zoom" class="peer sr-only" />
+      <label for="cover-zoom" class="w-fit shrink-0 cursor-zoom-in rounded-md peer-focus-visible:ring-2 peer-focus-visible:ring-accent">
+        <img src="/images/book-cover.jpg" alt="غلاف كتاب «دراسات سياسة الولايات المتحدة في الشرق الأوسط (2009-2017)»" class="h-72 w-auto rounded-md" />
+      </label>
+      <div>
+        <h3 class="font-serif text-xl font-semibold">دراسات سياسة الولايات المتحدة في الشرق الأوسط (2009-2017)</h3>
+        <p class="mt-1 text-sm text-neutral-500">《美国的中东政策研究（2009-2017）》 · يناير 2026</p>
+        <p class="measure mt-3 text-neutral-700">دراسة منهجية لسياسة الولايات المتحدة تجاه الشرق الأوسط في الفترة من 2009 إلى 2017، بالاستناد إلى بحوث المؤلفة وخبرتها الميدانية في المنطقة.</p>
+        <a href={localizePath('/book', locale)} class="mt-3 inline-block text-sm font-medium text-accent hover:underline">{t['home.viewAll']}</a>
+      </div>
+      <label for="cover-zoom" class="fixed inset-0 z-50 hidden cursor-zoom-out items-center justify-center bg-neutral-900/70 p-6 peer-checked:flex">
+        <img src="/images/book-cover.jpg" alt="غلاف كتاب «دراسات سياسة الولايات المتحدة في الشرق الأوسط (2009-2017)» (مكبّر)" class="max-h-[90vh] max-w-full rounded-md object-contain" />
+      </label>
+    </div>
+  </section>
+
+  <section class="mt-14">
+    <SectionHeader title={t['home.publications.title']} />
+    <PublicationList entries={latest} locale={locale} />
+    <a href={localizePath('/publications', locale)} class="text-sm font-medium text-accent hover:underline">{t['home.viewAll']}</a>
+  </section>
+
+  <section class="mt-14">
+    <SectionHeader title={t['home.media.title']} />
+    <ul class="flex flex-wrap gap-3">
+      {outlets.map((o) => <li class="rounded-md border border-neutral-200 px-3 py-2 text-sm text-neutral-600">{o}</li>)}
+    </ul>
+    <a href={localizePath('/media', locale)} class="mt-3 inline-block text-sm font-medium text-accent hover:underline">{t['home.viewAll']}</a>
+  </section>
 </BaseLayout>

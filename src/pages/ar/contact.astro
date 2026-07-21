@@ -1,6 +1,13 @@
 ---
 import BaseLayout from '../../components/BaseLayout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import ContactBlock from '../../components/ContactBlock.astro';
+import { ui } from '../../i18n/ui';
+
+const locale = 'ar' as const;
+const t = ui[locale];
 ---
-<BaseLayout title="التواصل — جودي ون" locale="ar">
-  <h1 class="font-serif text-3xl font-bold">التواصل</h1>
+<BaseLayout title="التواصل — جودي ون" locale={locale} description="معلومات التواصل مع الدكتورة جودي ون.">
+  <SectionHeader as="h1" title={t['contact.title']} />
+  <ContactBlock locale={locale} />
 </BaseLayout>
