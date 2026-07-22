@@ -7,6 +7,8 @@
 **网站已上线**：`https://jodie-wen.vercel.app`（Vercel，8 页 × 3 语言共 24 路由，图片资源正常）。
 
 - 2026-07-21：新增阿拉伯语第三语言（`/ar/`，RTL），已 push 部署并线上复验（`/ar/`、`/ar/about` 200，`lang="ar" dir="rtl"` 生效，英中页无回归）；桌面端语言切换改为 `<details>` 下拉（触发器=当前语言，面板列另两种语言），移动端汉堡菜单内保持平铺。**阿语文案为 AI 翻译，待用户校对**；终审遗留小项：ar 版 `hero.kicker` 跟随中文版含中国论坛职务（英文版无，校对时确认是否对齐）、book 页 h1→h3 标题层级为三语共有结构、favicon.ico 缺失 404（可入 pending-assets）
+- 2026-07-21（下午）：修复移动端肖像被 flex stretch 挤压变形（`w-auto`→`w-fit`，Hero + 三语 about 页，已上线 `90cbbe4`）；移动端 UI 优化：首页 Hero 整体居中、About 肖像居中（桌面端不变，已上线 `18801e4`）
+- **进行中（明天继续）**：内容上传工具 `/studio`——手机聊天框贴链接 → Kimi API 解析 → 按现有卡片样式预览 → 确认后自动提交上线。设计规格已写：[`docs/superpowers/specs/2026-07-21-content-studio-design.md`](docs/superpowers/specs/2026-07-21-content-studio-design.md)，状态「待用户最终确认」。继续时说「读 content-studio 规格继续」；届时需用户配三个 Vercel 环境变量（`MOONSHOT_API_KEY`、`STUDIO_PASSCODE`、`GITHUB_TOKEN`）
 
 - 部署方式：Vercel 连接 GitHub 仓库 `EricFreak/jodie-wen-site`，push 到 main 自动构建部署（Astro 零配置）；PR 分支有预览链接
 - Vercel Authentication（部署保护）已关闭，站点公开可访问
