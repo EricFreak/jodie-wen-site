@@ -11,11 +11,8 @@ const t = ui[locale];
 const visible = socials.filter((s) => s.url || s.qr);
 const desc = (s: SocialPlatform) => ({ en: s.descEn, zh: s.descZh, ar: s.descAr })[locale];
 const scanText = (s: SocialPlatform) => (s.id === 'wechat' ? t['social.scan'] : t['social.scanGeneric']);
-const links = [
-  { label: "对话王缉思：我们是否正在走向一场“新冷战”？", url: "https://mp.weixin.qq.com/s/ya57yEmi76IThCtTPvvgcw" },
-  { label: "【深度分析】文晶：美伊冲突爆发，美国中东战略是否转向？", url: "https://mp.weixin.qq.com/s/BqRoD_LAZUGvhPujdbhOGQ" },
-  { label: "文晶 韩自昂｜2024年美国大选中的媒体博弈：策略演变与中国应对", url: "https://mp.weixin.qq.com/s/TGK2mFz2xBljCxOZaMADig" },
-];
+// 文晶Talk 本号代表文章待用户补充（见 docs/pending-assets.md）
+const links: { label: string; url: string }[] = [];
 ---
 <BaseLayout title="社交媒体 — 文晶" locale={locale} description="在各社交平台关注文晶的内容。">
   <SectionHeader as="h1" title={t['social.title']} />

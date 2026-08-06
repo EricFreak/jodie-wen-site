@@ -11,11 +11,8 @@ const t = ui[locale];
 const visible = socials.filter((s) => s.url || s.qr);
 const desc = (s: SocialPlatform) => ({ en: s.descEn, zh: s.descZh, ar: s.descAr })[locale];
 const scanText = (s: SocialPlatform) => (s.id === 'wechat' ? t['social.scan'] : t['social.scanGeneric']);
-const links = [
-  { label: "Dialogue with Wang Jisi: are we heading toward a new Cold War?", url: "https://mp.weixin.qq.com/s/ya57yEmi76IThCtTPvvgcw" },
-  { label: "In-depth: with the US-Iran conflict erupting, is America's Middle East strategy shifting?", url: "https://mp.weixin.qq.com/s/BqRoD_LAZUGvhPujdbhOGQ" },
-  { label: "Media games in the 2024 US election: strategy evolution and China's response (with Han Zi'ang)", url: "https://mp.weixin.qq.com/s/TGK2mFz2xBljCxOZaMADig" },
-];
+// 文晶Talk 本号代表文章待用户补充（见 docs/pending-assets.md）
+const links: { label: string; url: string }[] = [];
 ---
 <BaseLayout title="Social Media — Jodie Wen" locale={locale} description="Follow Dr. Jodie Wen's work across social media platforms.">
   <SectionHeader as="h1" title={t['social.title']} />

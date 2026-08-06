@@ -12,7 +12,7 @@ const d = entry.data;
 const title = locale === 'zh' ? d.titleZh : d.titleEn;
 const fmt = (dt: Date) => dt.toISOString().slice(0, 10);
 ---
-<div class="flex flex-wrap items-baseline gap-x-3 border-b border-neutral-100 py-2.5">
-  <a href={d.url} target="_blank" rel="noopener" class="font-medium text-neutral-800 hover:text-accent">{title}</a>
-  <span class="shrink-0 text-sm text-neutral-500">{outletLabel(d.outlet, locale)} · {fmt(d.date)}</span>
+<div class="border-b border-neutral-100 py-2.5">
+  <a href={d.url} target="_blank" rel="noopener" class="block font-medium text-neutral-800 hover:text-accent">{title}</a>
+  <span class="mt-0.5 block text-sm text-neutral-500">{outletLabel(d.outlet, locale)} · {fmt(d.date)}</span>
 </div>
