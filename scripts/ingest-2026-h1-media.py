@@ -22,7 +22,7 @@ E = [
      "文晶3月30日接受CGTN采访时认为，美伊冲突不会有真正的赢家。美国的主要目标是推动伊朗政权更迭、摧毁其核设施和导弹能力，但截至目前，伊朗政治依然稳定，核设施仅约三分之一受损，导弹力量也未遭根本性打击，美国并未达成预期目标。"),
     ("2026-03-30", "CGTN Radio", "CGTN 广播", "https://radio.cgtn.com/podcast/news/1/Whats-the-key-to-peaceful-development-of-cross-Strait-ties/600624",
      "CGTN radio interview: four weeks into the US-Iran war",
-     "CGTN 广播采访：美伊战争进入第四周", "video",
+     "CGTN 广播采访：美伊战争进入第四周", "interview",
      "3月30日，清华大学CISS研究员文晶在接受CGTN采访时提出：战争已持续四周多，美伊双方都面临压力，均有达成协议的意愿；巴基斯坦、土耳其、埃及、沙特四国外长会议具有意义；美国提出的15点停火建议难以被伊朗接受；伊朗有能力控制霍尔木兹海峡，商业航运面临较高安全风险；以色列倾向于让冲突持续更久。"),
     ("2026-04-10", "CGTN", "CGTN", "https://www.cgtn.com/tv/replay?id=CdacbEA",
      "CGTN interview: US-Iran divisions over reparations and strait control",
