@@ -2,7 +2,7 @@
 // 阿语简介为 AI 翻译，待用户校对（见 AGENTS.md §7）。
 export interface SocialPlatform {
   id: string;
-  icon: 'wechat' | 'channels' | 'bilibili' | 'youtube' | 'x' | 'linkedin';
+  icon: 'wechat' | 'channels' | 'bilibili' | 'youtube' | 'x' | 'linkedin' | 'weibo';
   name: string;
   handle?: string;
   url?: string;
@@ -50,9 +50,21 @@ export const socials: SocialPlatform[] = [
     descAr: 'مقابلات بالإنجليزية وفيديوهات المنتديات الدولية.',
   },
   {
+    id: 'weibo',
+    icon: 'weibo',
+    name: 'Weibo 微博',
+    handle: '文晶Talk',
+    url: 'https://weibo.com/u/1969913095',
+    descEn: 'Commentary and updates for a Chinese-speaking audience.',
+    descZh: '面向中文读者的评论与动态。',
+    descAr: 'تعليقات ومستجدات للجمهور الناطق بالصينية.',
+  },
+  {
     id: 'x',
     icon: 'x',
     name: 'X (Twitter)',
+    handle: '@JingWenOxford',
+    url: 'https://x.com/JingWenOxford',
     descEn: 'Real-time commentary on breaking Middle East news.',
     descZh: '中东突发新闻的即时评论。',
     descAr: 'تعليقات فورية على أخبار الشرق الأوسط العاجلة.',
@@ -61,6 +73,8 @@ export const socials: SocialPlatform[] = [
     id: 'linkedin',
     icon: 'linkedin',
     name: 'LinkedIn',
+    handle: 'Jodie Wen 文晶',
+    url: 'https://www.linkedin.com/in/jodie-wen-文晶-1a2606387',
     descEn: 'Professional updates, publications and speaking engagements.',
     descZh: '职业动态、发表与演讲信息。',
     descAr: 'مستجدات مهنية ومنشورات ومشاركات في فعاليات.',

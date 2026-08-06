@@ -1,6 +1,6 @@
 ---
-titleEn: "Are efforts to broker a peace deal between Iran and US doomed to fail?"
-titleZh: "斡旋美伊和平协议的努力注定失败吗（南华早报采访）"
+titleEn: "Trump says Iran gave the US gift 'worth a tremendous amount of money'"
+titleZh: "特朗普称伊朗给了美国一份“厚礼”（南华早报采访）"
 type: "interview"
 outlet: "South China Morning Post"
 date: 2026-03-24
