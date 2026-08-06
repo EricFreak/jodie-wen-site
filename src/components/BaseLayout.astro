@@ -17,6 +17,8 @@ const { title, locale, description } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {description && <meta name="description" content={description} />}
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/brand/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/images/brand/logo-mark-180.png" />
     <title>{title}</title>
   </head>
   <body class="flex min-h-screen flex-col">

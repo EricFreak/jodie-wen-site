@@ -28,8 +28,8 @@ const langNames: Record<Locale, string> = { en: 'EN', zh: '中文', ar: 'الع�
 ---
 <header class="relative border-b border-neutral-200">
   <nav class="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
-    <a href={localizePath('/', locale)} class="font-serif text-xl font-bold">
-      {locale === 'zh' ? '文晶' : locale === 'ar' ? 'جودي ون' : 'Jodie Wen'}
+    <a href={localizePath('/', locale)} aria-label="Home">
+      <img src="/images/brand/logo-full.png" alt={locale === 'zh' ? '文晶' : locale === 'ar' ? 'جودي ون' : 'Dr. Jodie Wen'} class="h-14 w-auto" />
     </a>
     <input type="checkbox" id="nav-toggle" class="peer sr-only" />
     <label for="nav-toggle" class="cursor-pointer text-2xl leading-none md:hidden" aria-label="Menu">☰</label>
