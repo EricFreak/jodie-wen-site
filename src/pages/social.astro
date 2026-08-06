@@ -10,6 +10,7 @@ const t = ui[locale];
 // 无链接且无二维码的平台先隐藏，拿到链接后填入 src/data/socials.ts 的 url 即显示
 const visible = socials.filter((s) => s.url || s.qr);
 const desc = (s: SocialPlatform) => ({ en: s.descEn, zh: s.descZh, ar: s.descAr })[locale];
+const scanText = (s: SocialPlatform) => (s.id === 'wechat' ? t['social.scan'] : t['social.scanGeneric']);
 // 文晶Talk 代表文章链接待用户补充（见 docs/pending-assets.md）
 const links: { label: string; url: string }[] = [];
 ---
@@ -28,8 +29,8 @@ const links: { label: string; url: string }[] = [];
         <p class="flex-1 text-sm text-neutral-700">{desc(s)}</p>
         {s.qr && (
           <figure>
-            <img src={s.qr} alt={t['social.scan']} class="h-28 w-28 rounded-md border border-neutral-200" />
-            <figcaption class="mt-1 text-xs text-neutral-500">{t['social.scan']}</figcaption>
+            <img src={s.qr} alt={scanText(s)} class="h-28 w-28 rounded-md border border-neutral-200" />
+            <figcaption class="mt-1 text-xs text-neutral-500">{scanText(s)}</figcaption>
           </figure>
         )}
         {s.url && (
