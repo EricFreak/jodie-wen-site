@@ -10,7 +10,7 @@ const { locale } = Astro.props;
 const t = ui[locale];
 const year = new Date().getFullYear();
 // 页脚社媒图标：点击进入本站 Social Media 页
-const icons = ['wechat', 'weibo', 'channels', 'bilibili', 'youtube', 'x', 'linkedin'] as const;
+const icons = ['wechat', 'weibo', 'x', 'linkedin'] as const;
 ---
 <footer class="mt-16 border-t border-neutral-200">
   <div class="mx-auto flex max-w-5xl flex-col items-center gap-4 px-4 py-8 text-sm text-neutral-500 md:flex-row md:justify-between">
