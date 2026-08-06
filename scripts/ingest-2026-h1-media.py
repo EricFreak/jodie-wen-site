@@ -101,7 +101,7 @@ E = [
      "US-Iran war: is Trump falling into a Vietnam-style quagmire?",
      "美伊战争：特朗普正陷入越南式泥潭吗（南华早报采访）", "interview",
      "文晶7月15日接受南华早报采访指出，美方相关言论既是向伊朗释放强硬信号，也是在11月中期选举前安抚国内选民；美国虽军事优势巨大，但不愿深陷泥潭，且至今未能将优势转化为决定性胜利。"),
-    ("2026-07-25", "China Review News", "中评社", "http://hk.crntt.tw/touch/detail.jsp?coluid=92&kindid=0&docid=10721671",
+    ("2026-07-25", "China Review News", "中评社", "https://gb.crntt.com/doc/92_0_107216710_1_0725102643.html",
      "Iran's spillover-effect tactics challenge US relative power (CRNTT interview)",
      "文晶：伊朗采用溢出效应战术挑战美国的相对实力（中评社采访）", "interview",
      "文晶7月25日接受中评社采访时指出，美伊当前是战略博弈，全面战争可能性低；伊朗采用“溢出战术”打击民用设施，意在施压美国盟友，美方已因此软化对伊立场。短期停火可行但长期和平难，低强度冲突将持续。"),
