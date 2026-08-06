@@ -42,6 +42,8 @@ const css = `
 .mb-filter:checked:not(#mf-all) ~ .mb-body .mb-extra { display: block; }
 .mb-filter:checked:not(#mf-all) ~ .mb-body .mb-expand-label { display: none; }
 ${outlets.map(([o]) => `#mf-${outletSlug(o)}:checked ~ .mb-body [data-outlet]:not([data-outlet="${outletSlug(o)}"]) { display: none; }`).join('\n')}
+/* 筛选后没有匹配条目的区域整个隐藏（含标题） */
+${outlets.map(([o]) => `#mf-${outletSlug(o)}:checked ~ .mb-body .mb-sec:not(:has([data-outlet="${outletSlug(o)}"])) { display: none; }`).join('\n')}
 ${['#mf-all:checked ~ .mb-body label[for="mf-all"]', ...outlets.map(([o]) => `#mf-${outletSlug(o)}:checked ~ .mb-body label[for="mf-${outletSlug(o)}"]`)].join(',\n')} { background: #0F766E; border-color: #0F766E; color: #fff; }
 `;
 ---
@@ -62,55 +64,61 @@ ${['#mf-all:checked ~ .mb-body label[for="mf-all"]', ...outlets.map(([o]) => `#m
       ))}
     </div>
 
-    <h3 class="mt-10 mb-6 font-serif text-2xl font-semibold">{t['media.videos']}</h3>
-    {videos.length === 0 ? (
-      <p class="text-neutral-500">{t['empty']}</p>
-    ) : (
-      <div class="space-y-4">
-        {videos.map((e, i) => (
-          <div data-outlet={outletSlug(e.data.outlet)} class:list={[i >= VIDEO_CAP && 'mb-extra mb-video-extra']}>
-            {showEmbed(e)
-              ? <MediaCard entry={e} locale={locale} />
-              : <VideoCard entry={e} locale={locale} horizontal summary={summary(e)} />}
-          </div>
-        ))}
-      </div>
-    )}
-    {videos.length > VIDEO_CAP && (
-      <label for="mb-expand-videos" class="mb-expand-label mb-label-videos mt-4 inline-block cursor-pointer text-sm font-medium text-accent hover:underline">
-        {t['media.expand.videos']} ({videos.length})
-      </label>
-    )}
+    <section class="mb-sec mt-10">
+      <h3 class="mb-6 font-serif text-2xl font-semibold">{t['media.videos']}</h3>
+      {videos.length === 0 ? (
+        <p class="text-neutral-500">{t['empty']}</p>
+      ) : (
+        <div class="space-y-4">
+          {videos.map((e, i) => (
+            <div data-outlet={outletSlug(e.data.outlet)} class:list={[i >= VIDEO_CAP && 'mb-extra mb-video-extra']}>
+              {showEmbed(e)
+                ? <MediaCard entry={e} locale={locale} />
+                : <VideoCard entry={e} locale={locale} horizontal summary={summary(e)} />}
+            </div>
+          ))}
+        </div>
+      )}
+      {videos.length > VIDEO_CAP && (
+        <label for="mb-expand-videos" class="mb-expand-label mb-label-videos mt-4 inline-block cursor-pointer text-sm font-medium text-accent hover:underline">
+          {t['media.expand.videos']} ({videos.length})
+        </label>
+      )}
+    </section>
 
-    <h3 class="mt-12 mb-6 font-serif text-2xl font-semibold">{t['media.interviews']}</h3>
-    {interviews.length === 0 ? (
-      <p class="text-neutral-500">{t['empty']}</p>
-    ) : (
-      <div>
-        {interviews.map((e, i) => (
-          <div data-outlet={outletSlug(e.data.outlet)} class:list={[i >= ROW_CAP && 'mb-extra mb-row-extra']}>
-            <MediaRow entry={e} locale={locale} />
-          </div>
-        ))}
-      </div>
-    )}
-    {interviews.length > ROW_CAP && (
-      <label for="mb-expand-rows" class="mb-expand-label mb-label-rows mt-4 inline-block cursor-pointer text-sm font-medium text-accent hover:underline">
-        {t['media.expand.interviews']} ({interviews.length})
-      </label>
-    )}
+    <section class="mb-sec mt-12">
+      <h3 class="mb-6 font-serif text-2xl font-semibold">{t['media.interviews']}</h3>
+      {interviews.length === 0 ? (
+        <p class="text-neutral-500">{t['empty']}</p>
+      ) : (
+        <div>
+          {interviews.map((e, i) => (
+            <div data-outlet={outletSlug(e.data.outlet)} class:list={[i >= ROW_CAP && 'mb-extra mb-row-extra']}>
+              <MediaRow entry={e} locale={locale} />
+            </div>
+          ))}
+        </div>
+      )}
+      {interviews.length > ROW_CAP && (
+        <label for="mb-expand-rows" class="mb-expand-label mb-label-rows mt-4 inline-block cursor-pointer text-sm font-medium text-accent hover:underline">
+          {t['media.expand.interviews']} ({interviews.length})
+        </label>
+      )}
+    </section>
 
-    <h3 class="mt-12 mb-6 font-serif text-2xl font-semibold">{t['media.mentions']}</h3>
-    {mentions.length === 0 ? (
-      <p class="text-neutral-500">{t['empty']}</p>
-    ) : (
-      <div>
-        {mentions.map((e) => (
-          <div data-outlet={outletSlug(e.data.outlet)}>
-            <MediaRow entry={e} locale={locale} />
-          </div>
-        ))}
-      </div>
-    )}
+    <section class="mb-sec mt-12">
+      <h3 class="mb-6 font-serif text-2xl font-semibold">{t['media.mentions']}</h3>
+      {mentions.length === 0 ? (
+        <p class="text-neutral-500">{t['empty']}</p>
+      ) : (
+        <div>
+          {mentions.map((e) => (
+            <div data-outlet={outletSlug(e.data.outlet)}>
+              <MediaRow entry={e} locale={locale} />
+            </div>
+          ))}
+        </div>
+      )}
+    </section>
   </div>
 </div>
