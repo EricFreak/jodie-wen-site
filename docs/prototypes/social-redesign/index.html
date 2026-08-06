@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home — Prototype</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html">Jodie Wen</a>
+    <nav class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="#">About</a>
+      <a href="#">Book</a>
+      <a href="#">Publications</a>
+      <a href="#">Media</a>
+      <a href="#">Activities</a>
+      <!-- 改动点：Wenjing Talk → Social Media -->
+      <a href="social.html" class="changed">Social Media</a>
+    </nav>
+    <span class="lang"><b>EN</b> · 中文 · العربية</span>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- Hero（不变，w-auto 修复后的正常比例） -->
+  <section class="hero">
+    <img src="../../../public/images/portrait.jpg" alt="Portrait of Dr. Jodie Wen">
+    <div>
+      <h1 class="serif">Jodie Wen</h1>
+      <p class="kicker">Fellow, Center for International Security and Strategy (CISS), Tsinghua University</p>
+      <p class="bio">Scholar of U.S. foreign policy and Middle East politics; former senior journalist covering 40+ countries. Author of <i>Studies of U.S. Middle East Policy (2009–2017)</i>, and a frequent commentator for The New York Times, BBC, CGTN and other leading outlets.</p>
+      <div class="badges">
+        <span>Ph.D. in Middle East Studies, PKU</span>
+        <span>Oxford Visiting Scholar</span>
+        <span>Postdoc in Law, Tsinghua</span>
+        <span>Former Senior Journalist</span>
+      </div>
+      <div class="cta">
+        <a class="btn btn-solid" href="#">The Book</a>
+        <a class="btn btn-outline" href="#">Contact</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Book（不变） -->
+  <section>
+    <h2 class="sec">The Book</h2>
+    <div class="book">
+      <img src="../../../public/images/book-cover.jpg" alt="Book cover">
+      <div>
+        <h3>Studies of U.S. Middle East Policy (2009–2017)</h3>
+        <p class="meta">《美国的中东政策研究（2009-2017）》 · January 2026</p>
+        <p class="desc">A systematic study of U.S. policy toward the Middle East from 2009 to 2017, drawing on Dr. Wen's research and field experience in the region.</p>
+        <a class="link-more" href="#">View all →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Publications（不变） -->
+  <section>
+    <h2 class="sec">Selected Publications</h2>
+    <div class="pubs">
+      <a class="row" href="#">
+        <p class="t">Summer Davos Observations: Why the Middle East Will Become an Important Arena for Global Scaled Innovation</p>
+        <p class="m">CISS, Tsinghua University · 2026-07-06</p>
+      </a>
+      <a class="row" href="#">
+        <p class="t">The UAE's Exit from OPEC: Strategic Considerations</p>
+        <p class="m">CISS, Tsinghua University · 2026-05-08</p>
+      </a>
+      <a class="row" href="#">
+        <p class="t">BRICS Will Shape the World With China</p>
+        <p class="m">China-US Focus · 2024-11-18</p>
+      </a>
+    </div>
+    <a class="link-more" href="#">View all →</a>
+  </section>
+
+  <!-- 改动点 1：Media 版块 —— 视频卡片直接展示 -->
+  <section>
+    <h2 class="sec">Media</h2>
+    <div class="video-grid">
+      <a class="vcard" href="#" target="_blank" rel="noopener">
+        <div class="thumb cgtn">
+          <span class="outlet-tag">CGTN</span>
+          <div class="play"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
+        </div>
+        <div class="body">
+          <p class="title">The Point with Liu Xin: Middle East tensions and the US-Israel-Iran war</p>
+          <p class="meta">CGTN · 2026-03-30</p>
+        </div>
+      </a>
+      <a class="vcard" href="#" target="_blank" rel="noopener">
+        <div class="thumb cgtn">
+          <span class="outlet-tag">CGTN</span>
+          <div class="play"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
+        </div>
+        <div class="body">
+          <p class="title">CGTN Global Watch interview: US-Iran conflict and the Middle East</p>
+          <p class="meta">CGTN · 2026-03-01</p>
+        </div>
+      </a>
+      <a class="vcard" href="#" target="_blank" rel="noopener">
+        <div class="thumb phoenix">
+          <span class="outlet-tag">Phoenix TV</span>
+          <div class="play"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
+        </div>
+        <div class="body">
+          <p class="title">Tiger Talk: one year of the Israel-Hamas war — will the Middle East conflict spiral out of control?</p>
+          <p class="meta">Phoenix TV · 2024-10-19</p>
+        </div>
+      </a>
+    </div>
+    <ul class="chips">
+      <span class="lbl">Also featured in</span>
+      <li>The New York Times</li><li>BBC</li><li>South China Morning Post</li><li>Phoenix TV</li><li>China-US Focus</li>
+    </ul>
+    <a class="link-more" href="#">View all media →</a>
+    <p class="prototype-note">原型说明：正式上线时缩略图将替换为节目真实封面（抓取或人工提供），点击卡片新标签页打开原视频。</p>
+  </section>
+
+  <!-- 改动点 2：More about Jodie 照片墙（首页底部） -->
+  <section>
+    <h2 class="sec">More about Jodie</h2>
+    <div class="gallery">
+      <figure class="gitem"><div class="ph">照片占位</div><figcaption>World Economic Forum (Davos), Switzerland</figcaption></figure>
+      <figure class="gitem"><div class="ph">照片占位</div><figcaption>Field research, Iran</figcaption></figure>
+      <figure class="gitem"><div class="ph">照片占位</div><figcaption>Reporting from the Middle East</figcaption></figure>
+      <figure class="gitem"><div class="ph">照片占位</div><figcaption>Moderating a forum panel, Beijing</figcaption></figure>
+      <figure class="gitem"><div class="ph">照片占位</div><figcaption>University of Oxford, Visiting Scholar</figcaption></figure>
+      <figure class="gitem"><div class="ph">照片占位</div><figcaption>China Forum event, Tsinghua</figcaption></figure>
+    </div>
+    <p class="prototype-note">原型说明：6 张均为占位块，等你提供伊朗、达沃斯等真实照片后替换；说明文字三语展示。</p>
+  </section>
+
+</main>
+
+<!-- 改动点 3：页脚加社媒图标，点击进入 Social Media 页 -->
+<footer>
+  <div class="wrap foot-inner">
+    <p>© 2026 Jodie Wen. All rights reserved.</p>
+    <div class="foot-social">
+      <a href="social.html" aria-label="WeChat" title="WeChat"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.5 4C5.36 4 2 6.91 2 10.5c0 2.05 1.12 3.87 2.86 5.02L4.14 18l2.72-1.46c.83.26 1.72.4 2.64.4.18 0 .36-.01.54-.02-.11-.45-.17-.92-.17-1.42 0-3.32 3.13-6 7-6 .23 0 .46.01.68.03C16.9 6.24 13.5 4 9.5 4zM7 8.6a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8zm5 0a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8zM16.87 10.5c-3.31 0-6 2.24-6 5s2.69 5 6 5c.77 0 1.5-.12 2.18-.34L21.3 21l-.62-1.94A4.86 4.86 0 0 0 22.9 15.5c0-2.76-2.72-5-6.03-5zm-2.22 2.6a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5zm4.44 0a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5z"/></svg></a>
+      <a href="social.html" aria-label="Bilibili" title="Bilibili"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6.5" width="18" height="13" rx="3"/><path d="M7.5 2.5 10 6M16.5 2.5 14 6" stroke-linecap="round"/><circle cx="8.7" cy="12" r=".4" fill="currentColor"/><circle cx="15.3" cy="12" r=".4" fill="currentColor"/><path d="M8.5 12h.4M15.1 12h.4" stroke-linecap="round" stroke-width="2.2"/></svg></a>
+      <a href="social.html" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.25 5 12 5 12 5s-6.25 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26.2 26.2 0 0 0 2 12a26.2 26.2 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.76 1.77C5.75 19 12 19 12 19s6.25 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77A26.2 26.2 0 0 0 22 12a26.2 26.2 0 0 0-.4-4.8zM10 15.2V8.8l5.2 3.2z"/></svg></a>
+      <a href="social.html" aria-label="X" title="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 3h3.1l-6.8 7.8L21.8 21h-6.3l-4.9-6.4L5 21H1.9l7.3-8.3L2.2 3h6.4l4.4 5.9L17.5 3zm-1.1 16.1h1.7L7.7 4.8H5.9l10.5 14.3z"/></svg></a>
+      <a href="social.html" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
+    </div>
+    <p><a href="mailto:jodiewen@tsinghua.edu.cn" class="accent">jodiewen@tsinghua.edu.cn</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

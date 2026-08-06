@@ -1,0 +1,41 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { Locale } from '../i18n/ui';
+
+interface Props {
+  entry: CollectionEntry<'media'>;
+  locale: Locale;
+}
+const { entry, locale } = Astro.props;
+const d = entry.data;
+const title = locale === 'zh' ? d.titleZh : d.titleEn;
+const fmt = (dt: Date) => dt.toISOString().slice(0, 10);
+// 无封面时按平台用品牌色渐变占位（类名需完整出现以便 Tailwind 扫描）
+const gradients: Record<string, string> = {
+  cgtv: 'from-[#1c2b3a] to-[#3a5a78]',
+  youtube: 'from-[#3a1c1c] to-[#782a2a]',
+  bilibili: 'from-[#17303c] to-[#2a6a7a]',
+  other: 'from-[#2a2a3a] to-[#4a4a5a]',
+};
+const gradient = gradients[d.platform] ?? gradients.other;
+---
+<a href={d.url} target="_blank" rel="noopener" class="group block overflow-hidden rounded-lg border border-neutral-200 bg-white transition-shadow hover:shadow-md">
+  <div class="relative aspect-video">
+    {d.cover ? (
+      <img src={d.cover} alt="" loading="lazy" class="h-full w-full object-cover" />
+    ) : (
+      <div class:list={['flex h-full w-full items-end bg-gradient-to-br p-3', gradient]}>
+        <span class="text-xs font-semibold uppercase tracking-wider text-white/85">{d.outlet}</span>
+      </div>
+    )}
+    <div class="absolute inset-0 flex items-center justify-center">
+      <span class="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 transition-transform group-hover:scale-105">
+        <svg viewBox="0 0 24 24" class="ms-0.5 h-5 w-5 fill-neutral-900"><path d="M8 5v14l11-7z" /></svg>
+      </span>
+    </div>
+  </div>
+  <div class="p-3.5">
+    <p class="line-clamp-2 text-sm leading-snug font-medium text-neutral-800">{title}</p>
+    <p class="mt-1.5 text-xs text-neutral-500">{d.outlet} · {fmt(d.date)}</p>
+  </div>
+</a>

@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import SocialIcon from '../../components/SocialIcon.astro';
+import { socials, type SocialPlatform } from '../../data/socials';
+import { ui } from '../../i18n/ui';
+
+const locale = 'zh' as const;
+const t = ui[locale];
+// 无链接且无二维码的平台先隐藏，拿到链接后填入 src/data/socials.ts 的 url 即显示
+const visible = socials.filter((s) => s.url || s.qr);
+const desc = (s: SocialPlatform) => ({ en: s.descEn, zh: s.descZh, ar: s.descAr })[locale];
+// 文晶Talk 代表文章链接待用户补充（见 docs/pending-assets.md）
+const links: { label: string; url: string }[] = [];
+---
+<BaseLayout title="社交媒体 — 文晶" locale={locale} description="在各社交平台关注文晶的内容。">
+  <SectionHeader as="h1" title={t['social.title']} />
+  <p class="measure mt-4 text-neutral-700">「文晶Talk」是文晶在资深媒体人生涯中创立的自媒体品牌，聚焦中东议题的国际新闻报道与评论，素材来自她在欧亚和中东 40 余国的田野调查。可在以下平台关注她的内容。</p>
+
+  <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    {visible.map((s) => (
+      <div class="flex flex-col gap-2 rounded-lg border border-neutral-200 p-5">
+        <span class="flex h-11 w-11 items-center justify-center rounded-lg bg-neutral-100 text-neutral-800">
+          <SocialIcon name={s.icon} class="h-6 w-6" />
+        </span>
+        <h3 class="font-semibold">{s.name}</h3>
+        {s.handle && <p class="text-sm text-neutral-500">{s.handle}</p>}
+        <p class="flex-1 text-sm text-neutral-700">{desc(s)}</p>
+        {s.qr && (
+          <figure>
+            <img src={s.qr} alt={t['social.scan']} class="h-28 w-28 rounded-md border border-neutral-200" />
+            <figcaption class="mt-1 text-xs text-neutral-500">{t['social.scan']}</figcaption>
+          </figure>
+        )}
+        {s.url && (
+          <a href={s.url} target="_blank" rel="noopener" class="text-sm font-medium text-accent hover:underline">{t['social.follow']}</a>
+        )}
+      </div>
+    ))}
+  </div>
+
+  <h3 class="mt-12 mb-6 font-serif text-2xl font-semibold">{t['social.latest']}</h3>
+  {links.length === 0 ? (
+    <p class="text-neutral-500">{t['empty']}</p>
+  ) : (
+    <ul class="space-y-3">
+      {links.map((l) => (
+        <li>
+          <a href={l.url} target="_blank" rel="noopener" class="text-accent hover:underline">{l.label}</a>
+        </li>
+      ))}
+    </ul>
+  )}
+</BaseLayout>

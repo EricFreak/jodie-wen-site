@@ -24,6 +24,8 @@ const media = defineCollection({
     url: z.string().url(),
     embedUrl: z.string().url().optional(),
     platform: z.enum(['youtube', 'bilibili', 'cgtv', 'other']),
+    featured: z.boolean().optional(),
+    cover: z.string().optional(),
   }),
 });
 
@@ -41,4 +43,15 @@ const activities = defineCollection({
   }),
 });
 
-export const collections = { publications, media, activities };
+const gallery = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/gallery' }),
+  schema: z.object({
+    image: z.string(),
+    captionEn: z.string(),
+    captionZh: z.string(),
+    captionAr: z.string(),
+    date: z.coerce.date().optional(),
+  }),
+});
+
+export const collections = { publications, media, activities, gallery };

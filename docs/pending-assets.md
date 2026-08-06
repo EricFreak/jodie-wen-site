@@ -11,8 +11,13 @@
 
 ## 链接
 
-- [ ] 文晶Talk 代表文章链接（Talk 页）— 公众号二维码已接入（`public/images/wenjing-talk-qr.jpg`，TalkIntro `qrImage` prop，2026-07-20）；代表文章链接（`mp.weixin.qq.com/s/...`）仍待提供，拿到后填入 `src/pages/talk.astro` 与 `src/pages/zh/talk.astro` 的 `links` 数组即可
-- [ ] 采访视频嵌入 ID（Media 页）— YouTube/B站 embed ID 未核实到（CGTN《欣视点》2026-03-30 期在 YouTube 有超过 6 万播放但视频 ID 未能确认，B站搜索被反爬）；当前 8 条全部为链接卡片降级、无 iframe；提供视频 ID 后填入对应 `src/content/media/*.md` 的 `embedUrl` 字段即可启用嵌入
+- [ ] 文晶Talk 代表文章链接（Social 页）— 公众号二维码已接入（`public/images/wenjing-talk-qr.jpg`，Social 页微信卡片，2026-07-20）；代表文章链接（`mp.weixin.qq.com/s/...`）仍待提供，拿到后填入 `src/pages/social.astro`、`src/pages/zh/social.astro`、`src/pages/ar/social.astro` 的 `links` 数组即可（2026-08-06 起路径由 talk.astro 改为 social.astro）
+- [ ] 社媒平台账号链接（Social 页 + 页脚图标）— 视频号 / B站 / YouTube / X / LinkedIn 卡片因无链接**当前隐藏**；提供链接后填入 `src/data/socials.ts` 对应平台的 `url` 字段即自动显示（2026-08-06）
+- [ ] 「More about Jodie」生活照片（首页底部照片墙）— 伊朗调研、达沃斯论坛等照片待提供；照片放入 `public/images/gallery/` 并在 `src/content/gallery/` 建条目（image + captionEn/captionZh/captionAr + date 可选），无照片时首页显示空态文案（2026-08-06）
+- [ ] 视频封面图（可选，首页/Media 页视频卡片）— 未提供时用平台品牌色渐变占位；提供封面后放入 `public/images/media/` 并在对应 media 条目填 `cover` 字段（2026-08-06）
+- [ ] CGTN Global Watch 2026-03-01 回放 ID 冲突待确认 — 已收录条目用 `CcdIEAA`，用户 docx 用 `CcdbJIA`，两个链接均返回 200（SPA 无法程序判定），已保留已收录条目、跳过 docx 副本；请人工打开确认哪个是正确的 3/1 期节目（2026-08-06）
+- [ ] SCMP 2026-04-09 条目 URL 经修正（docx 原文含空格断行，已按连字符补全 `strait-hormuz-closed-again-end-iran-us-ceasefire`），如打不开请提供正确链接（2026-08-06）
+- [ ] 采访视频嵌入 ID（Media 页）— YouTube/B站 embed ID 未核实到（CGTN《欣视点》2026-03-30 期在 YouTube 有超过 6 万播放但视频 ID 未能确认，B站搜索被反爬）；当前全部为封面卡片/链接卡片降级、无 iframe；提供视频 ID 后填入对应 `src/content/media/*.md` 的 `embedUrl` 字段即可启用嵌入
 - [ ] SCMP 已收录条目（`src/content/media/2023-scmp-blinken-saudi-arabia.md`）直接链接被反爬/付费墙，读者可能打不开；URL 有 CISS 官网逐字引用佐证故予保留，如有可读替代链接（或本人存档）可替换
 
 ## 内容缺口
@@ -28,7 +33,7 @@
 - [ ] NYT / BBC 具体采访条目 — bio 佐证存在，但未能核实到具体 URL
 - [ ] 东方卫视美伊冲突采访 — CISS 综述（`https://ciss.tsinghua.edu.cn/info/new_communication_iqt/2000000009048`）佐证存在，但无直接可引用 URL
 - [ ] 「CISS 专家就中美元首峰会接受多家媒体采访」（2026-05-15，文晶在列）— CISS 通告 `https://ciss.tsinghua.edu.cn/info/new_communication_iqt/2000000009244`，原媒体报道链接未取得
-- [ ] 中评社采访「美伊谈不拢」（2026-03-27）— 仅见搜索快照，无稳定 URL
+- [x] 中评社采访「美伊僵局难破：能源危机冲击AI产业」（2026-03-27）— 已通过 materials 素材补录（`src/content/media/2026-03-27-china-review-news-*.md`，2026-08-06）
 
 ### 活动（Activities 页）
 

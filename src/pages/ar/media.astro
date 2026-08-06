@@ -3,13 +3,15 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../components/BaseLayout.astro';
 import SectionHeader from '../../components/SectionHeader.astro';
 import MediaCard from '../../components/MediaCard.astro';
+import VideoCard from '../../components/VideoCard.astro';
 import { ui } from '../../i18n/ui';
 
 const locale = 'ar' as const;
 const t = ui[locale];
 const all = (await getCollection('media'))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
-const features = all.filter((e) => e.data.type === 'video' || e.data.type === 'interview');
+const videos = all.filter((e) => e.data.type === 'video');
+const interviews = all.filter((e) => e.data.type === 'interview');
 const mentions = all.filter((e) => e.data.type === 'mention');
 const outlets = ['The New York Times', 'BBC', 'South China Morning Post', 'CGTN', 'Phoenix TV', 'China-US Focus'];
 ---
@@ -17,9 +19,14 @@ const outlets = ['The New York Times', 'BBC', 'South China Morning Post', 'CGTN'
   <SectionHeader as="h1" title={t['media.title']} />
 
   <h3 class="mb-6 font-serif text-2xl font-semibold">{t['media.videos']}</h3>
-  {features.length === 0
+  {videos.length === 0
     ? <p class="text-neutral-500">{t['empty']}</p>
-    : features.map((e) => <MediaCard entry={e} locale={locale} />)}
+    : <div class="grid gap-5 sm:grid-cols-2">{videos.map((e) => <VideoCard entry={e} locale={locale} />)}</div>}
+
+  <h3 class="mt-12 mb-6 font-serif text-2xl font-semibold">{t['media.interviews']}</h3>
+  {interviews.length === 0
+    ? <p class="text-neutral-500">{t['empty']}</p>
+    : interviews.map((e) => <MediaCard entry={e} locale={locale} />)}
 
   <h3 class="mt-12 mb-6 font-serif text-2xl font-semibold">{t['media.mentions']}</h3>
   {mentions.length === 0
