@@ -15,7 +15,7 @@ export const ui = {
     'footer.rights': 'All rights reserved.',
     'hero.kicker': 'Fellow, Center for International Security and Strategy (CISS), Tsinghua University',
     'hero.tagline': 'Scholar of U.S. foreign policy and Middle East politics; former senior journalist covering 40+ countries.',
-    'hero.bio': 'She is the author of Studies of U.S. Middle East Policy (2009–2017), and a frequent commentator for The New York Times, BBC, CGTN and other leading outlets.',
+    'hero.bio': 'She is the author of Research on the Middle East Policy of the United States (2009–2017), and a frequent commentator for The New York Times, BBC, CGTN and other leading outlets.',
     'hero.cta.book': 'The Book',
     'hero.cta.contact': 'Contact',
     'home.book.title': 'The Book',

@@ -4,15 +4,15 @@ import SectionHeader from '../components/SectionHeader.astro';
 
 const locale = 'en' as const;
 ---
-<BaseLayout title="Book — Jodie Wen" locale={locale} description="Studies of U.S. Middle East Policy (2009–2017), a monograph by Dr. Jodie Wen.">
+<BaseLayout title="Book — Jodie Wen" locale={locale} description="Research on the Middle East Policy of the United States (2009–2017), a monograph by Dr. Jodie Wen.">
   <SectionHeader as="h1" title="The Book" />
   <div class="flex flex-col gap-8 sm:flex-row sm:items-center">
     <input type="checkbox" id="cover-zoom" class="peer sr-only" />
     <label for="cover-zoom" class="w-fit shrink-0 cursor-zoom-in rounded-md peer-focus-visible:ring-2 peer-focus-visible:ring-accent">
-      <img src="/images/book-cover.jpg" alt="Cover of Studies of U.S. Middle East Policy (2009–2017)" class="h-96 w-auto rounded-md" />
+      <img src="/images/book-cover.jpg" alt="Cover of Research on the Middle East Policy of the United States (2009–2017)" class="h-96 w-auto rounded-md" />
     </label>
     <div>
-      <h3 class="font-serif text-2xl font-semibold">Studies of U.S. Middle East Policy (2009–2017)</h3>
+      <h3 class="font-serif text-2xl font-semibold">Research on the Middle East Policy of the United States (2009–2017)</h3>
       <p class="mt-1 text-neutral-500">《美国的中东政策研究（2009-2017）》 · Chinese-language monograph · January 2026</p>
       <div class="measure mt-4 space-y-4 text-neutral-700">
         <p>Drawing on years of research and fieldwork across the Middle East, this book offers a systematic study of U.S. policy toward the region from 2009 to 2017, tracing its evolution, drivers, and impact on regional order.</p>
@@ -24,7 +24,7 @@ const locale = 'en' as const;
       </div>
     </div>
     <label for="cover-zoom" class="fixed inset-0 z-50 hidden cursor-zoom-out items-center justify-center bg-neutral-900/70 p-6 peer-checked:flex">
-      <img src="/images/book-cover.jpg" alt="Cover of Studies of U.S. Middle East Policy (2009–2017), enlarged" class="max-h-[90vh] max-w-full rounded-md object-contain" />
+      <img src="/images/book-cover.jpg" alt="Cover of Research on the Middle East Policy of the United States (2009–2017), enlarged" class="max-h-[90vh] max-w-full rounded-md object-contain" />
     </label>
   </div>
 </BaseLayout>
