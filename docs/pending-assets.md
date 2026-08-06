@@ -11,7 +11,7 @@
 
 ## 链接
 
-- [ ] 文晶Talk 代表文章链接（Social 页）— 公众号二维码已接入（`public/images/wenjing-talk-qr.jpg`，Social 页微信卡片，2026-07-20）；代表文章链接（`mp.weixin.qq.com/s/...`）仍待提供，拿到后填入 `src/pages/social.astro`、`src/pages/zh/social.astro`、`src/pages/ar/social.astro` 的 `links` 数组即可（2026-08-06 起路径由 talk.astro 改为 social.astro）
+- [x] 文晶Talk 代表文章链接（Social 页）— 公众号二维码 + 3 篇代表文章（对话王缉思、美伊冲突深度分析、2024 美国大选媒体博弈）已接入三语 Social 页（2026-08-06）
 - [ ] 社媒平台账号链接（Social 页 + 页脚图标）— LinkedIn（`linkedin.com/in/jodie-wen-文晶-1a2606387`）、X（`x.com/JingWenOxford`）、微博（`weibo.com/u/1969913095`）已于 2026-08-06 核实接入；视频号 / B站 / YouTube 卡片因无链接**当前隐藏**，提供链接后填入 `src/data/socials.ts` 对应平台的 `url` 字段即自动显示
 - [ ] 「More about Jodie」生活照片（首页底部照片墙）— 伊朗调研、达沃斯论坛等照片待提供；照片放入 `public/images/gallery/` 并在 `src/content/gallery/` 建条目（image + captionEn/captionZh/captionAr + date 可选），无照片时首页显示空态文案（2026-08-06）
 - [ ] 凤凰卫视《一虎一席谈》（2024-10-19）视频封面 — 该条目链接为 CISS 官网页面、无视频流可截帧，当前为渐变占位；提供截图后放入 `public/images/media/` 并在条目填 `cover` 字段（其余 5 条 CGTN 视频封面已于 2026-08-06 通过回放 API + ffmpeg 截帧生成）

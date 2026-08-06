@@ -119,7 +119,7 @@ E = [
      "The UAE's Exit from OPEC: Strategic Considerations",
      "阿联酋退出OPEC：为霍尔木兹海峡恢复通航提前布局？", "article",
      "文晶与樊若晨在分析中指出，阿联酋退出OPEC虽在意料之外，却在情理之中，根源在于其产能扩张与OPEC配额限制之间的长期结构性矛盾。阿联酋选择在霍尔木兹海峡受冲击之际退出，实为利用自身绕开海峡的出口优势提前进行战略布局。"),
-    ("2026-06-28", "FT Chinese", "FT中文网", "https://cn.ft.com/story/001110172",
+    ("2026-06-28", "FT Chinese", "FT中文网", "https://www.ftchinese.com/story/001110172",
      "Summer Davos Observations: Why the Middle East Will Become an Important Arena for Global Scaled Innovation",
      "夏季达沃斯观察：为何中东将成为全球规模化创新的重要场域？", "article",
      "文晶在夏季达沃斯论坛后指出，全球竞争的本质正从地缘政治转向可持续的经济增长，而增长的引擎是创新的规模化和产业化。中东正跳出“全球地缘冲突和能源供给中心”的单一标签，成为全球规模化创新浪潮里的落地试验场。"),
@@ -131,7 +131,7 @@ SKIP_COLLECTION = {
     "https://www.cgtn.com/tv/replay?id=CcdbJIA",       # Global Watch 3/1 与已收录条目同天同节目
     "https://www.chinanews.com.cn/gj/2026/03-03/10580191.shtml",  # 已收录
     "https://www.thepaper.cn/newsDetail_forward_33105399",        # 与 CISS 2026-05-08 条目同文
-    "https://cn.ft.com/story/001110172",                          # 与 CISS 2026-07-06 条目同文
+    "https://www.ftchinese.com/story/001110172",                          # 与 CISS 2026-07-06 条目同文
 }
 
 PLATFORM = {"CGTN": "cgtv", "CGTN Radio": "cgtv"}
