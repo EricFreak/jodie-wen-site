@@ -26,6 +26,8 @@ const media = defineCollection({
     platform: z.enum(['youtube', 'bilibili', 'cgtv', 'other']),
     featured: z.boolean().optional(),
     cover: z.string().optional(),
+    summaryEn: z.string().optional(),
+    summaryZh: z.string().optional(),
   }),
 });
 

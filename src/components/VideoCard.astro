@@ -5,8 +5,12 @@ import type { Locale } from '../i18n/ui';
 interface Props {
   entry: CollectionEntry<'media'>;
   locale: Locale;
+  /** 横向布局：左封面右文字（Media 页）；缺省为纵向卡片（首页） */
+  horizontal?: boolean;
+  /** 简介（Media 页横向布局显示，桌面端可见） */
+  summary?: string;
 }
-const { entry, locale } = Astro.props;
+const { entry, locale, horizontal = false, summary } = Astro.props;
 const d = entry.data;
 const title = locale === 'zh' ? d.titleZh : d.titleEn;
 const fmt = (dt: Date) => dt.toISOString().slice(0, 10);
@@ -19,23 +23,47 @@ const gradients: Record<string, string> = {
 };
 const gradient = gradients[d.platform] ?? gradients.other;
 ---
-<a href={d.url} target="_blank" rel="noopener" class="group block overflow-hidden rounded-lg border border-neutral-200 bg-white transition-shadow hover:shadow-md">
-  <div class="relative aspect-video">
-    {d.cover ? (
-      <img src={d.cover} alt="" loading="lazy" class="h-full w-full object-cover" />
-    ) : (
-      <div class:list={['flex h-full w-full items-end bg-gradient-to-br p-3', gradient]}>
-        <span class="text-xs font-semibold uppercase tracking-wider text-white/85">{d.outlet}</span>
+{horizontal ? (
+  <a href={d.url} target="_blank" rel="noopener" class="group flex gap-4 rounded-lg border border-neutral-200 bg-white p-3 transition-shadow hover:shadow-md">
+    <div class="relative aspect-video w-36 shrink-0 self-start overflow-hidden rounded-md sm:w-56">
+      {d.cover ? (
+        <img src={d.cover} alt="" loading="lazy" class="h-full w-full object-cover" />
+      ) : (
+        <div class:list={['flex h-full w-full items-end bg-gradient-to-br p-2', gradient]}>
+          <span class="text-[10px] font-semibold uppercase tracking-wider text-white/85">{d.outlet}</span>
+        </div>
+      )}
+      <div class="absolute inset-0 flex items-center justify-center">
+        <span class="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 transition-transform group-hover:scale-105">
+          <svg viewBox="0 0 24 24" class="ms-0.5 h-3.5 w-3.5 fill-neutral-900"><path d="M8 5v14l11-7z" /></svg>
+        </span>
       </div>
-    )}
-    <div class="absolute inset-0 flex items-center justify-center">
-      <span class="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 transition-transform group-hover:scale-105">
-        <svg viewBox="0 0 24 24" class="ms-0.5 h-5 w-5 fill-neutral-900"><path d="M8 5v14l11-7z" /></svg>
-      </span>
     </div>
-  </div>
-  <div class="p-3.5">
-    <p class="line-clamp-2 text-sm leading-snug font-medium text-neutral-800">{title}</p>
-    <p class="mt-1.5 text-xs text-neutral-500">{d.outlet} · {fmt(d.date)}</p>
-  </div>
-</a>
+    <div class="min-w-0 py-0.5">
+      <p class="line-clamp-2 text-sm leading-snug font-medium text-neutral-800 sm:text-base">{title}</p>
+      {summary && <p class="mt-1.5 hidden line-clamp-3 text-sm leading-relaxed text-neutral-600 sm:block">{summary}</p>}
+      <p class="mt-1.5 text-xs text-neutral-500">{d.outlet} · {fmt(d.date)}</p>
+    </div>
+  </a>
+) : (
+  <a href={d.url} target="_blank" rel="noopener" class="group block overflow-hidden rounded-lg border border-neutral-200 bg-white transition-shadow hover:shadow-md">
+    <div class="relative aspect-video">
+      {d.cover ? (
+        <img src={d.cover} alt="" loading="lazy" class="h-full w-full object-cover" />
+      ) : (
+        <div class:list={['flex h-full w-full items-end bg-gradient-to-br p-3', gradient]}>
+          <span class="text-xs font-semibold uppercase tracking-wider text-white/85">{d.outlet}</span>
+        </div>
+      )}
+      <div class="absolute inset-0 flex items-center justify-center">
+        <span class="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 transition-transform group-hover:scale-105">
+          <svg viewBox="0 0 24 24" class="ms-0.5 h-5 w-5 fill-neutral-900"><path d="M8 5v14l11-7z" /></svg>
+        </span>
+      </div>
+    </div>
+    <div class="p-3.5">
+      <p class="line-clamp-2 text-sm leading-snug font-medium text-neutral-800">{title}</p>
+      <p class="mt-1.5 text-xs text-neutral-500">{d.outlet} · {fmt(d.date)}</p>
+    </div>
+  </a>
+)}

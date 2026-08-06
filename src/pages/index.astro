@@ -11,7 +11,6 @@ import { localizePath } from '../i18n/utils';
 
 const locale = 'en' as const;
 const t = ui[locale];
-const outlets = ['The New York Times', 'BBC', 'South China Morning Post', 'CGTN', 'Phoenix TV', 'China-US Focus'];
 const latest = (await getCollection('publications'))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 3);
@@ -58,10 +57,7 @@ const photos = (await getCollection('gallery'))
         {videos.map((v) => <VideoCard entry={v} locale={locale} />)}
       </div>
     )}
-    <ul class="mt-6 flex flex-wrap gap-3">
-      {outlets.map((o) => <li class="rounded-md border border-neutral-200 px-3 py-2 text-sm text-neutral-600">{o}</li>)}
-    </ul>
-    <a href={localizePath('/media', locale)} class="mt-3 inline-block text-sm font-medium text-accent hover:underline">{t['home.viewAll']}</a>
+    <a href={localizePath('/media', locale)} class="mt-4 inline-block text-sm font-medium text-accent hover:underline">{t['home.viewAll']}</a>
   </section>
 
   <section class="mt-14">

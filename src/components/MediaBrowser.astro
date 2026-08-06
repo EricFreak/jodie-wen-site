@@ -1,0 +1,116 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { ui, type Locale } from '../i18n/ui';
+import { outletSlug, outletLabel } from '../data/outlets';
+import VideoCard from './VideoCard.astro';
+import MediaCard from './MediaCard.astro';
+import MediaRow from './MediaRow.astro';
+
+interface Props {
+  videos: CollectionEntry<'media'>[];
+  interviews: CollectionEntry<'media'>[];
+  mentions: CollectionEntry<'media'>[];
+  locale: Locale;
+}
+const { videos, interviews, mentions, locale } = Astro.props;
+const t = ui[locale];
+
+const VIDEO_CAP = 4;
+const ROW_CAP = 10;
+
+// 媒体筛选标签：按条目数降序
+const counts = new Map<string, number>();
+for (const e of [...videos, ...interviews, ...mentions]) {
+  counts.set(e.data.outlet, (counts.get(e.data.outlet) ?? 0) + 1);
+}
+const outlets = [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+
+const summary = (e: CollectionEntry<'media'>) => (locale === 'zh' ? e.data.summaryZh : e.data.summaryEn) ?? undefined;
+const showEmbed = (e: CollectionEntry<'media'>) =>
+  Boolean(e.data.embedUrl) &&
+  !((locale === 'zh' && e.data.platform === 'youtube') || (locale !== 'zh' && e.data.platform === 'bilibili'));
+
+// 纯 CSS 筛选/展开：按媒体动态生成规则（零客户端 JS）
+const chipBase =
+  'cursor-pointer rounded-full border border-neutral-200 px-3 py-1.5 text-sm text-neutral-600 hover:border-accent hover:text-accent';
+const css = `
+.mb-extra { display: none; }
+#mb-expand-videos:checked ~ .mb-body .mb-video-extra { display: block; }
+#mb-expand-rows:checked ~ .mb-body .mb-row-extra { display: block; }
+#mb-expand-videos:checked ~ .mb-body .mb-label-videos,
+#mb-expand-rows:checked ~ .mb-body .mb-label-rows { display: none; }
+.mb-filter:checked:not(#mf-all) ~ .mb-body .mb-extra { display: block; }
+.mb-filter:checked:not(#mf-all) ~ .mb-body .mb-expand-label { display: none; }
+${outlets.map(([o]) => `#mf-${outletSlug(o)}:checked ~ .mb-body [data-outlet]:not([data-outlet="${outletSlug(o)}"]) { display: none; }`).join('\n')}
+${['#mf-all:checked ~ .mb-body label[for="mf-all"]', ...outlets.map(([o]) => `#mf-${outletSlug(o)}:checked ~ .mb-body label[for="mf-${outletSlug(o)}"]`)].join(',\n')} { background: #0F766E; border-color: #0F766E; color: #fff; }
+`;
+---
+<div>
+  <style set:html={css} />
+  <input type="radio" name="media-filter" id="mf-all" class="mb-filter sr-only" checked />
+  {outlets.map(([o]) => (
+    <input type="radio" name="media-filter" id={`mf-${outletSlug(o)}`} class="mb-filter sr-only" />
+  ))}
+  <input type="checkbox" id="mb-expand-videos" class="sr-only" />
+  <input type="checkbox" id="mb-expand-rows" class="sr-only" />
+
+  <div class="mb-body">
+    <div class="mb-chips flex flex-wrap gap-2">
+      <label for="mf-all" class={chipBase}>{t['media.filter.all']}</label>
+      {outlets.map(([o, n]) => (
+        <label for={`mf-${outletSlug(o)}`} class={chipBase}>{outletLabel(o, locale)} · {n}</label>
+      ))}
+    </div>
+
+    <h3 class="mt-10 mb-6 font-serif text-2xl font-semibold">{t['media.videos']}</h3>
+    {videos.length === 0 ? (
+      <p class="text-neutral-500">{t['empty']}</p>
+    ) : (
+      <div class="space-y-4">
+        {videos.map((e, i) => (
+          <div data-outlet={outletSlug(e.data.outlet)} class:list={[i >= VIDEO_CAP && 'mb-extra mb-video-extra']}>
+            {showEmbed(e)
+              ? <MediaCard entry={e} locale={locale} />
+              : <VideoCard entry={e} locale={locale} horizontal summary={summary(e)} />}
+          </div>
+        ))}
+      </div>
+    )}
+    {videos.length > VIDEO_CAP && (
+      <label for="mb-expand-videos" class="mb-expand-label mb-label-videos mt-4 inline-block cursor-pointer text-sm font-medium text-accent hover:underline">
+        {t['media.expand.videos']} ({videos.length})
+      </label>
+    )}
+
+    <h3 class="mt-12 mb-6 font-serif text-2xl font-semibold">{t['media.interviews']}</h3>
+    {interviews.length === 0 ? (
+      <p class="text-neutral-500">{t['empty']}</p>
+    ) : (
+      <div>
+        {interviews.map((e, i) => (
+          <div data-outlet={outletSlug(e.data.outlet)} class:list={[i >= ROW_CAP && 'mb-extra mb-row-extra']}>
+            <MediaRow entry={e} locale={locale} />
+          </div>
+        ))}
+      </div>
+    )}
+    {interviews.length > ROW_CAP && (
+      <label for="mb-expand-rows" class="mb-expand-label mb-label-rows mt-4 inline-block cursor-pointer text-sm font-medium text-accent hover:underline">
+        {t['media.expand.interviews']} ({interviews.length})
+      </label>
+    )}
+
+    <h3 class="mt-12 mb-6 font-serif text-2xl font-semibold">{t['media.mentions']}</h3>
+    {mentions.length === 0 ? (
+      <p class="text-neutral-500">{t['empty']}</p>
+    ) : (
+      <div>
+        {mentions.map((e) => (
+          <div data-outlet={outletSlug(e.data.outlet)}>
+            <MediaRow entry={e} locale={locale} />
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+</div>

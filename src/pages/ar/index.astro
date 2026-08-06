@@ -21,7 +21,6 @@ const videos = (await getCollection('media'))
   .slice(0, 3);
 const photos = (await getCollection('gallery'))
   .sort((a, b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0));
-const outlets = ['The New York Times', 'BBC', 'South China Morning Post', 'CGTN', 'Phoenix TV', 'China-US Focus'];
 ---
 <BaseLayout title="جودي ون — باحثة في مركز CISS، جامعة تسينغهوا" locale={locale} description={t['hero.tagline']}>
   <Hero locale={locale} />
@@ -58,10 +57,7 @@ const outlets = ['The New York Times', 'BBC', 'South China Morning Post', 'CGTN'
         {videos.map((v) => <VideoCard entry={v} locale={locale} />)}
       </div>
     )}
-    <ul class="mt-6 flex flex-wrap gap-3">
-      {outlets.map((o) => <li class="rounded-md border border-neutral-200 px-3 py-2 text-sm text-neutral-600">{o}</li>)}
-    </ul>
-    <a href={localizePath('/media', locale)} class="mt-3 inline-block text-sm font-medium text-accent hover:underline">{t['home.viewAll']}</a>
+    <a href={localizePath('/media', locale)} class="mt-4 inline-block text-sm font-medium text-accent hover:underline">{t['home.viewAll']}</a>
   </section>
 
   <section class="mt-14">
