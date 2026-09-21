@@ -22,10 +22,11 @@ const videos = (await getCollection('media'))
   .slice(0, 3);
 const photos = (await getCollection('gallery'))
   .sort((a, b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0));
-// 首页活动轮播：仅展示同时有封面图与外链的活动，按日期倒序
+// 首页活动轮播：仅展示有封面图的活动，按日期倒序，最多 3 张，超出显示 View all
 const activities = (await getCollection('activities'))
-  .filter((e) => e.data.cover && e.data.url)
+  .filter((e) => e.data.cover)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const activitySlides = activities.slice(0, 3);
 ---
 <BaseLayout title="Jodie Wen — CISS Fellow, Tsinghua University" locale={locale} description={t['hero.tagline']}>
   <Hero locale={locale} />
@@ -65,13 +66,15 @@ const activities = (await getCollection('activities'))
     <a href={localizePath('/media', locale)} class="mt-4 inline-block text-sm font-medium text-accent hover:underline">{t['home.viewAll']}</a>
   </section>
 
-  {activities.length > 0 && (
+  {activitySlides.length > 0 && (
     <section class="mt-14">
       <div class="flex items-start justify-between gap-4">
         <SectionHeader title={t['home.activities.title']} subtitle={t['home.activities.subtitle']} />
-        <a href={localizePath('/activities', locale)} class="mt-2 shrink-0 text-sm font-medium text-accent hover:underline">{t['home.viewAll']}</a>
+        {activities.length > 3 && (
+          <a href={localizePath('/activities', locale)} class="mt-2 shrink-0 text-sm font-medium text-accent hover:underline">{t['home.viewAll']}</a>
+        )}
       </div>
-      <ActivityCarousel entries={activities} locale={locale} />
+      <ActivityCarousel entries={activitySlides} locale={locale} />
     </section>
   )}
 

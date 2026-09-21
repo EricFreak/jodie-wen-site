@@ -41,7 +41,7 @@
 
 ### 页面（8 个页面 × 3 语言一一对应）
 
-`/`（首页 Hero + 专著 + 最新发表 + 视频卡片（featured 优先、日期倒序前 3）+ 活动轮播（`ActivityCarousel`，仅展示同时有 `cover` 和 `url` 的活动，日期倒序，纯 CSS 横向滑动）+ More about Jodie 照片墙）、`/about`（履历）、`/book`（专著《美国的中东政策研究（2009-2017）》）、`/publications`（文章列表，按年份分组，静态展示不做交互过滤）、`/media`（`MediaBrowser` 组件：纯 CSS 媒体筛选标签 + 视频横向卡片（左封面右简介）+ 采访/引用紧凑单行，视频默认 4 条、采访默认 10 条，超出纯 CSS 展开）、`/activities`（论坛/二轨对话）、`/social`（社媒平台卡片 + 文晶Talk 精选，平台数据在 `src/data/socials.ts`，无 `url` 且无 `qr` 的平台隐藏）、`/contact`（邮箱 jodiewen@tsinghua.edu.cn，**不做联系表单**）。
+`/`（首页 Hero + 专著 + 最新发表 + 视频卡片（featured 优先、日期倒序前 3）+ 活动轮播（`ActivityCarousel`，仅展示有 `cover` 的活动，日期倒序最多 3 张，超出显示 View all；纯 CSS 左右箭头轮播，无 `url` 的活动纯展示不可点击）+ More about Jodie 照片墙）、`/about`（履历）、`/book`（专著《美国的中东政策研究（2009-2017）》）、`/publications`（文章列表，按年份分组，静态展示不做交互过滤）、`/media`（`MediaBrowser` 组件：纯 CSS 媒体筛选标签 + 视频横向卡片（左封面右简介）+ 采访/引用紧凑单行，视频默认 4 条、采访默认 10 条，超出纯 CSS 展开）、`/activities`（论坛/二轨对话）、`/social`（社媒平台卡片 + 文晶Talk 精选，平台数据在 `src/data/socials.ts`，无 `url` 且无 `qr` 的平台隐藏）、`/contact`（邮箱 jodiewen@tsinghua.edu.cn，**不做联系表单**）。
 
 ### 内容模型（Astro Content Collections，zod 校验）
 
@@ -49,7 +49,7 @@
 
 - `publications`：`titleEn`/`titleZh`/`outlet`/`date`/`url`/`lang`
 - `media`：`titleEn`/`titleZh`/`type`(video/interview/mention)/`outlet`/`date`/`url`/`embedUrl`(可选)/`platform`(youtube/bilibili/cgtv/other)/`featured`(可选，首页视频卡片优先)/`cover`(可选，本地封面路径，缺省用平台色渐变占位；CGTN 封面可用 `api.cgtn.com` 回放 API + ffmpeg 截帧生成)/`summaryEn`/`summaryZh`(可选，Media 页横向卡片简介)
-- `activities`：`titleEn`/`titleZh`/`event`/`location`/`eventZh`/`locationZh`（活动与地点的中文译名）/`date`/`url`(可选)/`cover`(可选，本地封面路径，首页轮播只展示同时有 `cover` 和 `url` 的活动)
+- `activities`：`titleEn`/`titleZh`/`event`/`location`/`eventZh`/`locationZh`（活动与地点的中文译名）/`date`/`url`(可选)/`cover`(可选，本地封面路径，首页轮播只展示有 `cover` 的活动)
 - `gallery`：`image`/`captionEn`/`captionZh`/`captionAr`/`date`(可选)——首页「More about Jodie」照片墙
 
 长文内容（bio 全文、书籍简介、文晶Talk 介绍）**不进集合**，直接写在对应页面的 Astro 模板里（英文页写英文，`/zh/` 页写中文）。

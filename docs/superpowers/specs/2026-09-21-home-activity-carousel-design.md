@@ -22,7 +22,7 @@
 | 内容来源 | 封面图由实现方从活动已有公开报道链接抓取；用户日后提供素材可直接替换同名文件 |
 | 轮播形式 | 横向滑动卡片（CSS scroll-snap，零 JS） |
 | 展示哪些活动 | 只展示「有封面图」的活动，按日期倒序 |
-| 卡片点击跳转 | 跳到该活动 frontmatter 的 `url` 外链，新窗口打开 |
+| 卡片点击跳转 | 有 `url` 的活动跳到外链（新窗口）；无 `url` 的活动（如 2026-09 希利论坛，用户提供的新闻稿无公开链接）纯展示不可点击 |
 
 ## 3. 数据模型
 
@@ -43,19 +43,18 @@
 
 **位置**：首页「In the Media / 媒体报道」视频版块之下、「More about Jodie」照片墙之上。
 
-**结构**：
+**结构**（2026-09-21 按用户要求修订为左右箭头轮播样式）：
 
-- 版块标题 + 副标题（`src/i18n/ui.ts` 新增三语词条，如 `home.activities.title` / `home.activities.subtitle` / `home.activities.viewAll`；阿语为 AI 翻译待校对）
-- 标题行右侧 "View all →" 链接到当前语言的 `activities` 页（用 `src/i18n/utils.ts` 现有路由工具）
-- 卡片横向排列，`overflow-x-auto` + `scroll-snap-type: x mandatory`：
-  - 桌面（≥1024px）：一行约 3 张
-  - 移动端：每张约 85% 宽，露出下一张边缘提示可滑动
-- 每张卡片内容：
+- 版块标题 + 副标题（`src/i18n/ui.ts` 新增三语词条，如 `home.activities.title` / `home.activities.subtitle`；阿语为 AI 翻译待校对）
+- "View all →" 链接到当前语言的 `activities` 页，**仅在符合条件的活动超过 3 个时显示**
+- 左右箭头轮播（纯 CSS：scroll-snap + 锚点箭头，零 JS）：一次展示一张幻灯片，幻灯片内左右两侧圆形箭头按钮切换上一张/下一张（首张无左箭头、末张无右箭头，移动端也可直接滑动）
+- 最多展示最新 3 场有封面图的活动（有几个展示几个）
+- 每张幻灯片内容（上方图片、下方文字）：
   - 封面图，16:9 `object-cover` 裁切
   - 标题：`locale === 'zh' ? titleZh : titleEn`（与 `ActivityList.astro:19` 现有阿语回退逻辑一致，阿语页显示英文标题）
   - 日期 + 地点小字（地点同样按 locale 取 `location`/`locationZh`）
-- 整张卡片为 `<a href={url} target="_blank" rel="noopener">`
-- 方向相关样式一律用 Tailwind 逻辑属性，阿语 RTL 下滚动与排版自然适配
+- 有 `url` 的活动：封面图与标题均可点击，`target="_blank" rel="noopener"` 跳外链；**无 `url` 的活动以纯展示渲染（不可点击）**，仍可进入轮播
+- 方向相关样式一律用 Tailwind 逻辑属性（箭头用 `start-/end-` + `rtl:-scale-x-100`），阿语 RTL 下滚动与排版自然适配
 
 **空态**：过滤后没有任何带 `cover` 的活动时，整个版块（含标题与 View all）不渲染。
 
@@ -64,13 +63,13 @@
 ## 5. 数据流
 
 1. 首页 Astro 模板 `getCollection('activities')`
-2. 过滤 `entry.data.cover` 与 `entry.data.url` 均非空（卡片必须可点击到外链）→ 按 `date` 倒序
-3. 传给 `ActivityCarousel` 渲染；组件内不做数据获取，只接收 props
+2. 过滤 `entry.data.cover` 非空 → 按 `date` 倒序
+3. 取前 3 条传给 `ActivityCarousel` 渲染；组件内不做数据获取，只接收 props；符合条件总数 > 3 时页面渲染 View all 链接
 
 ## 6. 错误处理与边界
 
 - `cover` 文件缺失：构建不报错（public 静态引用），实现时逐张核对文件存在
-- 活动无 `url`：activities schema 中 `url` 为可选；无 `url` 的活动不出现在首页轮播（卡片必须可点击到外链），过滤条件为 `cover && url`
+- 活动无 `url`：仍可进入轮播（schema 中 `url` 为可选），幻灯片以纯展示渲染、不可点击
 - 图片抓取失败的活动：跳过，不加 `cover`，记入交付说明
 
 ## 7. 验证
