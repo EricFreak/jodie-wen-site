@@ -42,6 +42,7 @@ const activities = defineCollection({
     locationZh: z.string(),
     date: z.coerce.date(),
     url: z.string().url().optional(),
+    cover: z.string().optional(),
   }),
 });
 
