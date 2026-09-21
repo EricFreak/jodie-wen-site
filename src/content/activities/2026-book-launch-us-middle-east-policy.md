@@ -7,5 +7,4 @@ eventZh: "CISS新书分享会"
 locationZh: "中国北京"
 date: 2026-01-15
 url: "https://ciss.tsinghua.edu.cn/info/yw/8955"
-cover: "/images/activities/2026-book-launch-us-middle-east-policy.jpg"
 ---

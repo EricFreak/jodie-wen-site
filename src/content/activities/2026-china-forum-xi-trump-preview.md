@@ -7,5 +7,4 @@ eventZh: "第十一届中国论坛专家媒体面对面，CISS"
 locationZh: "中国北京"
 date: 2026-05-12
 url: "https://ciss.tsinghua.edu.cn/info/new_ChinaForumhdmt/2296000014401"
-cover: "/images/activities/2026-china-forum-xi-trump-preview.jpg"
 ---

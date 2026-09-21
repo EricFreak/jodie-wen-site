@@ -8,47 +8,54 @@ interface Props {
 }
 const { entries, locale } = Astro.props;
 const fmt = (dt: Date) => dt.toISOString().slice(0, 10);
-const slideId = (i: number) => `activity-slide-${i}`;
+const radioId = (i: number) => `activity-radio-${i}`;
+// 纯 CSS 轮播：radio + label 切换幻灯片，不用锚点跳转，点击箭头页面位置不变
+// 类名须完整出现以便 Tailwind 扫描；幻灯片上限 3 张（调用方 slice(0, 3)）
+const peers = ['peer/slide0', 'peer/slide1', 'peer/slide2'];
+const visible = [
+  'peer-checked/slide0:block',
+  'peer-checked/slide1:block',
+  'peer-checked/slide2:block',
+];
 ---
-<div class="overflow-x-auto [scrollbar-width:none] [scroll-behavior:smooth] [scroll-snap-type:x_mandatory] [&::-webkit-scrollbar]:hidden">
-  <div class="flex">
-    {entries.map((e, i) => {
-      const d = e.data;
-      const title = locale === 'zh' ? d.titleZh : d.titleEn;
-      const location = locale === 'zh' ? d.locationZh : d.location;
-      const prev = i > 0 ? slideId(i - 1) : null;
-      const next = i < entries.length - 1 ? slideId(i + 1) : null;
-      return (
-        <div id={slideId(i)} class="w-full shrink-0 [scroll-snap-align:center]">
-          <div class="relative">
-            {d.url ? (
-              <a href={d.url} target="_blank" rel="noopener" class="group block aspect-video overflow-hidden rounded-lg">
-                <img src={d.cover} alt="" loading={i === 0 ? 'eager' : 'lazy'} class="h-full w-full object-cover" />
-              </a>
-            ) : (
-              <div class="aspect-video overflow-hidden rounded-lg">
-                <img src={d.cover} alt="" loading={i === 0 ? 'eager' : 'lazy'} class="h-full w-full object-cover" />
-              </div>
-            )}
-            {prev && (
-              <a href={`#${prev}`} aria-label="Previous activity" class="absolute start-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-neutral-800 shadow transition hover:bg-white">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 rtl:-scale-x-100"><path d="M15 5l-7 7 7 7" /></svg>
-              </a>
-            )}
-            {next && (
-              <a href={`#${next}`} aria-label="Next activity" class="absolute end-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-neutral-800 shadow transition hover:bg-white">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 rtl:-scale-x-100"><path d="M9 5l7 7-7 7" /></svg>
-              </a>
-            )}
-          </div>
+<div>
+  {entries.map((_, i) => (
+    <input type="radio" name="activity-carousel" id={radioId(i)} checked={i === 0} class:list={[peers[i], 'sr-only']} />
+  ))}
+  {entries.map((e, i) => {
+    const d = e.data;
+    const title = locale === 'zh' ? d.titleZh : d.titleEn;
+    const location = locale === 'zh' ? d.locationZh : d.location;
+    return (
+      <div class:list={['hidden', visible[i]]}>
+        <div class="relative">
           {d.url ? (
-            <a href={d.url} target="_blank" rel="noopener" class="mt-3 block line-clamp-2 text-sm leading-snug font-medium text-neutral-800 hover:text-accent sm:text-base">{title}</a>
+            <a href={d.url} target="_blank" rel="noopener" class="group block aspect-video overflow-hidden rounded-lg">
+              <img src={d.cover} alt="" loading={i === 0 ? 'eager' : 'lazy'} class="h-full w-full object-cover" />
+            </a>
           ) : (
-            <p class="mt-3 line-clamp-2 text-sm leading-snug font-medium text-neutral-800 sm:text-base">{title}</p>
+            <div class="aspect-video overflow-hidden rounded-lg">
+              <img src={d.cover} alt="" loading={i === 0 ? 'eager' : 'lazy'} class="h-full w-full object-cover" />
+            </div>
           )}
-          <p class="mt-1 text-xs text-neutral-500">{location} · {fmt(d.date)}</p>
+          {i > 0 && (
+            <label for={radioId(i - 1)} aria-label="Previous activity" class="absolute start-3 top-1/2 flex h-9 w-9 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-white/90 text-neutral-800 shadow transition hover:bg-white">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 rtl:-scale-x-100"><path d="M15 5l-7 7 7 7" /></svg>
+            </label>
+          )}
+          {i < entries.length - 1 && (
+            <label for={radioId(i + 1)} aria-label="Next activity" class="absolute end-3 top-1/2 flex h-9 w-9 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-white/90 text-neutral-800 shadow transition hover:bg-white">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 rtl:-scale-x-100"><path d="M9 5l7 7-7 7" /></svg>
+            </label>
+          )}
         </div>
-      );
-    })}
-  </div>
+        {d.url ? (
+          <a href={d.url} target="_blank" rel="noopener" class="mt-3 block line-clamp-2 text-sm leading-snug font-medium text-neutral-800 hover:text-accent sm:text-base">{title}</a>
+        ) : (
+          <p class="mt-3 line-clamp-2 text-sm leading-snug font-medium text-neutral-800 sm:text-base">{title}</p>
+        )}
+        <p class="mt-1 text-xs text-neutral-500">{location} · {fmt(d.date)}</p>
+      </div>
+    );
+  })}
 </div>

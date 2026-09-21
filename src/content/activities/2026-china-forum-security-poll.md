@@ -7,5 +7,4 @@ eventZh: "第九届中国论坛专家媒体面对面，CISS"
 locationZh: "中国北京"
 date: 2026-01-15
 url: "https://ciss.tsinghua.edu.cn/info/new_ChinaForumhdmt/2296000014403"
-cover: "/images/activities/2026-china-forum-security-poll.jpg"
 ---
