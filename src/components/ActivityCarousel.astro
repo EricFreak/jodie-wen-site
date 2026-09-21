@@ -1,0 +1,36 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { Locale } from '../i18n/ui';
+
+interface Props {
+  entries: CollectionEntry<'activities'>[];
+  locale: Locale;
+}
+const { entries, locale } = Astro.props;
+const fmt = (dt: Date) => dt.toISOString().slice(0, 10);
+---
+<div class="-mx-4 overflow-x-auto px-4 [scroll-snap-type:x_mandatory] sm:mx-0 sm:px-0">
+  <div class="flex gap-5 pb-2">
+    {entries.map((e) => {
+      const d = e.data;
+      const title = locale === 'zh' ? d.titleZh : d.titleEn;
+      const location = locale === 'zh' ? d.locationZh : d.location;
+      return (
+        <a
+          href={d.url}
+          target="_blank"
+          rel="noopener"
+          class="group w-[85%] shrink-0 overflow-hidden rounded-lg border border-neutral-200 bg-white transition-shadow [scroll-snap-align:start] hover:shadow-md sm:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-2.5rem)/3)]"
+        >
+          <div class="aspect-video overflow-hidden">
+            <img src={d.cover} alt="" loading="lazy" class="h-full w-full object-cover" />
+          </div>
+          <div class="p-3.5">
+            <p class="line-clamp-2 text-sm leading-snug font-medium text-neutral-800">{title}</p>
+            <p class="mt-1.5 text-xs text-neutral-500">{location} · {fmt(d.date)}</p>
+          </div>
+        </a>
+      );
+    })}
+  </div>
+</div>
