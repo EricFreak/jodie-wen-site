@@ -17,8 +17,10 @@
 
 - `docs/superpowers/specs/2026-07-20-jodie-wen-personal-site-design.md` —— 已获用户批准的完整设计规格（目标、技术栈、架构、视觉、验证方案）；规格与本文如有出入，以规格文档为准。
 - `docs/superpowers/specs/2026-08-05-media-social-redesign-design.md` —— 2026-08-06 已实施的增量改版：首页视频卡片（latest + `featured` 优先）、「More about Jodie」照片墙（`gallery` 集合）、`/talk` → `/social` 社媒页、页脚社媒图标、Media 页三段式。
+- `docs/superpowers/specs/2026-09-21-home-activity-carousel-design.md` —— 2026-09-21 已实施的增量改版：首页「近期活动」轮播版块（`activities` 集合新增可选 `cover`，封面图抓自 CISS 报道页存于 `public/images/activities/`，用户可替换同名文件）。
 - `materials/` —— 用户投放新素材的固定入口；解析后按 `materials/视频/` 与 `materials/文字/` 分目录归档（单条 Markdown，frontmatter 与集合字段对齐），再入库对应 collection 并去重（URL 相同或同文转载只留一条）。
 - `docs/pending-assets.md` —— 待用户补充的素材清单（社媒平台链接、More about Jodie 照片、文晶Talk 代表文章等）。
+- `docs/content-operations-sop.md` —— 上线后的内容运营流程 SOP（2026-08-09 与用户确认：**不建后台**，保持「运营投素材到 `materials/` → AI 代理解析入库开 PR → 审核人合并 → Vercel 自动发布」）。部署方式：GitHub 托管代码 + Vercel 构建发布。
 
 ## 3. 技术栈（规格已确定）
 
@@ -39,7 +41,7 @@
 
 ### 页面（8 个页面 × 3 语言一一对应）
 
-`/`（首页 Hero + 专著 + 最新发表 + 视频卡片（featured 优先、日期倒序前 3）+ More about Jodie 照片墙）、`/about`（履历）、`/book`（专著《美国的中东政策研究（2009-2017）》）、`/publications`（文章列表，按年份分组，静态展示不做交互过滤）、`/media`（`MediaBrowser` 组件：纯 CSS 媒体筛选标签 + 视频横向卡片（左封面右简介）+ 采访/引用紧凑单行，视频默认 4 条、采访默认 10 条，超出纯 CSS 展开）、`/activities`（论坛/二轨对话）、`/social`（社媒平台卡片 + 文晶Talk 精选，平台数据在 `src/data/socials.ts`，无 `url` 且无 `qr` 的平台隐藏）、`/contact`（邮箱 jodiewen@tsinghua.edu.cn，**不做联系表单**）。
+`/`（首页 Hero + 专著 + 最新发表 + 视频卡片（featured 优先、日期倒序前 3）+ 活动轮播（`ActivityCarousel`，仅展示同时有 `cover` 和 `url` 的活动，日期倒序，纯 CSS 横向滑动）+ More about Jodie 照片墙）、`/about`（履历）、`/book`（专著《美国的中东政策研究（2009-2017）》）、`/publications`（文章列表，按年份分组，静态展示不做交互过滤）、`/media`（`MediaBrowser` 组件：纯 CSS 媒体筛选标签 + 视频横向卡片（左封面右简介）+ 采访/引用紧凑单行，视频默认 4 条、采访默认 10 条，超出纯 CSS 展开）、`/activities`（论坛/二轨对话）、`/social`（社媒平台卡片 + 文晶Talk 精选，平台数据在 `src/data/socials.ts`，无 `url` 且无 `qr` 的平台隐藏）、`/contact`（邮箱 jodiewen@tsinghua.edu.cn，**不做联系表单**）。
 
 ### 内容模型（Astro Content Collections，zod 校验）
 
@@ -47,14 +49,14 @@
 
 - `publications`：`titleEn`/`titleZh`/`outlet`/`date`/`url`/`lang`
 - `media`：`titleEn`/`titleZh`/`type`(video/interview/mention)/`outlet`/`date`/`url`/`embedUrl`(可选)/`platform`(youtube/bilibili/cgtv/other)/`featured`(可选，首页视频卡片优先)/`cover`(可选，本地封面路径，缺省用平台色渐变占位；CGTN 封面可用 `api.cgtn.com` 回放 API + ffmpeg 截帧生成)/`summaryEn`/`summaryZh`(可选，Media 页横向卡片简介)
-- `activities`：`titleEn`/`titleZh`/`event`/`location`/`eventZh`/`locationZh`（活动与地点的中文译名）/`date`/`url`(可选)
+- `activities`：`titleEn`/`titleZh`/`event`/`location`/`eventZh`/`locationZh`（活动与地点的中文译名）/`date`/`url`(可选)/`cover`(可选，本地封面路径，首页轮播只展示同时有 `cover` 和 `url` 的活动)
 - `gallery`：`image`/`captionEn`/`captionZh`/`captionAr`/`date`(可选)——首页「More about Jodie」照片墙
 
 长文内容（bio 全文、书籍简介、文晶Talk 介绍）**不进集合**，直接写在对应页面的 Astro 模板里（英文页写英文，`/zh/` 页写中文）。
 
 ### 组件
 
-`src/components/` 下小型单职责组件（`BaseLayout`、`Nav`、`Footer`、`Hero`、`SectionHeader`、`TimelineItem`、`PublicationList`、`MediaCard`、`MediaBrowser`、`MediaRow`、`VideoCard`、`Gallery`、`SocialIcon`、`ActivityList`、`ContactBlock`）。**页面只组装组件与数据，不写业务逻辑。**
+`src/components/` 下小型单职责组件（`BaseLayout`、`Nav`、`Footer`、`Hero`、`SectionHeader`、`TimelineItem`、`PublicationList`、`MediaCard`、`MediaBrowser`、`MediaRow`、`VideoCard`、`Gallery`、`SocialIcon`、`ActivityList`、`ActivityCarousel`、`ContactBlock`）。**页面只组装组件与数据，不写业务逻辑。**
 
 ## 5. 构建与验证命令（实现后生效）
 
