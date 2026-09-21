@@ -6,6 +6,7 @@ import Hero from '../../components/Hero.astro';
 import SectionHeader from '../../components/SectionHeader.astro';
 import VideoCard from '../../components/VideoCard.astro';
 import Gallery from '../../components/Gallery.astro';
+import ActivityCarousel from '../../components/ActivityCarousel.astro';
 import { ui } from '../../i18n/ui';
 import { localizePath } from '../../i18n/utils';
 
@@ -21,6 +22,10 @@ const videos = (await getCollection('media'))
   .slice(0, 3);
 const photos = (await getCollection('gallery'))
   .sort((a, b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0));
+// 首页活动轮播：仅展示同时有封面图与外链的活动，按日期倒序
+const activities = (await getCollection('activities'))
+  .filter((e) => e.data.cover && e.data.url)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 <BaseLayout title="文晶 — 清华大学战略与安全研究中心研究员" locale={locale} description={t['hero.tagline']}>
   <Hero locale={locale} />
@@ -59,6 +64,16 @@ const photos = (await getCollection('gallery'))
     )}
     <a href={localizePath('/media', locale)} class="mt-4 inline-block text-sm font-medium text-accent hover:underline">{t['home.viewAll']}</a>
   </section>
+
+  {activities.length > 0 && (
+    <section class="mt-14">
+      <div class="flex items-start justify-between gap-4">
+        <SectionHeader title={t['home.activities.title']} subtitle={t['home.activities.subtitle']} />
+        <a href={localizePath('/activities', locale)} class="mt-2 shrink-0 text-sm font-medium text-accent hover:underline">{t['home.viewAll']}</a>
+      </div>
+      <ActivityCarousel entries={activities} locale={locale} />
+    </section>
+  )}
 
   <section class="mt-14">
     <SectionHeader title={t['home.moreAbout']} />
