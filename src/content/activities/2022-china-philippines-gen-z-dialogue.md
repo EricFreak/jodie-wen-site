@@ -7,4 +7,5 @@ eventZh: "中菲Z世代跨文化线上对话"
 locationZh: "线上"
 date: 2022-12-04
 url: "https://ciss.tsinghua.edu.cn/info/new_communication_iqt/2000000005649"
+cover: "/images/activities/2022-china-philippines-gen-z-dialogue.jpg"
 ---

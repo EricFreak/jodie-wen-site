@@ -7,4 +7,5 @@ eventZh: "2026年世界经济论坛新领军者年会（夏季达沃斯）"
 locationZh: "中国大连"
 date: 2026-06-23
 url: "https://ciss.tsinghua.edu.cn/info/yw/2000000012559"
+cover: "/images/activities/2026-dalian-summer-davos.jpg"
 ---
