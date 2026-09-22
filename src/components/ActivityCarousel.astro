@@ -19,13 +19,6 @@ const visible = [
   'peer-checked/slide3:block',
   'peer-checked/slide4:block',
 ];
-const dotActive = [
-  'peer-checked/slide0:bg-accent',
-  'peer-checked/slide1:bg-accent',
-  'peer-checked/slide2:bg-accent',
-  'peer-checked/slide3:bg-accent',
-  'peer-checked/slide4:bg-accent',
-];
 ---
 <div>
   {entries.map((_, i) => (
@@ -60,9 +53,9 @@ const dotActive = [
     );
   })}
   {entries.length > 1 && (
-    <div class="mt-3 flex items-center justify-center gap-2">
+    <div class="activity-dots mt-3 flex items-center justify-center gap-2">
       {entries.map((_, i) => (
-        <label for={radioId(i)} aria-label={`Go to activity ${i + 1}`} class:list={['h-2 w-2 cursor-pointer rounded-full bg-neutral-300 transition', dotActive[i]]} />
+        <label for={radioId(i)} aria-label={`Go to activity ${i + 1}`} class="activity-dot h-2 w-2 cursor-pointer rounded-full transition" />
       ))}
     </div>
   )}
@@ -82,3 +75,17 @@ const dotActive = [
     );
   })}
 </div>
+
+<style>
+  /* 圆点嵌套在 .activity-dots 内、与 input 不是同级，Tailwind peer(~ 兄弟选择器)覆盖不到，故用原生 CSS 做当前页高亮 */
+  .activity-dot {
+    background-color: var(--color-neutral-300);
+  }
+  #activity-radio-0:checked ~ .activity-dots label[for='activity-radio-0'],
+  #activity-radio-1:checked ~ .activity-dots label[for='activity-radio-1'],
+  #activity-radio-2:checked ~ .activity-dots label[for='activity-radio-2'],
+  #activity-radio-3:checked ~ .activity-dots label[for='activity-radio-3'],
+  #activity-radio-4:checked ~ .activity-dots label[for='activity-radio-4'] {
+    background-color: var(--color-accent);
+  }
+</style>
