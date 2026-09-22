@@ -46,9 +46,9 @@
 **结构**（2026-09-21 按用户要求修订为左右箭头轮播样式）：
 
 - 版块标题 + 副标题（`src/i18n/ui.ts` 新增三语词条，如 `home.activities.title` / `home.activities.subtitle`；阿语为 AI 翻译待校对）
-- "View all →" 链接到当前语言的 `activities` 页，**仅在符合条件的活动超过 3 个时显示**
+- "View all →" 链接到当前语言的 `activities` 页，**仅在符合条件的活动超过 5 个时显示**
 - 左右箭头轮播（纯 CSS：radio + label 切换幻灯片，零 JS；不用锚点跳转，点击箭头页面位置保持不变）：一次展示一张幻灯片，左右两侧圆形箭头按钮切换上一张/下一张（仅 1 张或首张/末张时不显示对应箭头）
-- 最多展示最新 3 场有封面图的活动（有几个展示几个）
+- 最多展示最新 5 场有封面图的活动（有几个展示几个）；图片下方居中显示圆点指示器（每点对应一张幻灯片、可点击切换、当前页深青高亮，仅 1 张时不显示）
 - 每张幻灯片内容（上方图片、下方文字）：
   - 封面图，16:9 `object-cover` 裁切
   - 标题：`locale === 'zh' ? titleZh : titleEn`（与 `ActivityList.astro:19` 现有阿语回退逻辑一致，阿语页显示英文标题）
@@ -64,7 +64,7 @@
 
 1. 首页 Astro 模板 `getCollection('activities')`
 2. 过滤 `entry.data.cover` 非空 → 按 `date` 倒序
-3. 取前 3 条传给 `ActivityCarousel` 渲染；组件内不做数据获取，只接收 props；符合条件总数 > 3 时页面渲染 View all 链接
+3. 取前 5 条传给 `ActivityCarousel` 渲染；组件内不做数据获取，只接收 props；符合条件总数 > 5 时页面渲染 View all 链接
 
 ## 6. 错误处理与边界
 

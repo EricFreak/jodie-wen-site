@@ -9,13 +9,22 @@ interface Props {
 const { entries, locale } = Astro.props;
 const fmt = (dt: Date) => dt.toISOString().slice(0, 10);
 const radioId = (i: number) => `activity-radio-${i}`;
-// 纯 CSS 轮播：radio + label 切换幻灯片，不用锚点跳转，点击箭头页面位置不变
-// 类名须完整出现以便 Tailwind 扫描；幻灯片上限 3 张（调用方 slice(0, 3)）
-const peers = ['peer/slide0', 'peer/slide1', 'peer/slide2'];
+// 纯 CSS 轮播：radio + label 切换幻灯片，不用锚点跳转，点击箭头/圆点页面位置不变
+// 类名须完整出现以便 Tailwind 扫描；幻灯片上限 5 张（调用方 slice(0, 5)）
+const peers = ['peer/slide0', 'peer/slide1', 'peer/slide2', 'peer/slide3', 'peer/slide4'];
 const visible = [
   'peer-checked/slide0:block',
   'peer-checked/slide1:block',
   'peer-checked/slide2:block',
+  'peer-checked/slide3:block',
+  'peer-checked/slide4:block',
+];
+const dotActive = [
+  'peer-checked/slide0:bg-accent',
+  'peer-checked/slide1:bg-accent',
+  'peer-checked/slide2:bg-accent',
+  'peer-checked/slide3:bg-accent',
+  'peer-checked/slide4:bg-accent',
 ];
 ---
 <div>
@@ -24,8 +33,6 @@ const visible = [
   ))}
   {entries.map((e, i) => {
     const d = e.data;
-    const title = locale === 'zh' ? d.titleZh : d.titleEn;
-    const location = locale === 'zh' ? d.locationZh : d.location;
     return (
       <div class:list={['hidden', visible[i]]}>
         <div class="relative">
@@ -49,6 +56,22 @@ const visible = [
             </label>
           )}
         </div>
+      </div>
+    );
+  })}
+  {entries.length > 1 && (
+    <div class="mt-3 flex items-center justify-center gap-2">
+      {entries.map((_, i) => (
+        <label for={radioId(i)} aria-label={`Go to activity ${i + 1}`} class:list={['h-2 w-2 cursor-pointer rounded-full bg-neutral-300 transition', dotActive[i]]} />
+      ))}
+    </div>
+  )}
+  {entries.map((e, i) => {
+    const d = e.data;
+    const title = locale === 'zh' ? d.titleZh : d.titleEn;
+    const location = locale === 'zh' ? d.locationZh : d.location;
+    return (
+      <div class:list={['hidden', visible[i]]}>
         {d.url ? (
           <a href={d.url} target="_blank" rel="noopener" class="mt-3 block line-clamp-2 text-sm leading-snug font-medium text-neutral-800 hover:text-accent sm:text-base">{title}</a>
         ) : (
