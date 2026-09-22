@@ -22,7 +22,8 @@ const visible = [
 ---
 <div>
   {entries.map((_, i) => (
-    <input type="radio" name="activity-carousel" id={radioId(i)} checked={i === 0} class:list={[peers[i], 'sr-only']} />
+    // fixed 定位的隐藏 input：label 点击使其获焦时浏览器不会滚动页面
+    <input type="radio" name="activity-carousel" id={radioId(i)} checked={i === 0} class:list={[peers[i], 'pointer-events-none fixed opacity-0']} />
   ))}
   {entries.map((e, i) => {
     const d = e.data;
@@ -66,9 +67,9 @@ const visible = [
     return (
       <div class:list={['hidden', visible[i]]}>
         {d.url ? (
-          <a href={d.url} target="_blank" rel="noopener" class="mt-3 block line-clamp-2 text-sm leading-snug font-medium text-neutral-800 hover:text-accent sm:text-base">{title}</a>
+          <a href={d.url} target="_blank" rel="noopener" class="mt-3 block min-h-11 line-clamp-2 text-sm leading-snug font-medium text-neutral-800 hover:text-accent sm:text-base">{title}</a>
         ) : (
-          <p class="mt-3 line-clamp-2 text-sm leading-snug font-medium text-neutral-800 sm:text-base">{title}</p>
+          <p class="mt-3 min-h-11 line-clamp-2 text-sm leading-snug font-medium text-neutral-800 sm:text-base">{title}</p>
         )}
         <p class="mt-1 text-xs text-neutral-500">{location} · {fmt(d.date)}</p>
       </div>

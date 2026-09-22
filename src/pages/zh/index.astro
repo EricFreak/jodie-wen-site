@@ -70,9 +70,7 @@ const activitySlides = activities.slice(0, 5);
     <section class="mt-14">
       <div class="flex items-start justify-between gap-4">
         <SectionHeader title={t['home.activities.title']} subtitle={t['home.activities.subtitle']} />
-        {activities.length > 5 && (
-          <a href={localizePath('/activities', locale)} class="mt-2 shrink-0 text-sm font-medium text-accent hover:underline">{t['home.viewAll']}</a>
-        )}
+        <a href={localizePath('/activities', locale)} class="mt-2 shrink-0 text-sm font-medium text-accent hover:underline">{t['home.viewAll']}</a>
       </div>
       <ActivityCarousel entries={activitySlides} locale={locale} />
     </section>
