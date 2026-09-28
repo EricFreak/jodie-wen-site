@@ -9,8 +9,10 @@ interface Props {
   title: string;
   locale: Locale;
   description?: string;
+  /** 感谢页传 false：刚提交完留言，不再重复联系带 */
+  showContactBand?: boolean;
 }
-const { title, locale, description } = Astro.props;
+const { title, locale, description, showContactBand = true } = Astro.props;
 ---
 <!doctype html>
 <html lang={locale === 'zh' ? 'zh-CN' : locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
@@ -27,7 +29,7 @@ const { title, locale, description } = Astro.props;
     <main class="w-full flex-1">
       <slot />
     </main>
-    <ContactBand locale={locale} />
+    {showContactBand && <ContactBand locale={locale} />}
     <Footer locale={locale} />
   </body>
 </html>

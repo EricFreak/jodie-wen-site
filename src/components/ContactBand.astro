@@ -19,6 +19,8 @@ const icons = ['wechat', 'weibo', 'x', 'linkedin'] as const;
     <form action="https://formsubmit.co/jodiewen@tsinghua.edu.cn" method="POST" class="mt-10 grid w-full max-w-xl gap-4">
       <input type="hidden" name="_subject" value={t['contactband.form.subject']} />
       <input type="hidden" name="_template" value="table" />
+      {/* 提交成功后跳回站内感谢页；正式域名变更时同步修改 */}
+      <input type="hidden" name="_next" value={`https://jodie-wen.vercel.app${localizePath('/thanks', locale)}`} />
       <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
       <div>
         <label for="contact-name" class="sr-only">{t['contactband.form.name']}</label>

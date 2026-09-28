@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import { ui } from '../../i18n/ui';
+import { localizePath } from '../../i18n/utils';
+
+const locale = 'zh' as const;
+const t = ui[locale];
+---
+<BaseLayout title="留言已发送 — 文晶" locale={locale} description={t['thanks.message']} showContactBand={false}>
+  <div class="mx-auto flex w-full max-w-6xl flex-col items-center px-6 py-24 text-center md:py-32">
+    <h1 class="font-serif text-4xl font-bold tracking-tight md:text-[44px]">{t['thanks.title']}</h1>
+    <span class="mt-4 block h-[3px] w-14 bg-accent" aria-hidden="true"></span>
+    <p class="mt-6 max-w-[52ch] text-[17px] text-neutral-600">{t['thanks.message']}</p>
+    <a href={localizePath('/', locale)} class="mt-10 rounded-lg bg-accent px-8 py-3.5 text-base font-semibold text-white transition-opacity hover:opacity-90">{t['thanks.back']}</a>
+  </div>
+</BaseLayout>
