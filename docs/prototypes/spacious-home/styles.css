@@ -1,0 +1,389 @@
+/* ═══════════════════════════════════════════════════════════
+   Spacious redesign prototype — Jodie Wen personal site
+   设计读：学者个人站（redesign-preserve），editorial minimalist，
+   保留品牌资产：深青 #0F766E / Georgia+Songti 衬线标题 / 系统字体
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  --accent: #0f766e;
+  --accent-dark: #115e59;
+  --ink: #262626;        /* neutral-800，不用纯黑 */
+  --ink-soft: #525252;   /* neutral-600 */
+  --ink-faint: #737373;  /* neutral-500 */
+  --line: #e5e5e5;       /* neutral-200 */
+  --band: #fafafa;       /* neutral-50 色带 */
+  --footer-bg: #171717;  /* neutral-900 */
+  --radius: 8px;
+  --font-sans: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-serif: "Georgia", "Songti SC", serif;
+  --container: 1152px;   /* max-w-6xl：正文与导航统一 */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font-sans);
+  color: var(--ink);
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+.container {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+/* ── 按钮体系：一套圆角（8px），全站统一 ── */
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-weight: 500;
+  transition: opacity .2s ease;
+}
+.btn:hover { opacity: .88; }
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-outline { border: 1px solid var(--accent); color: var(--accent); }
+.btn-light  { background: #fff; color: var(--accent-dark); font-weight: 600; }
+
+.link-more {
+  display: inline-block;
+  margin-top: 28px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--accent);
+}
+.link-more:hover { text-decoration: underline; }
+
+/* 社媒圆点图标（hero 与 contact 复用） */
+.social-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+  transition: border-color .2s, color .2s;
+}
+.social-dot svg { width: 18px; height: 18px; }
+.social-dot:hover { border-color: var(--accent); color: var(--accent); }
+.social-dot-light { border-color: rgb(255 255 255 / .35); color: #fff; }
+.social-dot-light:hover { border-color: #fff; color: #fff; background: rgb(255 255 255 / .08); }
+
+/* ═══════════ 导航：72px 高，与正文同宽 ═══════════ */
+.nav { border-bottom: 1px solid var(--line); background: #fff; }
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+.nav-logo img { height: 44px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 28px; }
+.nav-links a { font-size: 14px; color: #404040; padding: 4px 0; }
+.nav-links a:hover { color: var(--accent); }
+.nav-links a.is-current { font-weight: 600; color: var(--accent); }
+.nav-lang a { font-weight: 600; color: var(--accent); }
+
+/* ═══════════ Hero：浅色通栏，左文右图 ═══════════ */
+.hero {
+  background: var(--band);
+  border-bottom: 1px solid var(--line);
+}
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  align-items: center;
+  gap: 80px;
+  padding-block: 96px;
+}
+.hero-kicker {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: .01em;
+}
+.hero-name {
+  font-family: var(--font-serif);
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin-top: 16px;
+}
+.hero-tagline {
+  font-size: 20px;
+  color: var(--ink-soft);
+  margin-top: 20px;
+  max-width: 30ch;
+}
+.hero-bio {
+  font-size: 16px;
+  color: var(--ink-soft);
+  margin-top: 16px;
+  max-width: 58ch;
+}
+.hero-credentials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+}
+.hero-credentials li {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+}
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 36px;
+}
+.hero-socials { display: inline-flex; gap: 8px; margin-left: 12px; }
+.hero-photo img {
+  width: 100%;
+  max-width: 420px;
+  margin-inline-start: auto;
+  border-radius: var(--radius);
+  box-shadow: 0 24px 48px -24px rgb(23 23 23 / .25);
+}
+
+/* ═══════════ 版块骨架：大间距 ═══════════ */
+.section { padding-block: 104px; }
+.band .section { padding-block: 96px; }
+
+.section-head { margin-bottom: 48px; }
+.section-head h2 {
+  font-family: var(--font-serif);
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.section-sub { margin-top: 8px; color: var(--ink-soft); font-size: 16px; }
+.section-rule {
+  display: block;
+  width: 56px;
+  height: 3px;
+  background: var(--accent);
+  margin-top: 16px;
+}
+.section-head-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+.section-head-row .link-more { margin-top: 0; flex-shrink: 0; }
+
+/* ═══════════ The Book ═══════════ */
+.book {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 56px;
+  align-items: center;
+  max-width: 900px;
+}
+.book-cover {
+  height: 340px;
+  width: auto;
+  border-radius: var(--radius);
+  box-shadow: 0 20px 40px -20px rgb(23 23 23 / .28);
+}
+.book-text h3 {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.book-meta { margin-top: 10px; font-size: 14px; color: var(--ink-faint); }
+.book-desc { margin-top: 16px; color: var(--ink-soft); max-width: 56ch; }
+
+/* ═══════════ Publications ═══════════ */
+.pub-list { border-top: 1px solid var(--line); }
+.pub-item {
+  padding-block: 28px;
+  border-bottom: 1px solid var(--line);
+}
+.pub-item h3 {
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.45;
+  max-width: 75ch;
+}
+.pub-item h3 a:hover { color: var(--accent); }
+.pub-meta { margin-top: 8px; font-size: 14px; color: var(--ink-faint); }
+
+/* ═══════════ Media ═══════════ */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.video-card { display: block; }
+.video-thumb {
+  display: block;
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: var(--band);
+}
+.video-thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .35s ease;
+}
+.video-card:hover .video-thumb img { transform: scale(1.03); }
+.video-body { display: block; margin-top: 16px; }
+.video-title {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.video-card:hover .video-title { color: var(--accent); }
+.video-meta { display: block; margin-top: 6px; font-size: 13.5px; color: var(--ink-faint); }
+
+/* ═══════════ Activities 色带 + 轮播 ═══════════ */
+.band { background: var(--band); border-block: 1px solid var(--line); }
+.carousel {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 24px;
+}
+.carousel-slide { border-radius: var(--radius); overflow: hidden; }
+.carousel-slide img {
+  width: 100%;
+  aspect-ratio: 21 / 9;
+  object-fit: cover;
+}
+.carousel-slide figcaption {
+  padding: 20px 4px 0;
+}
+.carousel-title { display: block; font-size: 17px; font-weight: 600; }
+.carousel-meta { display: block; margin-top: 4px; font-size: 14px; color: var(--ink-faint); }
+.carousel-arrow {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: #fff;
+  font-size: 22px;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.carousel-arrow:hover { border-color: var(--accent); color: var(--accent); }
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 28px;
+}
+.dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #d4d4d4;
+}
+.dot.is-active { background: var(--accent); }
+
+/* ═══════════ Gallery ═══════════ */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.gallery-slot {
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius);
+  background: var(--band);
+  border: 1px dashed #d4d4d4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-faint);
+  font-size: 14px;
+}
+
+/* ═══════════ Contact 通栏（新增） ═══════════ */
+.contact-band {
+  background: var(--accent-dark);
+  color: #fff;
+  text-align: center;
+}
+.contact-inner { padding-block: 112px; }
+.contact-band h2 {
+  font-family: var(--font-serif);
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.contact-sub {
+  margin-top: 16px;
+  font-size: 17px;
+  color: rgb(255 255 255 / .78);
+}
+.contact-band .btn-light { margin-top: 36px; padding: 14px 32px; font-size: 16px; }
+.contact-socials {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 36px;
+}
+.contact-affil {
+  margin-top: 40px;
+  font-size: 13.5px;
+  color: rgb(255 255 255 / .55);
+}
+
+/* ═══════════ Footer ═══════════ */
+.footer { background: var(--footer-bg); color: #a3a3a3; }
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding-block: 56px;
+}
+.footer-logo { height: 40px; width: auto; opacity: .9; }
+.footer-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; }
+.footer-nav a { font-size: 13.5px; }
+.footer-nav a:hover { color: #fff; }
+.footer-copy { font-size: 13px; color: #737373; }
+
+/* ═══════════ 移动端（< 768px） ═══════════ */
+@media (max-width: 767px) {
+  .nav-links { display: none; } /* 原型省略汉堡菜单，与现站一致用 checkbox 方案 */
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-block: 56px;
+  }
+  .hero-photo { order: -1; }
+  .hero-photo img { max-width: 280px; margin-inline: 0; }
+  .hero-name { font-size: 40px; }
+  .hero-tagline { font-size: 17px; }
+  .section { padding-block: 64px; }
+  .section-head { margin-bottom: 32px; }
+  .section-head h2 { font-size: 30px; }
+  .book { grid-template-columns: 1fr; gap: 28px; }
+  .book-cover { height: 280px; }
+  .video-grid { grid-template-columns: 1fr; gap: 28px; }
+  .carousel { grid-template-columns: 1fr; }
+  .carousel-arrow { display: none; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .contact-inner { padding-block: 72px; }
+  .contact-band h2 { font-size: 32px; }
+  .section-head-row { flex-direction: column; align-items: flex-start; }
+}

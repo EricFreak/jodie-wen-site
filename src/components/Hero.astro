@@ -1,12 +1,15 @@
 ---
 import { ui, type Locale } from '../i18n/ui';
 import { localizePath } from '../i18n/utils';
+import SocialIcon from './SocialIcon.astro';
 
 interface Props {
   locale: Locale;
 }
 const { locale } = Astro.props;
 const t = ui[locale];
+const name = locale === 'zh' ? '文晶' : locale === 'ar' ? 'جودي ون' : 'Jodie Wen';
+const portraitAlt = locale === 'zh' ? '文晶肖像' : locale === 'ar' ? 'صورة جودي ون' : 'Portrait of Dr. Jodie Wen';
 
 const credentials =
   locale === 'zh'
@@ -14,20 +17,37 @@ const credentials =
     : locale === 'ar'
       ? ['دكتوراه في دراسات الشرق الأوسط (جامعة بكين)', 'باحثة زائرة بجامعة أكسفورد', 'باحثة ما بعد الدكتوراه في القانون (تسينغهوا)', 'إعلامية مخضرمة']
       : ['Ph.D. in Middle East Studies, PKU', 'Oxford Visiting Scholar', 'Postdoc in Law, Tsinghua', 'Former Senior Journalist'];
+// Hero 社媒圆点：点击进入本站 Social Media 页
+const icons = ['wechat', 'x', 'linkedin'] as const;
 ---
-<section class="flex flex-col items-center gap-8 py-6 text-center md:flex-row md:items-center md:text-start">
-  <img src="/images/portrait.jpg" alt={locale === 'zh' ? '文晶肖像' : locale === 'ar' ? 'صورة جودي ون' : 'Portrait of Dr. Jodie Wen'} class="h-72 w-auto shrink-0 rounded-md" />
-  <div>
-    <h1 class="font-serif text-4xl font-bold">{locale === 'zh' ? '文晶' : locale === 'ar' ? 'جودي ون' : 'Jodie Wen'}</h1>
-    <p class="mt-2 text-lg text-neutral-600">{t['hero.kicker']}</p>
-    <p class="measure mt-4 text-neutral-700">{t['hero.tagline']}</p>
-    <p class="measure mt-3 text-neutral-700">{t['hero.bio']}</p>
-    <ul class="mt-4 flex flex-wrap justify-center gap-2 md:justify-start">
-      {credentials.map((c) => <li class="rounded-md bg-neutral-100 px-2.5 py-1 text-xs text-neutral-600">{c}</li>)}
-    </ul>
-    <div class="mt-6 flex justify-center gap-3 md:justify-start">
-      <a href={localizePath('/book', locale)} class="rounded-md bg-accent px-4 py-2 text-sm font-medium text-white hover:opacity-90">{t['hero.cta.book']}</a>
-      <a href={localizePath('/contact', locale)} class="rounded-md border border-accent px-4 py-2 text-sm font-medium text-accent hover:bg-accent hover:text-white">{t['hero.cta.contact']}</a>
+<section class="border-b border-neutral-200 bg-neutral-50">
+  <div class="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-10 px-6 py-14 md:grid-cols-[1.25fr_1fr] md:gap-20 md:py-24">
+    <div class="order-2 md:order-1">
+      <p class="text-[15px] font-semibold text-accent">{t['hero.kicker']}</p>
+      <h1 class="mt-4 font-serif text-4xl leading-[1.05] font-bold tracking-tight md:text-[64px]">{name}</h1>
+      <p class="mt-5 max-w-[30ch] text-[17px] text-neutral-600 md:text-xl">{t['hero.tagline']}</p>
+      <p class="measure mt-4 text-base text-neutral-600">{t['hero.bio']}</p>
+      <ul class="mt-6 flex flex-wrap gap-2">
+        {credentials.map((c) => <li class="rounded-md border border-neutral-200 bg-white px-3 py-1.5 text-xs text-neutral-600">{c}</li>)}
+      </ul>
+      <div class="mt-9 flex flex-wrap items-center gap-3">
+        <a href={localizePath('/book', locale)} class="rounded-lg bg-accent px-6 py-3 text-[15px] font-medium text-white transition-opacity hover:opacity-90">{t['hero.cta.book']}</a>
+        <a href={localizePath('/contact', locale)} class="rounded-lg border border-accent px-6 py-3 text-[15px] font-medium text-accent transition-opacity hover:opacity-80">{t['contactband.title']}</a>
+        <span class="ms-2 inline-flex items-center gap-2">
+          {icons.map((icon) => (
+            <a
+              href={localizePath('/social', locale)}
+              aria-label={icon}
+              class="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200 text-neutral-600 transition hover:border-accent hover:text-accent"
+            >
+              <SocialIcon name={icon} class="h-[18px] w-[18px]" />
+            </a>
+          ))}
+        </span>
+      </div>
+    </div>
+    <div class="order-1 md:order-2">
+      <img src="/images/portrait.jpg" alt={portraitAlt} class="w-full max-w-[280px] rounded-lg shadow-[0_24px_48px_-24px_rgb(23_23_23/0.25)] md:ms-auto md:max-w-[420px]" />
     </div>
   </div>
 </section>

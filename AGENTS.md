@@ -18,6 +18,7 @@
 - `docs/superpowers/specs/2026-07-20-jodie-wen-personal-site-design.md` —— 已获用户批准的完整设计规格（目标、技术栈、架构、视觉、验证方案）；规格与本文如有出入，以规格文档为准。
 - `docs/superpowers/specs/2026-08-05-media-social-redesign-design.md` —— 2026-08-06 已实施的增量改版：首页视频卡片（latest + `featured` 优先）、「More about Jodie」照片墙（`gallery` 集合）、`/talk` → `/social` 社媒页、页脚社媒图标、Media 页三段式。
 - `docs/superpowers/specs/2026-09-21-home-activity-carousel-design.md` —— 2026-09-21 已实施的增量改版：首页「近期活动」轮播版块（`activities` 集合新增可选 `cover`，封面图抓自 CISS 报道页存于 `public/images/activities/`，用户可替换同名文件）。
+- `docs/superpowers/specs/2026-09-28-spacious-redesign-design.md` —— 2026-09-28 已实施的全站「大气化」改版：容器放宽至 `max-w-6xl`（`main` 全宽、各页面自带 `mx-auto max-w-6xl px-6` 容器，散文仍限 `.measure` 72ch）、Hero 通栏左文右图、首页 Activities 全宽色带、页底新增 `ContactBand` 联系带（contact 页除外）、页脚改深色居中。高保真设计稿在 `docs/prototypes/spacious-home/`。
 - `materials/` —— 用户投放新素材的固定入口；解析后按 `materials/视频/` 与 `materials/文字/` 分目录归档（单条 Markdown，frontmatter 与集合字段对齐），再入库对应 collection 并去重（URL 相同或同文转载只留一条）。
 - `docs/pending-assets.md` —— 待用户补充的素材清单（社媒平台链接、More about Jodie 照片、文晶Talk 代表文章等）。
 - `docs/content-operations-sop.md` —— 上线后的内容运营流程 SOP（2026-08-09 与用户确认：**不建后台**，保持「运营投素材到 `materials/` → AI 代理解析入库开 PR → 审核人合并 → Vercel 自动发布」）。部署方式：GitHub 托管代码 + Vercel 构建发布。
@@ -56,7 +57,7 @@
 
 ### 组件
 
-`src/components/` 下小型单职责组件（`BaseLayout`、`Nav`、`Footer`、`Hero`、`SectionHeader`、`TimelineItem`、`PublicationList`、`MediaCard`、`MediaBrowser`、`MediaRow`、`VideoCard`、`Gallery`、`SocialIcon`、`ActivityList`、`ActivityCarousel`、`ContactBlock`）。**页面只组装组件与数据，不写业务逻辑。**
+`src/components/` 下小型单职责组件（`BaseLayout`、`Nav`、`Footer`、`Hero`、`SectionHeader`、`TimelineItem`、`PublicationList`、`MediaCard`、`MediaBrowser`、`MediaRow`、`VideoCard`、`Gallery`、`SocialIcon`、`ActivityList`、`ActivityCarousel`、`ContactBand`、`ContactBlock`）。**页面只组装组件与数据，不写业务逻辑。** `ContactBand`（页底联系带）由 `BaseLayout` 在 `</main>` 后统一挂载，`showContactBand={false}` 可关闭（contact 页使用）。
 
 ## 5. 构建与验证命令（实现后生效）
 
@@ -84,7 +85,7 @@ npx astro check    # 类型检查
 - 外链一律 `target="_blank" rel="noopener"`。
 - 视频 `embedUrl` 缺失时降级为链接卡片，不渲染 iframe。
 - 无素材的版块渲染空态文案（如「内容整理中」），不报错。
-- 视觉：现代简约国际感，黑白灰 + 点缀色深青 `#0F766E`；系统字体栈（不用网络字体，避免国内访问问题）；标题用衬线 `"Georgia", "Songti SC", serif` 增加学术感；移动优先响应式，正文最大宽度约 72ch。
+- 视觉：现代简约国际感，黑白灰 + 点缀色深青 `#0F766E`（联系带用深色延伸 `#115e59`，`--color-accent-dark`）；系统字体栈（不用网络字体，避免国内访问问题）；标题用衬线 `"Georgia", "Songti SC", serif` 增加学术感；移动优先响应式；页面内容容器 `mx-auto max-w-6xl px-6`（导航同宽，通栏版块除外），散文段落另用 `.measure` 限宽 72ch。
 
 ## 7. 素材与安全注意事项
 

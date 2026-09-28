@@ -5,8 +5,10 @@ import { ui, type Locale } from '../i18n/ui';
 interface Props {
   entries: CollectionEntry<'publications'>[];
   locale: Locale;
+  /** 扁平列表（首页最新发表，不按年份分组）；缺省按年份分组（Publications 页） */
+  flat?: boolean;
 }
-const { entries, locale } = Astro.props;
+const { entries, locale, flat = false } = Astro.props;
 const t = ui[locale];
 
 const byYear = new Map<number, CollectionEntry<'publications'>[]>();
@@ -17,20 +19,32 @@ for (const e of entries) {
 }
 const years = [...byYear.keys()].sort((a, b) => b - a);
 const fmt = (d: Date) => d.toISOString().slice(0, 10);
+const title = (e: CollectionEntry<'publications'>) => (locale === 'zh' ? e.data.titleZh : e.data.titleEn);
 ---
 {entries.length === 0 ? (
   <p class="text-neutral-500">{t['empty']}</p>
+) : flat ? (
+  <ul class="border-t border-neutral-200">
+    {entries.map((e) => (
+      <li class="border-b border-neutral-200 py-7">
+        <h3 class="max-w-[75ch] text-[19px] leading-snug font-semibold">
+          <a href={e.data.url} target="_blank" rel="noopener" class="hover:text-accent">{title(e)}</a>
+        </h3>
+        <p class="mt-2 text-sm text-neutral-500">{e.data.outlet} · {fmt(e.data.date)}</p>
+      </li>
+    ))}
+  </ul>
 ) : (
   years.map((year) => (
-    <section class="mb-10">
-      <h3 class="mb-4 font-serif text-2xl font-semibold">{year}</h3>
-      <ul class="space-y-4">
+    <section class="mb-14 last:mb-0">
+      <h3 class="mb-6 font-serif text-2xl font-semibold md:text-3xl">{year}</h3>
+      <ul class="border-t border-neutral-200">
         {byYear.get(year)!.map((e) => (
-          <li>
-            <a href={e.data.url} target="_blank" rel="noopener" class="text-accent hover:underline">
-              {locale === 'zh' ? e.data.titleZh : e.data.titleEn}
-            </a>
-            <p class="text-sm text-neutral-500">{e.data.outlet} · {fmt(e.data.date)}</p>
+          <li class="border-b border-neutral-200 py-7">
+            <h4 class="max-w-[75ch] text-[19px] leading-snug font-semibold">
+              <a href={e.data.url} target="_blank" rel="noopener" class="hover:text-accent">{title(e)}</a>
+            </h4>
+            <p class="mt-2 text-sm text-neutral-500">{e.data.outlet} · {fmt(e.data.date)}</p>
           </li>
         ))}
       </ul>

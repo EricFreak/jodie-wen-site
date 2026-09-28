@@ -7,8 +7,8 @@ export interface Props {
 const { title, subtitle, as = 'h2' } = Astro.props;
 const Tag = as;
 ---
-<div class="mb-8">
-  <Tag class="font-serif text-3xl font-bold">{title}</Tag>
+<div class="mb-12">
+  <Tag class="font-serif text-3xl font-bold md:text-4xl">{title}</Tag>
   {subtitle && <p class="mt-2 text-neutral-600">{subtitle}</p>}
-  <div class="mt-3 h-0.5 w-12 bg-accent"></div>
+  <div class="mt-4 h-[3px] w-14 bg-accent"></div>
 </div>

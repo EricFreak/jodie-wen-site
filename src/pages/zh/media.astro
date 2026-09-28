@@ -14,6 +14,8 @@ const interviews = all.filter((e) => e.data.type === 'interview');
 const mentions = all.filter((e) => e.data.type === 'mention');
 ---
 <BaseLayout title="媒体 — 文晶" locale={locale} description="文晶的媒体采访、视频与引用报道。">
+  <div class="mx-auto w-full max-w-6xl px-6 py-16 md:py-24">
   <SectionHeader as="h1" title={t['media.title']} />
   <MediaBrowser videos={videos} interviews={interviews} mentions={mentions} locale={locale} />
+  </div>
 </BaseLayout>

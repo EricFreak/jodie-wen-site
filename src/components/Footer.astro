@@ -9,25 +9,44 @@ interface Props {
 const { locale } = Astro.props;
 const t = ui[locale];
 const year = new Date().getFullYear();
+const name = locale === 'zh' ? '文晶' : locale === 'ar' ? 'جودي ون' : 'Jodie Wen';
+
+const items = [
+  { path: '/', label: t['nav.home'] },
+  { path: '/about', label: t['nav.about'] },
+  { path: '/book', label: t['nav.book'] },
+  { path: '/publications', label: t['nav.publications'] },
+  { path: '/media', label: t['nav.media'] },
+  { path: '/activities', label: t['nav.activities'] },
+  { path: '/social', label: t['nav.social'] },
+  { path: '/contact', label: t['nav.contact'] },
+];
 // 页脚社媒图标：点击进入本站 Social Media 页
 const icons = ['wechat', 'weibo', 'x', 'linkedin'] as const;
 ---
-<footer class="mt-16 border-t border-neutral-200">
-  <div class="mx-auto flex max-w-5xl flex-col items-center gap-4 px-4 py-8 text-sm text-neutral-500 md:flex-row md:justify-between">
-    <p>© {year} {locale === 'zh' ? '文晶' : locale === 'ar' ? 'جودي ون' : 'Jodie Wen'}. {t['footer.rights']}</p>
+<footer class="bg-neutral-900 text-neutral-400">
+  <div class="mx-auto flex w-full max-w-6xl flex-col items-center gap-6 px-6 py-14">
+    <a href={localizePath('/', locale)} aria-label="Home">
+      <img src="/images/brand/logo-mark.png" alt="" class="h-10 w-auto opacity-90" />
+    </a>
+    <ul class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+      {items.map((item) => (
+        <li>
+          <a href={localizePath(item.path, locale)} class="text-[13.5px] hover:text-white">{item.label}</a>
+        </li>
+      ))}
+    </ul>
     <div class="flex items-center gap-3">
       {icons.map((name) => (
         <a
           href={localizePath('/social', locale)}
           aria-label={name}
-          class="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-200 text-neutral-600 hover:border-accent hover:text-accent"
+          class="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-700 text-neutral-400 transition hover:border-white hover:text-white"
         >
           <SocialIcon name={name} class="h-[18px] w-[18px]" />
         </a>
       ))}
     </div>
-    <p>
-      <a href="mailto:jodiewen@tsinghua.edu.cn" class="text-accent hover:underline">jodiewen@tsinghua.edu.cn</a>
-    </p>
+    <p class="text-[13px] text-neutral-500">© {year} {name}. {t['footer.rights']}</p>
   </div>
 </footer>

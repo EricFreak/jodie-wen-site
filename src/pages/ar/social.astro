@@ -15,12 +15,13 @@ const scanText = (s: SocialPlatform) => (s.id === 'wechat' ? t['social.scan'] : 
 const links: { label: string; url: string }[] = [];
 ---
 <BaseLayout title="التواصل الاجتماعي — جودي ون" locale={locale} description="تابعوا أعمال الدكتورة جودي ون عبر منصات التواصل الاجتماعي.">
+  <div class="mx-auto w-full max-w-6xl px-6 py-16 md:py-24">
   <SectionHeader as="h1" title={t['social.title']} />
   <p class="measure mt-4 text-neutral-700">«Wenjing Talk» (文晶Talk) هي العلامة الإعلامية المستقلة التي أسستها الدكتورة جودي ون خلال سنوات عملها كصحفية مخضرمة، وتضم تقاريرها وتعليقاتها حول الشؤون الدولية مع التركيز على الشرق الأوسط، استنادًا إلى عمل ميداني في أكثر من 40 دولة. تابعوا أعمالها عبر المنصات أدناه.</p>
 
-  <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+  <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
     {visible.map((s) => (
-      <div class="flex flex-col gap-2 rounded-lg border border-neutral-200 p-5">
+      <div class="flex flex-col gap-2 rounded-lg border border-neutral-200 p-6">
         <span class="flex h-11 w-11 items-center justify-center rounded-lg bg-neutral-100 text-neutral-800">
           <SocialIcon name={s.icon} class="h-6 w-6" />
         </span>
@@ -40,7 +41,7 @@ const links: { label: string; url: string }[] = [];
     ))}
   </div>
 
-  <h3 class="mt-12 mb-6 font-serif text-2xl font-semibold">{t['social.latest']}</h3>
+  <h3 class="mt-16 mb-8 font-serif text-2xl font-semibold">{t['social.latest']}</h3>
   {links.length === 0 ? (
     <p class="text-neutral-500">{t['empty']}</p>
   ) : (
@@ -52,4 +53,5 @@ const links: { label: string; url: string }[] = [];
       ))}
     </ul>
   )}
+  </div>
 </BaseLayout>

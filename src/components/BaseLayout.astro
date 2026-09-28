@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Nav from './Nav.astro';
+import ContactBand from './ContactBand.astro';
 import Footer from './Footer.astro';
 import type { Locale } from '../i18n/ui';
 
@@ -8,8 +9,10 @@ interface Props {
   title: string;
   locale: Locale;
   description?: string;
+  /** Contact 页传 false：页面本身即联系方式，不再重复联系带 */
+  showContactBand?: boolean;
 }
-const { title, locale, description } = Astro.props;
+const { title, locale, description, showContactBand = true } = Astro.props;
 ---
 <!doctype html>
 <html lang={locale === 'zh' ? 'zh-CN' : locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
@@ -21,11 +24,12 @@ const { title, locale, description } = Astro.props;
     <link rel="apple-touch-icon" href="/images/brand/logo-mark-180.png" />
     <title>{title}</title>
   </head>
-  <body class="flex min-h-screen flex-col">
+  <body class="flex min-h-screen flex-col overflow-x-clip">
     <Nav locale={locale} currentPath={Astro.url.pathname} />
-    <main class="mx-auto w-full max-w-3xl flex-1 px-4 py-10">
+    <main class="w-full flex-1">
       <slot />
     </main>
+    {showContactBand && <ContactBand locale={locale} />}
     <Footer locale={locale} />
   </body>
 </html>

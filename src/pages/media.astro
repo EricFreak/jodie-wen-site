@@ -14,6 +14,8 @@ const interviews = all.filter((e) => e.data.type === 'interview');
 const mentions = all.filter((e) => e.data.type === 'mention');
 ---
 <BaseLayout title="Media — Jodie Wen" locale={locale} description="Interviews, videos and media mentions of Dr. Jodie Wen.">
+  <div class="mx-auto w-full max-w-6xl px-6 py-16 md:py-24">
   <SectionHeader as="h1" title={t['media.title']} />
   <MediaBrowser videos={videos} interviews={interviews} mentions={mentions} locale={locale} />
+  </div>
 </BaseLayout>

@@ -1,0 +1,32 @@
+---
+import { ui, type Locale } from '../i18n/ui';
+import { localizePath } from '../i18n/utils';
+import SocialIcon from './SocialIcon.astro';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = ui[locale];
+// 社媒圆点：点击进入本站 Social Media 页（与页脚行为一致）
+const icons = ['wechat', 'weibo', 'x', 'linkedin'] as const;
+---
+<section class="bg-accent-dark text-white">
+  <div class="mx-auto flex w-full max-w-6xl flex-col items-center px-6 py-18 text-center md:py-28">
+    <h2 class="font-serif text-4xl font-bold tracking-tight md:text-[44px]">{t['contactband.title']}</h2>
+    <p class="mt-4 text-[17px] text-white/75">{t['contactband.subtitle']}</p>
+    <a href="mailto:jodiewen@tsinghua.edu.cn" class="mt-9 rounded-lg bg-white px-8 py-3.5 text-base font-semibold text-accent-dark transition-opacity hover:opacity-90">jodiewen@tsinghua.edu.cn</a>
+    <div class="mt-9 flex items-center justify-center gap-3">
+      {icons.map((name) => (
+        <a
+          href={localizePath('/social', locale)}
+          aria-label={name}
+          class="flex h-10 w-10 items-center justify-center rounded-full border border-white/35 text-white transition hover:border-white hover:bg-white/10"
+        >
+          <SocialIcon name={name} class="h-[18px] w-[18px]" />
+        </a>
+      ))}
+    </div>
+    <p class="mt-10 text-sm text-white/55">{t['contact.affiliation.value']}</p>
+  </div>
+</section>

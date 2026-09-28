@@ -15,12 +15,13 @@ const scanText = (s: SocialPlatform) => (s.id === 'wechat' ? t['social.scan'] : 
 const links: { label: string; url: string }[] = [];
 ---
 <BaseLayout title="社交媒体 — 文晶" locale={locale} description="在各社交平台关注文晶的内容。">
+  <div class="mx-auto w-full max-w-6xl px-6 py-16 md:py-24">
   <SectionHeader as="h1" title={t['social.title']} />
   <p class="measure mt-4 text-neutral-700">「文晶Talk」是文晶在资深媒体人生涯中创立的自媒体品牌，聚焦中东议题的国际新闻报道与评论，素材来自她在欧亚和中东 40 余国的田野调查。可在以下平台关注她的内容。</p>
 
-  <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+  <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
     {visible.map((s) => (
-      <div class="flex flex-col gap-2 rounded-lg border border-neutral-200 p-5">
+      <div class="flex flex-col gap-2 rounded-lg border border-neutral-200 p-6">
         <span class="flex h-11 w-11 items-center justify-center rounded-lg bg-neutral-100 text-neutral-800">
           <SocialIcon name={s.icon} class="h-6 w-6" />
         </span>
@@ -40,7 +41,7 @@ const links: { label: string; url: string }[] = [];
     ))}
   </div>
 
-  <h3 class="mt-12 mb-6 font-serif text-2xl font-semibold">{t['social.latest']}</h3>
+  <h3 class="mt-16 mb-8 font-serif text-2xl font-semibold">{t['social.latest']}</h3>
   {links.length === 0 ? (
     <p class="text-neutral-500">{t['empty']}</p>
   ) : (
@@ -52,4 +53,5 @@ const links: { label: string; url: string }[] = [];
       ))}
     </ul>
   )}
+  </div>
 </BaseLayout>

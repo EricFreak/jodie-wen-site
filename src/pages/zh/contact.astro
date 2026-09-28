@@ -7,7 +7,9 @@ import { ui } from '../../i18n/ui';
 const locale = 'zh' as const;
 const t = ui[locale];
 ---
-<BaseLayout title="联系 — 文晶" locale={locale} description="文晶的联系方式。">
+<BaseLayout title="联系 — 文晶" locale={locale} description="文晶的联系方式。" showContactBand={false}>
+  <div class="mx-auto w-full max-w-6xl px-6 py-16 md:py-24">
   <SectionHeader as="h1" title={t['contact.title']} />
   <ContactBlock locale={locale} />
+  </div>
 </BaseLayout>
