@@ -100,6 +100,6 @@
 
 - `ContactBand` 内嵌纯 HTML 表单（零 JS），`POST` 到 `https://formsubmit.co/jodiewen@tsinghua.edu.cn`，由 FormSubmit 转发邮件到她的邮箱；`_template=table`、`_honey` 蜜罐防垃圾、`_subject` 按 locale 取三语词条
 - **首次提交后 FormSubmit 会向 jodiewen@tsinghua.edu.cn 发一封激活确认邮件，需她点击确认一次**，之后表单才正式转发（上线后需提醒她处理）
-- 表单词条三语进 `ui.ts`（`contactband.form.*`，阿语 AI 翻译待校对）；提交后跳转 FormSubmit 的感谢页（未设 `_next`，正式域名确定后可回填跳回站内）
+- 表单词条三语进 `ui.ts`（`contactband.form.*`，阿语 AI 翻译待校对）；提交后跳回站内三语感谢页 `/thanks`（`_next` 指向生产域名 `https://jodiewen.com`，2026-09-28 用户确认）
 - mailto 邮箱按钮降级为表单下方的文字链接（备用通道），社媒圆点与单位行保留
 - 联系带改为**全站所有页面**显示（含 `/contact`），`BaseLayout` 的 `showContactBand` prop 随之移除
