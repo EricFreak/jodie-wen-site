@@ -25,7 +25,7 @@
 | Hero 文案 | 去掉 "She is the"，改名词短语开头（`hero.bio` 已同步改 `src/i18n/ui.ts`） |
 | Hero 构图 | 左文右图（英文 F 型动线，姓名先被看到），不按参考站的左图右文 |
 | 联系带颜色 | 深青 teal-800（`#115e59`）通栏，白字 |
-| 联系带适用范围 | 全站每页底部统一出现（`/contact` 页本身除外） |
+| 联系带适用范围 | 全站每页底部统一出现（2026-09-28 追加表单后含 `/contact` 页；见 §7 附录） |
 | 页脚 | 深色（neutral-900）、居中：logo + 导航链接行 + 版权 |
 
 ## 3. 设计令牌（以设计稿 `styles.css` 为准）
@@ -93,3 +93,13 @@
 3. 阿语首页 RTL 下 Hero 镜像正确、联系带与页脚不错位
 4. 联系带在 Contact 页不出现、其余页面均出现
 5. 外链仍可 `target="_blank" rel="noopener"`；零客户端 JS 未被破坏
+
+## 7. 附录：联系带改为表单（2026-09-28 追加，用户已确认）
+
+用户参照 barinkayaoglu.com 页底「Get In Touch」（Name / Email Address / Message + Send Message 表单）要求联系带改为同样的表单实现，推翻原规格「不做联系表单」的非目标约定。
+
+- `ContactBand` 内嵌纯 HTML 表单（零 JS），`POST` 到 `https://formsubmit.co/jodiewen@tsinghua.edu.cn`，由 FormSubmit 转发邮件到她的邮箱；`_template=table`、`_honey` 蜜罐防垃圾、`_subject` 按 locale 取三语词条
+- **首次提交后 FormSubmit 会向 jodiewen@tsinghua.edu.cn 发一封激活确认邮件，需她点击确认一次**，之后表单才正式转发（上线后需提醒她处理）
+- 表单词条三语进 `ui.ts`（`contactband.form.*`，阿语 AI 翻译待校对）；提交后跳转 FormSubmit 的感谢页（未设 `_next`，正式域名确定后可回填跳回站内）
+- mailto 邮箱按钮降级为表单下方的文字链接（备用通道），社媒圆点与单位行保留
+- 联系带改为**全站所有页面**显示（含 `/contact`），`BaseLayout` 的 `showContactBand` prop 随之移除
