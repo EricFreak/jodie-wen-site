@@ -103,3 +103,12 @@
 - 表单词条三语进 `ui.ts`（`contactband.form.*`，阿语 AI 翻译待校对）；提交后跳回站内三语感谢页 `/thanks`（`_next` 指向生产域名 `https://jodiewen.com`，2026-09-28 用户确认）
 - mailto 邮箱按钮降级为表单下方的文字链接（备用通道），社媒圆点与单位行保留
 - 联系带改为**全站所有页面**显示（含 `/contact`），`BaseLayout` 的 `showContactBand` prop 随之移除
+
+### 7.1 表单移除与邮箱更换（2026-09-29，用户决定）
+
+FormSubmit 转发实测不可行：清华邮箱收不到激活邮件（网关拦截），126 邮箱灰名单延迟严重，Gmail 方案用户也不接受。用户决定**移除表单，联系带恢复为纯文本邮箱展示**（不拉起邮件客户端，访客自行复制），同时**全站公开邮箱统一更换为 `jodiewen.ox@gmail.com`**（原 `jodiewen@tsinghua.edu.cn` 停用）。
+
+- `ContactBand`：删除表单与 `_next` 跳转，标题/副标题/社媒圆点/单位行保留，邮箱以纯文本大字展示
+- `ContactBlock`（/contact 页）：mailto 链接改为纯文本，地址同步更换
+- 感谢页（`/thanks` ×3 语）与 `contactband.form.*`、`thanks.*` 词条一并删除；`BaseLayout` 的 `showContactBand` prop 移除
+- FormSubmit 三个测试端点（tsinghua/126/gmail）均未激活，无线上残留

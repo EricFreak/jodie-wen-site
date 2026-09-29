@@ -42,7 +42,7 @@
 
 ### 页面（8 个页面 × 3 语言一一对应）
 
-`/`（首页 Hero + 专著 + 最新发表 + 视频卡片（featured 优先、日期倒序前 3）+ 活动轮播（`ActivityCarousel`，仅展示有 `cover` 的活动，日期倒序最多 5 张；纯 CSS 左右箭头 + 圆点指示器轮播，隐藏 input 用 fixed 定位防页面跳动；View all 无条件显示；无 `url` 的活动纯展示不可点击）+ More about Jodie 照片墙）、`/about`（履历）、`/book`（专著《美国的中东政策研究（2009-2017）》）、`/publications`（文章列表，按年份分组，静态展示不做交互过滤）、`/media`（`MediaBrowser` 组件：纯 CSS 媒体筛选标签 + 视频横向卡片（左封面右简介）+ 采访/引用紧凑单行，视频默认 4 条、采访默认 10 条，超出纯 CSS 展开）、`/activities`（论坛/二轨对话）、`/social`（社媒平台卡片 + 文晶Talk 精选，平台数据在 `src/data/socials.ts`，无 `url` 且无 `qr` 的平台隐藏）、`/contact`（邮箱 jodiewen@tsinghua.edu.cn + 页底联系带表单）。
+`/`（首页 Hero + 专著 + 最新发表 + 视频卡片（featured 优先、日期倒序前 3）+ 活动轮播（`ActivityCarousel`，仅展示有 `cover` 的活动，日期倒序最多 5 张；纯 CSS 左右箭头 + 圆点指示器轮播，隐藏 input 用 fixed 定位防页面跳动；View all 无条件显示；无 `url` 的活动纯展示不可点击）+ More about Jodie 照片墙）、`/about`（履历）、`/book`（专著《美国的中东政策研究（2009-2017）》）、`/publications`（文章列表，按年份分组，静态展示不做交互过滤）、`/media`（`MediaBrowser` 组件：纯 CSS 媒体筛选标签 + 视频横向卡片（左封面右简介）+ 采访/引用紧凑单行，视频默认 4 条、采访默认 10 条，超出纯 CSS 展开）、`/activities`（论坛/二轨对话）、`/social`（社媒平台卡片 + 文晶Talk 精选，平台数据在 `src/data/socials.ts`，无 `url` 且无 `qr` 的平台隐藏）、`/contact`（邮箱 jodiewen.ox@gmail.com + 页底联系带）。
 
 ### 内容模型（Astro Content Collections，zod 校验）
 
@@ -57,7 +57,7 @@
 
 ### 组件
 
-`src/components/` 下小型单职责组件（`BaseLayout`、`Nav`、`Footer`、`Hero`、`SectionHeader`、`TimelineItem`、`PublicationList`、`MediaCard`、`MediaBrowser`、`MediaRow`、`VideoCard`、`Gallery`、`SocialIcon`、`ActivityList`、`ActivityCarousel`、`ContactBand`、`ContactBlock`）。**页面只组装组件与数据，不写业务逻辑。** `ContactBand`（页底联系带：标题 + Name/Email/Message 表单 + mailto 备用链接 + 社媒圆点 + 单位行）由 `BaseLayout` 在 `</main>` 后统一挂载，全站所有页面显示；表单 POST 到 FormSubmit 转发（转发目标当前为 wangkejay88@gmail.com，2026-09-29 起测试用；页面公开展示邮箱仍为 jodiewen@tsinghua.edu.cn），纯 HTML 零 JS。
+`src/components/` 下小型单职责组件（`BaseLayout`、`Nav`、`Footer`、`Hero`、`SectionHeader`、`TimelineItem`、`PublicationList`、`MediaCard`、`MediaBrowser`、`MediaRow`、`VideoCard`、`Gallery`、`SocialIcon`、`ActivityList`、`ActivityCarousel`、`ContactBand`、`ContactBlock`）。**页面只组装组件与数据，不写业务逻辑。** `ContactBand`（页底联系带：标题 + 副标题 + 纯文本邮箱展示 + 社媒圆点 + 单位行）由 `BaseLayout` 在 `</main>` 后统一挂载，全站所有页面显示。（2026-09-28 曾按用户要求内嵌 FormSubmit 表单，因转发到国内邮箱延迟/收不到，2026-09-29 用户决定移除表单，恢复纯邮箱展示。）
 
 ## 5. 构建与验证命令（实现后生效）
 
@@ -93,7 +93,7 @@ npx astro check    # 类型检查
 - 视频嵌入差异化：中文页优先国内平台（B站/CGTN），英文页优先 YouTube。
 - 找不到真实链接的条目用占位符，交付时附《待补充素材清单》。
 - 肖像照与书封用户尚未提供，先用灰色占位块。
-- 联系邮箱 jodiewen@tsinghua.edu.cn 为规格中明确要求公开的联系方式，可写入页面；除此之外不要虚构或公开任何个人私密信息。
+- 联系邮箱 jodiewen.ox@gmail.com（2026-09-29 用户要求全站改用此邮箱，原 jodiewen@tsinghua.edu.cn 停用）为规格中明确要求公开的联系方式，可写入页面；除此之外不要虚构或公开任何个人私密信息。
 
 ## 8. 部署
 

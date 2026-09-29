@@ -10,35 +10,12 @@ const { locale } = Astro.props;
 const t = ui[locale];
 // 社媒圆点：点击进入本站 Social Media 页（与页脚行为一致）
 const icons = ['wechat', 'weibo', 'x', 'linkedin'] as const;
-// 静态表单：POST 到 FormSubmit 转发至邮箱（零 JS；首次提交后收件人需按确认邮件激活一次）
 ---
 <section class="bg-accent-dark text-white">
   <div class="mx-auto flex w-full max-w-6xl flex-col items-center px-6 py-18 text-center md:py-28">
     <h2 class="font-serif text-4xl font-bold tracking-tight md:text-[44px]">{t['contactband.title']}</h2>
     <p class="mt-4 text-[17px] text-white/75">{t['contactband.subtitle']}</p>
-    <form action="https://formsubmit.co/wangkejay88@gmail.com" method="POST" class="mt-10 grid w-full max-w-xl gap-4">
-      <input type="hidden" name="_subject" value={t['contactband.form.subject']} />
-      <input type="hidden" name="_template" value="table" />
-      {/* 提交成功后跳回站内感谢页；正式域名变更时同步修改 */}
-      <input type="hidden" name="_next" value={`https://jodiewen.com${localizePath('/thanks', locale)}`} />
-      <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
-      <div>
-        <label for="contact-name" class="sr-only">{t['contactband.form.name']}</label>
-        <input id="contact-name" name="name" type="text" required placeholder={t['contactband.form.name']} class="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-start text-[15px] text-white placeholder:text-white/60 focus:border-white/60 focus:outline-none" />
-      </div>
-      <div>
-        <label for="contact-email" class="sr-only">{t['contactband.form.email']}</label>
-        <input id="contact-email" name="email" type="email" required placeholder={t['contactband.form.email']} class="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-start text-[15px] text-white placeholder:text-white/60 focus:border-white/60 focus:outline-none" />
-      </div>
-      <div>
-        <label for="contact-message" class="sr-only">{t['contactband.form.message']}</label>
-        <textarea id="contact-message" name="message" rows="5" required placeholder={t['contactband.form.message']} class="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-start text-[15px] text-white placeholder:text-white/60 focus:border-white/60 focus:outline-none"></textarea>
-      </div>
-      <button type="submit" class="mt-2 rounded-lg bg-white px-8 py-3.5 text-base font-semibold text-accent-dark transition-opacity hover:opacity-90">{t['contactband.form.send']}</button>
-    </form>
-    <p class="mt-8 text-sm text-white/70">
-      {t['contactband.form.or']} <a href="mailto:jodiewen@tsinghua.edu.cn" class="font-medium text-white underline underline-offset-4 hover:opacity-80">jodiewen@tsinghua.edu.cn</a>
-    </p>
+    <p class="mt-9 text-xl font-semibold tracking-wide md:text-2xl">jodiewen.ox@gmail.com</p>
     <div class="mt-9 flex items-center justify-center gap-3">
       {icons.map((name) => (
         <a
