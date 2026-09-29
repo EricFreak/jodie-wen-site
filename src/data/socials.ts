@@ -76,7 +76,7 @@ export const socials: SocialPlatform[] = [
     icon: 'linkedin',
     name: 'LinkedIn',
     handle: 'Jodie Wen 文晶',
-    url: 'https://www.linkedin.com/in/jodie-wen-文晶-1a2606387',
+    url: 'https://www.linkedin.com/in/dr-jodie-wen-%E6%96%87%E6%99%B6-1a2606387/',
     qr: '/images/social/linkedin-qr.png',
     descEn: 'Professional updates, publications and speaking engagements.',
     descZh: '职业动态、发表与演讲信息。',
