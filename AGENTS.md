@@ -57,7 +57,7 @@
 
 ### 组件
 
-`src/components/` 下小型单职责组件（`BaseLayout`、`Nav`、`Footer`、`Hero`、`SectionHeader`、`TimelineItem`、`PublicationList`、`MediaCard`、`MediaBrowser`、`MediaRow`、`VideoCard`、`Gallery`、`SocialIcon`、`ActivityList`、`ActivityCarousel`、`ContactBand`、`ContactBlock`）。**页面只组装组件与数据，不写业务逻辑。** `ContactBand`（页底联系带：标题 + Name/Email/Message 表单 + mailto 备用链接 + 社媒圆点 + 单位行）由 `BaseLayout` 在 `</main>` 后统一挂载，全站所有页面显示；表单 POST 到 FormSubmit 转发至 15110183152@126.com（2026-09-29 起用于测试，页面公开展示邮箱仍为 jodiewen@tsinghua.edu.cn），纯 HTML 零 JS。
+`src/components/` 下小型单职责组件（`BaseLayout`、`Nav`、`Footer`、`Hero`、`SectionHeader`、`TimelineItem`、`PublicationList`、`MediaCard`、`MediaBrowser`、`MediaRow`、`VideoCard`、`Gallery`、`SocialIcon`、`ActivityList`、`ActivityCarousel`、`ContactBand`、`ContactBlock`）。**页面只组装组件与数据，不写业务逻辑。** `ContactBand`（页底联系带：标题 + Name/Email/Message 表单 + mailto 备用链接 + 社媒圆点 + 单位行）由 `BaseLayout` 在 `</main>` 后统一挂载，全站所有页面显示；表单 POST 到 FormSubmit 转发（转发目标当前为 wangkejay88@gmail.com，2026-09-29 起测试用；页面公开展示邮箱仍为 jodiewen@tsinghua.edu.cn），纯 HTML 零 JS。
 
 ## 5. 构建与验证命令（实现后生效）
 
