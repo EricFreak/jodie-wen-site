@@ -6,6 +6,6 @@ location: "Abu Dhabi, UAE"
 eventZh: "第六届TRENDS年度会议（可持续安全：中东的战后未来）"
 locationZh: "阿联酋阿布扎比"
 date: 2026-10-12
-url: "https://x.com/trendsgroup/status/2112479736710434980"
+url: "/activities/2026-trends-conference-abu-dhabi/"
 cover: "/images/activities/2026-trends-conference-abu-dhabi.jpg"
 ---

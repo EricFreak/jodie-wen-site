@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { ui, type Locale } from '../i18n/ui';
+import { localizePath } from '../i18n/utils';
 
 interface Props {
   entries: CollectionEntry<'activities'>[];
@@ -19,7 +20,7 @@ const fmt = (d: Date) => d.toISOString().slice(0, 10);
         <h3 class="text-lg font-semibold">{locale === 'zh' ? e.data.titleZh : e.data.titleEn}</h3>
         <p class="mt-1 text-sm text-neutral-600">{locale === 'zh' ? e.data.eventZh : e.data.event} · {locale === 'zh' ? e.data.locationZh : e.data.location} · {fmt(e.data.date)}</p>
         {e.data.url && (
-          <a href={e.data.url} target="_blank" rel="noopener" class="text-sm text-accent hover:underline">{t['link.source']}</a>
+          <a href={e.data.url.startsWith('/') ? localizePath(e.data.url, locale) : e.data.url} target={e.data.url.startsWith('/') ? undefined : '_blank'} rel={e.data.url.startsWith('/') ? undefined : 'noopener'} class="text-sm text-accent hover:underline">{e.data.url.startsWith('/') ? t['link.detail'] : t['link.source']}</a>
         )}
       </li>
     ))}

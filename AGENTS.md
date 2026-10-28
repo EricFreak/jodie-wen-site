@@ -13,7 +13,7 @@
 
 ## 2. 当前状态（重要）
 
-**实现已完成，构建通过。** 目录结构已按 §4 落地（`src/pages` 8 页 × 中英阿三语、`src/components` 11 个组件、`src/content` 三个集合共 23 条真实条目），§5 所列构建与验证命令均已生效。2026-07-21 新增阿拉伯语第三语言（`/ar/`，RTL），共 24 路由。
+**实现已完成，构建通过。** 目录结构已按 §4 落地（`src/pages` 8 页 × 中英阿三语、`src/components` 11 个组件、`src/content` 三个集合共 23 条真实条目），§5 所列构建与验证命令均已生效。2026-07-21 新增阿拉伯语第三语言（`/ar/`，RTL），共 27 路由。
 
 - `docs/superpowers/specs/2026-07-20-jodie-wen-personal-site-design.md` —— 已获用户批准的完整设计规格（目标、技术栈、架构、视觉、验证方案）；规格与本文如有出入，以规格文档为准。
 - `docs/superpowers/specs/2026-08-05-media-social-redesign-design.md` —— 2026-08-06 已实施的增量改版：首页视频卡片（latest + `featured` 优先）、「More about Jodie」照片墙（`gallery` 集合）、`/talk` → `/social` 社媒页、页脚社媒图标、Media 页三段式。
@@ -42,7 +42,7 @@
 
 ### 页面（8 个页面 × 3 语言一一对应）
 
-`/`（首页 Hero + 专著 + 最新发表 + 视频卡片（featured 优先、日期倒序前 3）+ 活动轮播（`ActivityCarousel`，仅展示有 `cover` 的活动，日期倒序最多 5 张；纯 CSS 左右箭头 + 圆点指示器轮播，隐藏 input 用 fixed 定位防页面跳动；View all 无条件显示；无 `url` 的活动纯展示不可点击）+ More about Jodie 照片墙）、`/about`（履历）、`/book`（专著《美国的中东政策研究（2009-2017）》）、`/publications`（文章列表，按年份分组，静态展示不做交互过滤）、`/media`（`MediaBrowser` 组件：纯 CSS 媒体筛选标签 + 视频横向卡片（左封面右简介）+ 采访/引用紧凑单行，视频默认 4 条、采访默认 10 条，超出纯 CSS 展开）、`/activities`（论坛/二轨对话）、`/social`（社媒平台卡片 + 文晶Talk 精选，平台数据在 `src/data/socials.ts`，无 `url` 且无 `qr` 的平台隐藏）、`/contact`（邮箱 jodiewen.ox@gmail.com + 页底联系带）。
+`/`（首页 Hero + 专著 + 最新发表 + 视频卡片（featured 优先、日期倒序前 3）+ 活动轮播（`ActivityCarousel`，仅展示有 `cover` 的活动，日期倒序最多 5 张；纯 CSS 左右箭头 + 圆点指示器轮播，隐藏 input 用 fixed 定位防页面跳动；View all 无条件显示；无 `url` 的活动纯展示不可点击）+ More about Jodie 照片墙）、`/about`（履历）、`/book`（专著《美国的中东政策研究（2009-2017）》）、`/publications`（文章列表，按年份分组，静态展示不做交互过滤）、`/media`（`MediaBrowser` 组件：纯 CSS 媒体筛选标签 + 视频横向卡片（左封面右简介）+ 采访/引用紧凑单行，视频默认 4 条、采访默认 10 条，超出纯 CSS 展开）、`/activities`（论坛/二轨对话；用户提供完整活动稿件时，可新增对应的三语站内详情页，如 `/activities/2026-trends-conference-abu-dhabi/`）、`/social`（社媒平台卡片 + 文晶Talk 精选，平台数据在 `src/data/socials.ts`，无 `url` 且无 `qr` 的平台隐藏）、`/contact`（邮箱 jodiewen.ox@gmail.com + 页底联系带）。
 
 ### 内容模型（Astro Content Collections，zod 校验）
 
@@ -50,7 +50,7 @@
 
 - `publications`：`titleEn`/`titleZh`/`outlet`/`date`/`url`/`lang`
 - `media`：`titleEn`/`titleZh`/`type`(video/interview/mention)/`outlet`/`date`/`url`/`embedUrl`(可选)/`platform`(youtube/bilibili/cgtv/other)/`featured`(可选，首页视频卡片优先)/`cover`(可选，本地封面路径，缺省用平台色渐变占位；CGTN 封面可用 `api.cgtn.com` 回放 API + ffmpeg 截帧生成)/`summaryEn`/`summaryZh`(可选，Media 页横向卡片简介)
-- `activities`：`titleEn`/`titleZh`/`event`/`location`/`eventZh`/`locationZh`（活动与地点的中文译名）/`date`/`url`(可选)/`cover`(可选，本地封面路径，首页轮播只展示有 `cover` 的活动)
+- `activities`：`titleEn`/`titleZh`/`event`/`location`/`eventZh`/`locationZh`（活动与地点的中文译名）/`date`/`url`(可选，支持外部来源 URL 或以 `/` 开头的站内详情路径)/`cover`(可选，本地封面路径，首页轮播只展示有 `cover` 的活动)
 - `gallery`：`image`/`captionEn`/`captionZh`/`captionAr`/`date`(可选)——首页「More about Jodie」照片墙
 
 长文内容（bio 全文、书籍简介、文晶Talk 介绍）**不进集合**，直接写在对应页面的 Astro 模板里（英文页写英文，`/zh/` 页写中文）。
@@ -70,7 +70,7 @@ npx astro check    # 类型检查
 验收标准（来自规格第 8 节）：
 
 1. `npm run build` 成功，`astro check` 无类型错误
-2. 逐页人工检查：8 个页面 × 3 语言（24 路由）全部可达
+2. 逐页人工检查：8 个页面 × 3 语言（27 路由）全部可达
 3. 每页语言切换链接指向对应的另一语言同页
 4. 移动（375px）与桌面（1280px）宽度布局检查
 5. 构造一条缺字段的坏数据验证 content collection schema 能拦截（验证后删除）
@@ -80,7 +80,7 @@ npx astro check    # 类型检查
 
 ## 6. 开发约定
 
-- **YAGNI 红线**（规格第 9 节明确列为非目标）：评论、搜索、博客/文章详情页（文章一律外链原媒体）、暗色模式、动画特效库、CMS 接入、部署配置。不要主动添加这些功能。（联系表单原为红线之一；2026-09-28 用户参照 barinkayaoglu.com 明确要求页底加联系表单，已用 FormSubmit 静态转发实现，仍为纯静态零 JS。）
+- **YAGNI 红线**（规格第 9 节明确列为非目标）：评论、搜索、博客/发表文章详情页（发表文章一律外链原媒体）、暗色模式、动画特效库、CMS 接入、部署配置。不要主动添加这些功能；用户明确要求发布的完整活动稿件可建三语站内详情页。（联系表单原为红线之一；2026-09-28 用户参照 barinkayaoglu.com 明确要求页底加联系表单，已用 FormSubmit 静态转发实现，仍为纯静态零 JS。）
 - 零客户端 JS：交互需求优先用路由与纯 CSS 解决。
 - 外链一律 `target="_blank" rel="noopener"`。
 - 视频 `embedUrl` 缺失时降级为链接卡片，不渲染 iframe。

@@ -1,6 +1,9 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import type { Locale } from '../i18n/ui';
+import { localizePath } from '../i18n/utils';
+
+const activityHref = (url: string, locale: Locale) => url.startsWith('/') ? localizePath(url, locale) : url;
 
 interface Props {
   entries: CollectionEntry<'activities'>[];
@@ -31,7 +34,7 @@ const visible = [
       <div class:list={['hidden', visible[i]]}>
         <div class="relative">
           {d.url ? (
-            <a href={d.url} target="_blank" rel="noopener" class="group block aspect-video overflow-hidden rounded-lg">
+            <a href={activityHref(d.url, locale)} target={d.url.startsWith('/') ? undefined : '_blank'} rel={d.url.startsWith('/') ? undefined : 'noopener'} class="group block aspect-video overflow-hidden rounded-lg">
               <img src={d.cover} alt="" loading={i === 0 ? 'eager' : 'lazy'} class="h-full w-full object-cover" />
             </a>
           ) : (
@@ -67,7 +70,7 @@ const visible = [
     return (
       <div class:list={['hidden', visible[i]]}>
         {d.url ? (
-          <a href={d.url} target="_blank" rel="noopener" class="mt-3 block min-h-11 line-clamp-2 text-sm leading-snug font-medium text-neutral-800 hover:text-accent sm:text-base">{title}</a>
+          <a href={activityHref(d.url, locale)} target={d.url.startsWith('/') ? undefined : '_blank'} rel={d.url.startsWith('/') ? undefined : 'noopener'} class="mt-3 block min-h-11 line-clamp-2 text-sm leading-snug font-medium text-neutral-800 hover:text-accent sm:text-base">{title}</a>
         ) : (
           <p class="mt-3 min-h-11 line-clamp-2 text-sm leading-snug font-medium text-neutral-800 sm:text-base">{title}</p>
         )}

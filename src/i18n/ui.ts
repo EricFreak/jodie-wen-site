@@ -48,6 +48,7 @@ export const ui = {
     'contactband.title': 'Get in Touch',
     'contactband.subtitle': 'For media inquiries, speaking invitations and academic collaboration',
     'link.source': 'Source',
+    'link.detail': 'Read more',
     'empty': 'Content being compiled.',
   },
   zh: {
@@ -95,6 +96,7 @@ export const ui = {
     'contactband.title': '联系我',
     'contactband.subtitle': '媒体邀约、演讲邀请与学术合作',
     'link.source': '来源',
+    'link.detail': '阅读全文',
     'empty': '内容整理中',
   },
   ar: {
@@ -142,6 +144,7 @@ export const ui = {
     'contactband.title': 'تواصل معي',
     'contactband.subtitle': 'للاستفسارات الإعلامية ودعوات المتحدثين والتعاون الأكاديمي',
     'link.source': 'المصدر',
+    'link.detail': 'اقرأ المزيد',
     'empty': 'المحتوى قيد الإعداد.',
   },
 } as const;
