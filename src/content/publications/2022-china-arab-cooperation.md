@@ -5,4 +5,7 @@ outlet: "CISS, Tsinghua University"
 date: 2022-12-16
 url: "https://ciss.tsinghua.edu.cn/info/new_achievement_pl/1000000005677"
 lang: "zh"
+cover: "/images/articles/2022-china-arab-cooperation.jpg"
+detail: true
+titleAr: "تطورات جديدة واعتبارات استراتيجية في التعاون الصيني–العربي"
 ---

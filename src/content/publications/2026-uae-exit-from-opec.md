@@ -5,4 +5,7 @@ outlet: "The Paper 澎湃新闻"
 date: 2026-05-07
 url: "https://www.thepaper.cn/newsDetail_forward_33105399"
 lang: "zh"
+detail: true
+cover: "/images/articles/2026-uae-exit-from-opec.jpg"
+titleAr: "انسحاب الإمارات من أوبك: اعتبارات استراتيجية"
 ---

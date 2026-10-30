@@ -6,4 +6,7 @@ outlet: "Institute for Peace & Diplomacy"
 date: 2026-05-31
 url: "https://peacediplomacy.org/2026/05/13/trump-meets-xi-where-u-s-china-relations-go-next-and-where-they-take-the-world/"
 platform: "other"
+detail: true
+cover: "/images/articles/2026-05-31-institute-for-peace-diplomacy-trump-meets-xi-where-u-s-china-relations.jpg"
+titleAr: "ون جينغ تعلّق في معهد السلام والدبلوماسية على قمة ترامب–شي"
 ---

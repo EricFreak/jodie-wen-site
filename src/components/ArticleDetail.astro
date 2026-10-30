@@ -38,8 +38,8 @@ if (section === 'activities') {
   const location = locale === 'zh' ? e.data.locationZh : locale === 'ar' ? (e.data.locationAr ?? e.data.location) : e.data.location;
   kicker = `${event} · ${location} · ${dateLabel}`;
 } else {
-  const e = entry as CollectionEntry<'publications'> | CollectionEntry<'media'>;
-  kicker = `${e.data.outlet} · ${dateLabel}`;
+  // 用该语言的来源名，避免中文媒体名出现在英/阿页的 kicker 里
+  kicker = `${body.data.sourceName} · ${dateLabel}`;
 }
 ---
 <BaseLayout title={`${title} — ${siteName}`} locale={locale} description={title}>

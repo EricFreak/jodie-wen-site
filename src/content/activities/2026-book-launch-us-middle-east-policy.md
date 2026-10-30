@@ -7,4 +7,9 @@ eventZh: "CISS新书分享会"
 locationZh: "中国北京"
 date: 2026-01-15
 url: "https://ciss.tsinghua.edu.cn/info/yw/8955"
+titleAr: "إطلاق كتاب «دراسات سياسة الولايات المتحدة في الشرق الأوسط (2009–2017)»"
+eventAr: "حفل إطلاق ومناقشة كتاب «دراسات سياسة الولايات المتحدة في الشرق الأوسط (2009–2017)»"
+locationAr: "بكين، الصين"
+cover: "/images/articles/2026-book-launch-us-middle-east-policy.jpg"
+detail: true
 ---

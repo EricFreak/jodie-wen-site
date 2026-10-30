@@ -6,4 +6,7 @@ outlet: "South China Morning Post"
 date: 2026-04-27
 url: "https://sc.mp/w4057?utm_source=copy-link&utm_campaign=3351608&utm_medium=share_widget"
 platform: "other"
+detail: true
+cover: "/images/articles/2026-04-27-south-china-morning-post-iran-holds-the-cards-in-the-hormuz-cold-.jpg"
+titleAr: "إيران تمتلك أوراق اللعبة في «الصراع البارد» حول هرمز (مقابلة مع SCMP)"
 ---

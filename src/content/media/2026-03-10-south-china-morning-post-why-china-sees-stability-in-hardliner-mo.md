@@ -6,4 +6,7 @@ outlet: "South China Morning Post"
 date: 2026-03-10
 url: "https://www.scmp.com/news/china/diplomacy/article/3346134/why-china-sees-stability-hardliner-mojtaba-khameneis-rise-lead-iran"
 platform: "other"
+detail: true
+cover: "/images/articles/2026-03-10-south-china-morning-post-why-china-sees-stability-in-hardliner-mo.jpg"
+titleAr: "لماذا ترى الصين في صعود المتشدّد مجتبى خامنئي لقيادة إيران استقراراً"
 ---

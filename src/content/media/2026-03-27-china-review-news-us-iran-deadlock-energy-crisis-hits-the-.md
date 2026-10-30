@@ -6,4 +6,7 @@ outlet: "China Review News"
 date: 2026-03-27
 url: "https://gb.crntt.com/doc/1071/8/0/4/107180436.html?coluid=7&kindid=0&docid=107180436"
 platform: "other"
+detail: true
+cover: "/images/articles/2026-03-27-china-review-news-us-iran-deadlock-energy-crisis-hits-the-.jpg"
+titleAr: "الجمود الأمريكي–الإيراني: أزمة الطاقة تضرب صناعة الذكاء الاصطناعي"
 ---

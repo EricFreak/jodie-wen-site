@@ -6,4 +6,7 @@ outlet: "South China Morning Post"
 date: 2023-06-11
 url: "https://www.scmp.com/news/china/diplomacy/article/3223709/why-blinkens-saudi-arabia-trip-was-really-message-china-well-us-allies-middle-east"
 platform: "other"
+detail: true
+cover: "/images/articles/2023-scmp-blinken-saudi-arabia.jpg"
+titleAr: "لماذا كانت زيارة بلينكن إلى السعودية رسالة إلى الصين وإلى حلفاء أمريكا في الشرق الأوسط"
 ---

@@ -6,4 +6,7 @@ outlet: "South China Morning Post"
 date: 2026-04-15
 url: "https://www.scmp.com/news/china/diplomacy/article/3350081/xi-jinpings-meeting-abu-dhabi-crown-prince-highlights-gulf-turn-towards-china"
 platform: "other"
+detail: true
+cover: "/images/articles/2026-04-15-south-china-morning-post-xi-jinping-s-meeting-with-abu-dhabi-crow.jpg"
+titleAr: "لقاء شي جينبينغ بولي عهد أبوظبي يبرز تحوّل الخليج نحو الصين"
 ---
