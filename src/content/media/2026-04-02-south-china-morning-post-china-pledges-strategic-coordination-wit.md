@@ -6,4 +6,7 @@ outlet: "South China Morning Post"
 date: 2026-04-02
 url: "https://www.scmp.com/news/china/diplomacy/article/3348571/china-pledges-strategic-coordination-pakistan-help-end-us-war-iran"
 platform: "other"
+detail: true
+cover: "/images/articles/2026-04-02-south-china-morning-post-china-pledges-strategic-coordination-wit.jpg"
+titleAr: "الصين تتعهّد بالتنسيق الاستراتيجي مع باكستان للمساعدة في إنهاء الحرب الأمريكية على إيران"
 ---

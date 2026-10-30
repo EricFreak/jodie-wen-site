@@ -6,4 +6,7 @@ outlet: "South China Morning Post"
 date: 2026-08-19
 url: "https://www.scmp.com/news/china/diplomacy/article/3364464/what-does-hit-film-about-iraq-war-say-about-chinese-views-world"
 platform: "other"
+detail: true
+cover: "/images/articles/2026-08-19-south-china-morning-post-what-does-a-hit-film-about-th.jpg"
+titleAr: "ماذا يقول فيلم ناجح عن حرب العراق عن نظرة الصين إلى العالم؟"
 ---

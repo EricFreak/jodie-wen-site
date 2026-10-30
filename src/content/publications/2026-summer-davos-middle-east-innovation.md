@@ -5,4 +5,7 @@ outlet: "FT中文网"
 date: 2026-06-28
 url: "https://www.ftchinese.com/story/001110172"
 lang: "zh"
+detail: true
+cover: "/images/articles/2026-summer-davos-middle-east-innovation.jpg"
+titleAr: "ملاحظات من دافوس الصيفي: لماذا سيصبح الشرق الأوسط ساحة مهمة للابتكار العالمي على نطاق واسع؟"
 ---

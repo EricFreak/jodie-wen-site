@@ -6,4 +6,7 @@ outlet: "South China Morning Post"
 date: 2026-02-28
 url: "https://www.scmp.com/news/world/article/3344963/israel-launches-preemptive-strike-against-iran-saying-it-seeks-remove-threats"
 platform: "other"
+detail: true
+cover: "/images/articles/2026-02-28-south-china-morning-post-israel-launches-preemptive-strike-agains.jpg"
+titleAr: "إسرائيل تشنّ ضربة استباقية على إيران وتقول إنها تهدف إلى إزالة التهديدات"
 ---

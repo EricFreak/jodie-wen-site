@@ -6,4 +6,7 @@ outlet: "South China Morning Post"
 date: 2026-03-24
 url: "https://www.scmp.com/news/china/diplomacy/article/3347742/are-efforts-broker-peace-deal-between-iran-and-us-doomed-fail?display=plus"
 platform: "other"
+detail: true
+cover: "/images/articles/2026-03-24-south-china-morning-post-are-efforts-to-broker-a-peace-deal-betwe.jpg"
+titleAr: "ترامب يقول إن إيران قدّمت للولايات المتحدة «هدية» تساوي مبلغاً هائلاً"
 ---

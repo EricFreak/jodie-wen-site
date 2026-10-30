@@ -13,7 +13,7 @@
 
 ## 2. 当前状态（重要）
 
-**实现已完成，构建通过。** 目录结构已按 §4 落地：8 个基础页面 × 中英阿三语（24 路由）+ 9 个详情页（3 篇 × 3 语）= **36 路由**；`src/content` 共 5 个集合（publications 15、media 31、activities 11、gallery 0、articleBodies 9）。2026-07-21 新增阿拉伯语（`/ar/`，RTL）；2026-10-30 试点「第三方文字内容站内全文」：CISS、中美聚焦、希利论坛 3 篇，条目加 `detail: true`，三语正文存 `articleBodies`，列表自动改内链，文末保留原文链接。
+**实现已完成，构建通过。** 目录结构已按 §4 落地：8 个基础页面 × 中英阿三语（24 路由）+ 50 篇文字内容详情页 × 3 语（150 路由）= **177 路由**；`src/content` 共 5 个集合（publications 15、media 31、activities 11、gallery 0、articleBodies 150）。2026-07-21 新增阿拉伯语（`/ar/`，RTL）；2026-10-30 完成全站「第三方文字内容站内化」：50 篇文字链接全部加 `detail: true`，列表自动改内链；其中 30 篇放全文；20 篇为站内摘要（18 篇付费墙/反爬来源：SCMP 14、Berlingske 2、FT 中文 1、联合早报 1；另有 CGTN Radio 与 CISS 纯 PDF 页 2 篇无可抓全文），摘要页统一保留原文链接；文末统一保留来源署名与原文链接。
 
 - `docs/superpowers/specs/2026-07-20-jodie-wen-personal-site-design.md` —— 已获用户批准的完整设计规格（目标、技术栈、架构、视觉、验证方案）；规格与本文如有出入，以规格文档为准。
 - `docs/superpowers/specs/2026-08-05-media-social-redesign-design.md` —— 2026-08-06 已实施的增量改版：首页视频卡片（latest + `featured` 优先）、「More about Jodie」照片墙（`gallery` 集合）、`/talk` → `/social` 社媒页、页脚社媒图标、Media 页三段式。
@@ -45,7 +45,7 @@
 
 `/`（首页 Hero + 专著 + 最新发表 + 视频卡片（featured 优先、日期倒序前 3）+ 活动轮播（`ActivityCarousel`，仅展示有 `cover` 的活动，日期倒序最多 5 张；纯 CSS 左右箭头 + 圆点指示器轮播，隐藏 input 用 fixed 定位防页面跳动；View all 无条件显示；无 `url` 的活动纯展示不可点击）+ More about Jodie 照片墙）、`/about`（履历）、`/book`（专著《美国的中东政策研究（2009-2017）》）、`/publications`（文章列表，按年份分组，静态展示不做交互过滤）、`/media`（`MediaBrowser` 组件：纯 CSS 媒体筛选标签 + 视频横向卡片（左封面右简介）+ 采访/引用紧凑单行，视频默认 4 条、采访默认 10 条，超出纯 CSS 展开）、`/activities`（论坛/二轨对话；用户提供完整活动稿件时，可新增对应的三语站内详情页，如 `/activities/2026-trends-conference-abu-dhabi/`）、`/social`（社媒平台卡片 + 文晶Talk 精选，平台数据在 `src/data/socials.ts`，无 `url` 且无 `qr` 的平台隐藏）、`/contact`（邮箱 jodiewen.ox@gmail.com + 页底联系带）。
 
-详情页：带 `detail: true` 且 `articleBodies` 中存在对应语言正文的条目，会生成 `/publications/<id>/`、`/media/<id>/`、`/activities/<id>/` 三语页面；版式由 `ArticlePage`/`ArticleDetail` 复用 TRENDS 活动稿的样式（返回链接、kicker、标题、16:9 封面、Markdown 正文、来源署名 + 原文链接）。`PublicationList`、`ActivityList`、`ActivityCarousel`、`MediaRow` 对 `detail` 条目自动改用站内链接；未标 `detail` 的条目继续外链原媒体。
+详情页：带 `detail: true` 且 `articleBodies` 中存在对应语言正文的条目，会生成 `/publications/<id>/`、`/media/<id>/`、`/activities/<id>/` 三语页面；版式由 `ArticlePage`/`ArticleDetail` 复用 TRENDS 活动稿的样式（返回链接、kicker、标题、16:9 封面、Markdown 正文、来源署名 + 原文链接）。`PublicationList`、`ActivityList`、`ActivityCarousel`、`MediaRow` 对 `detail` 条目自动改用站内链接。**当前所有 50 篇文字内容均已转换**：30 篇全文，20 篇为摘要页（正文以「摘要 / Summary / ملخص」开头，明确说明不转载全文）。视频条目仍为外链视频卡，不生成详情页。
 
 ### 内容模型（Astro Content Collections，zod 校验）
 
@@ -74,7 +74,7 @@ npx astro check    # 类型检查
 验收标准（来自规格第 8 节）：
 
 1. `npm run build` 成功，`astro check` 无类型错误
-2. 逐页人工检查：8 个基础页面 × 3 语言 + 9 个详情页（36 路由）全部可达
+2. 逐页人工检查：8 个基础页面 × 3 语言 + 150 个详情页（177 路由）全部可达
 3. 每页语言切换链接指向对应的另一语言同页
 4. 移动（375px）与桌面（1280px）宽度布局检查
 5. 构造一条缺字段的坏数据验证 content collection schema 能拦截（验证后删除）
@@ -84,7 +84,7 @@ npx astro check    # 类型检查
 
 ## 6. 开发约定
 
-- **YAGNI 红线**（规格第 9 节明确列为非目标）：评论、搜索、暗色模式、动画特效库、CMS 接入、部署配置。不要主动添加这些功能。文章/活动详情页默认不做、外链原媒体；用户明确要求把第三方文字内容落到站内时，按 `articleBodies` 模式生成三语详情页，文末必须保留原文链接与来源署名。（联系表单曾于 2026-09-28 加入，2026-09-29 已移除，恢复纯静态零 JS。）
+- **YAGNI 红线**（规格第 9 节明确列为非目标）：评论、搜索、暗色模式、动画特效库、CMS 接入、部署配置。不要主动添加这些功能。文章/活动详情页已按用户要求全量实现；新增文字链接仍按 `articleBodies` 模式生成三语详情页，文末必须保留原文链接与来源署名；视频仍外链。（联系表单曾于 2026-09-28 加入，2026-09-29 已移除，恢复纯静态零 JS。）
 - 零客户端 JS：交互需求优先用路由与纯 CSS 解决。
 - 外链一律 `target="_blank" rel="noopener"`。
 - 视频 `embedUrl` 缺失时降级为链接卡片，不渲染 iframe。
@@ -97,7 +97,7 @@ npx astro check    # 类型检查
 - 视频嵌入差异化：中文页优先国内平台（B站/CGTN），英文页优先 YouTube。
 - 找不到真实链接的条目用占位符，交付时附《待补充素材清单》。
 - 肖像照与书封用户尚未提供，先用灰色占位块。
-- 站内全文：仅对用户确认可转载/自有的内容放全文；SCMP、FT、Berlingske 等付费墙媒体默认只做摘要 + 原文链接。每篇必须保留 `url` 原文链接、`sourceName` 署名和 `coverCredit`（有图时）；三语译文为 AI 初稿，发布前需校对。
+- 站内全文：30 篇可公开抓取的来源放全文；20 篇摘要页（SCMP、FT、Berlingske、联合早报等 18 篇付费墙/反爬来源，加 CGTN Radio、CISS 纯 PDF 页 2 篇）只做摘要 + 原文链接，不整篇转载。每篇必须保留 `url` 原文链接、`sourceName` 署名和 `coverCredit`（有图时）；三语译文为 AI 初稿，发布前需校对。
 - 联系邮箱 jodiewen.ox@gmail.com（2026-09-29 用户要求全站改用此邮箱，原 jodiewen@tsinghua.edu.cn 停用）为规格中明确要求公开的联系方式，可写入页面；除此之外不要虚构或公开任何个人私密信息。
 
 ## 8. 部署
