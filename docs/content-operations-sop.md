@@ -38,16 +38,16 @@
 7. 运行 `npm run build` + `npx astro check` 验证
 8. 新建分支提交并推送，在 GitHub 开 PR，PR 描述列出新增条目清单供审核
 
-### 2.1 站内全文（可选，用户明确要求时）
+### 2.1 站内全文（默认流程，2026-10-30 用户全局约束）
 
-默认所有文章/采访仍外链原媒体。只有用户明确要求「把链接内容做成站内页」时才执行：
+**所有文字类链接默认站内化**，不再在列表里直接外链原媒体。按以下步骤执行：
 
-1. 抓取原文正文与封面，清理导航、广告、相关阅读、图片说明、微信页脚等非正文内容
+1. 抓取原文正文与封面，清理导航、广告、相关阅读、图片说明、微信页脚等非正文内容；能抓全文就放全文，付费墙/反爬/无正文的只做「关键摘要 + 原文链接」并在正文标注「摘要」
 2. 保留原文标题、日期、来源、作者署名；正文不得改动事实、数字、引语
 3. 在原条目加 `detail: true`，补 `cover`（本地封面）和 `titleAr`/`eventAr`/`locationAr` 等阿语字段
 4. 在 `src/content/articleBodies/` 建 `<sourceId>.en.md`、`.zh.md`、`.ar.md`，frontmatter 按 schema 填 `sourceCollection`/`sourceId`/`locale`/`sourceLang`/`title`/`sourceName`/`coverCredit`
 5. 三语正文都要完整，不得删段；阿语为 AI 翻译初稿，PR 里标注待校对
-6. 详情页会自动生成 `/publications/<id>/`、`/media/<id>/`、`/activities/<id>/` 三语版本，列表自动改内链，文末保留「原载于」和「阅读原文」
+6. 详情页会自动生成 `/publications/<id>/`、`/media/<id>/`、`/activities/<id>/` 三语版本；列表链接文案统一为「阅读全文 / Read full text / اقرأ النص الكامل」，不出现「来源」，来源署名和「阅读原文」只放在详情页末尾
 7. 版权：只对用户确认可转载/自有的内容放全文；SCMP、FT、Berlingske 等付费墙媒体默认只做摘要 + 原文链接，不整篇转载
 
 ## 3. 审核发布（审核人）
