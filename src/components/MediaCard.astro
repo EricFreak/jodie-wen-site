@@ -9,7 +9,7 @@ interface Props {
 const { entry, locale } = Astro.props;
 const t = ui[locale];
 const d = entry.data;
-const title = locale === 'zh' ? d.titleZh : d.titleEn;
+const title = locale === 'zh' ? d.titleZh : locale === 'ar' ? (d.titleAr ?? d.titleEn) : d.titleEn;
 const embedBlocked =
   (locale === 'zh' && d.platform === 'youtube') ||
   (locale !== 'zh' && d.platform === 'bilibili');
@@ -22,13 +22,13 @@ const fmt = (dt: Date) => dt.toISOString().slice(0, 10);
       <iframe src={d.embedUrl!} title={title} class="h-full w-full" allowfullscreen loading="lazy"></iframe>
     </div>
     <figcaption class="mt-2 text-sm text-neutral-600">
-      {title} · {d.outlet} · {fmt(d.date)} ·
+      <bdi>{title}</bdi> · <bdi>{d.outlet}</bdi> · <bdi dir="ltr">{fmt(d.date)}</bdi> ·
       <a href={d.url} target="_blank" rel="noopener" class="text-accent hover:underline">{t['link.source']}</a>
     </figcaption>
   </figure>
 ) : (
   <div class="mb-4 rounded-md border border-neutral-200 p-4">
-    <a href={d.url} target="_blank" rel="noopener" class="font-medium text-accent hover:underline">{title}</a>
-    <p class="mt-1 text-sm text-neutral-500">{d.outlet} · {fmt(d.date)}</p>
+    <a href={d.url} target="_blank" rel="noopener" class="font-medium text-accent hover:underline"><bdi>{title}</bdi></a>
+    <p class="mt-1 text-sm text-neutral-500"><bdi>{d.outlet}</bdi> · <bdi dir="ltr">{fmt(d.date)}</bdi></p>
   </div>
 )}

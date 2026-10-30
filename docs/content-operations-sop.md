@@ -30,21 +30,35 @@
    - `media` —— 视频（`type: video`）、采访（`interview`）、媒体引用（`mention`）
    - `activities` —— 论坛、二轨对话等活动
    - `gallery` —— 照片墙图文
-3. 补齐中英双字段（AI 翻译初稿）；阿语页面除照片墙图注外复用英/中字段
+   - `articleBodies` —— 需要站内全文的第三方文章正文（与 publications / media / activities 的原条目关联）
+3. 补齐中英字段（AI 翻译初稿）；需要站内全文的条目再补阿语，写入 `articleBodies`（每篇每种语言一个 Markdown 文件）
 4. 图片复制到 `public/images/`；CGTN 视频封面可用 `api.cgtn.com` 回放 API + ffmpeg 截帧生成
 5. 去重：URL 相同或同文转载只保留一条
 6. 按集合 schema（见 `src/content.config.ts`）生成 Markdown 条目到 `src/content/<collection>/`
 7. 运行 `npm run build` + `npx astro check` 验证
 8. 新建分支提交并推送，在 GitHub 开 PR，PR 描述列出新增条目清单供审核
 
+### 2.1 站内全文（可选，用户明确要求时）
+
+默认所有文章/采访仍外链原媒体。只有用户明确要求「把链接内容做成站内页」时才执行：
+
+1. 抓取原文正文与封面，清理导航、广告、相关阅读、图片说明、微信页脚等非正文内容
+2. 保留原文标题、日期、来源、作者署名；正文不得改动事实、数字、引语
+3. 在原条目加 `detail: true`，补 `cover`（本地封面）和 `titleAr`/`eventAr`/`locationAr` 等阿语字段
+4. 在 `src/content/articleBodies/` 建 `<sourceId>.en.md`、`.zh.md`、`.ar.md`，frontmatter 按 schema 填 `sourceCollection`/`sourceId`/`locale`/`sourceLang`/`title`/`sourceName`/`coverCredit`
+5. 三语正文都要完整，不得删段；阿语为 AI 翻译初稿，PR 里标注待校对
+6. 详情页会自动生成 `/publications/<id>/`、`/media/<id>/`、`/activities/<id>/` 三语版本，列表自动改内链，文末保留「原载于」和「阅读原文」
+7. 版权：只对用户确认可转载/自有的内容放全文；SCMP、FT、Berlingske 等付费墙媒体默认只做摘要 + 原文链接，不整篇转载
+
 ## 3. 审核发布（审核人）
 
-- 审核人在 GitHub 上审阅 PR，重点检查：翻译准确性、集合归类是否正确、外链是否可达
+- 审核人在 GitHub 上审阅 PR，重点检查：翻译准确性（尤其阿语）、集合归类、外链是否可达、站内全文是否保留来源与原文链接
 - 有问题直接在 PR 里评论，代理按评论修改
 - 合并 PR 后 Vercel 自动构建，约 1–2 分钟后上线
 
 ## 注意事项
 
-- 阿语文案（UI 字典与长文页面）为 AI 翻译，发布前需文晶校对；可在 PR 中直接改
+- 阿语文案（UI 字典、长文页面、`articleBodies`）为 AI 翻译，发布前需文晶校对；可在 PR 中直接改
+- 站内全文页的封面图必须填 `coverCredit`（如「图片来源：中美聚焦」）；没有合适封面时用中性设计图，不盗用付费媒体图片
 - 联系邮箱等公开信息以设计规格为准，不要在内容条目里写入私密信息
 - 无素材的版块会渲染空态文案（如「内容整理中」），不是故障

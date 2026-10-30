@@ -23,3 +23,19 @@ export function stripLocalePrefix(pathname: string): string {
 export function localizePath(path: string, locale: Locale): string {
   return locale === defaultLocale ? path : path === '/' ? `/${locale}/` : `/${locale}${path}`;
 }
+
+/** 本地化日期：en = August 13, 2026；zh = 2026年8月13日；ar = 13 أغسطس 2026（拉丁数字） */
+export function formatDate(date: Date, locale: Locale): string {
+  const tag = locale === 'zh' ? 'zh-CN' : locale === 'ar' ? 'ar' : 'en-US';
+  return new Intl.DateTimeFormat(tag, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    numberingSystem: 'latn',
+  }).format(date);
+}
+
+/** 替换 UI 字典中的 {source} / {date} 占位符 */
+export function fillTemplate(template: string, values: Record<string, string>): string {
+  return template.replace(/\{(\w+)\}/g, (_, key: string) => values[key] ?? '');
+}

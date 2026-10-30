@@ -1,0 +1,61 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import ArticlePage from './ArticlePage.astro';
+import { ui, type Locale } from '../i18n/ui';
+import { formatDate, localizePath } from '../i18n/utils';
+import type { ArticleEntry, ArticleSection } from '../lib/articles';
+
+interface Props {
+  entry: ArticleEntry;
+  body: CollectionEntry<'articleBodies'>;
+  section: ArticleSection;
+  locale: Locale;
+}
+const { entry, body, section, locale } = Astro.props;
+const t = ui[locale];
+const { Content } = await render(body);
+const title = body.data.title;
+const dateLabel = formatDate(entry.data.date, locale);
+const cover = entry.data.cover;
+const rawUrl = entry.data.url;
+const sourceUrl = rawUrl && !rawUrl.startsWith('/') ? rawUrl : undefined;
+
+const siteName = locale === 'zh' ? '文晶' : locale === 'ar' ? 'جودي ون' : 'Jodie Wen';
+const sectionPath =
+  section === 'publications' ? '/publications' : section === 'media' ? '/media' : '/activities';
+const backLabel =
+  section === 'publications'
+    ? t['article.back.publications']
+    : section === 'media'
+      ? t['article.back.media']
+      : t['article.back.activities'];
+
+let kicker: string;
+if (section === 'activities') {
+  const e = entry as CollectionEntry<'activities'>;
+  const event = locale === 'zh' ? e.data.eventZh : locale === 'ar' ? (e.data.eventAr ?? e.data.event) : e.data.event;
+  const location = locale === 'zh' ? e.data.locationZh : locale === 'ar' ? (e.data.locationAr ?? e.data.location) : e.data.location;
+  kicker = `${event} · ${location} · ${dateLabel}`;
+} else {
+  const e = entry as CollectionEntry<'publications'> | CollectionEntry<'media'>;
+  kicker = `${e.data.outlet} · ${dateLabel}`;
+}
+---
+<BaseLayout title={`${title} — ${siteName}`} locale={locale} description={title}>
+  <ArticlePage
+    locale={locale}
+    title={title}
+    kicker={kicker}
+    cover={cover}
+    coverCredit={body.data.coverCredit}
+    sourceUrl={sourceUrl}
+    sourceName={body.data.sourceName}
+    dateLabel={dateLabel}
+    sourceLang={body.data.sourceLang}
+    backHref={localizePath(sectionPath, locale)}
+    backLabel={backLabel}
+  >
+    <Content />
+  </ArticlePage>
+</BaseLayout>
