@@ -8,4 +8,8 @@ locationZh: "阿联酋阿布扎比"
 date: 2025-06-14
 url: "https://mp.weixin.qq.com/s/0VhbNY9qK2Zk4k_UAsI9zw"
 cover: "/images/activities/2025-global-south-economic-forum.jpg"
+titleAr: "إدارة جلسة «نزع الاستعمار من السرديات الإعلامية»"
+eventAr: "منتدى الجنوب العالمي الاقتصادي الأول (GSEF 2025)"
+locationAr: "أبوظبي، الإمارات العربية المتحدة"
+detail: true
 ---

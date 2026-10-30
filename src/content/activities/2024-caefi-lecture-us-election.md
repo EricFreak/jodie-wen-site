@@ -8,4 +8,8 @@ locationZh: "中国北京"
 date: 2024-09-12
 url: "https://mp.weixin.qq.com/s/JPQbmrAR-llrIgji9ZhzwA"
 cover: "/images/activities/2024-caefi-lecture-us-election.jpg"
+titleAr: "محاضرة حول الانتخابات الأمريكية 2024 وتوقعات سياسة الصين"
+eventAr: "إحاطة لجمعية المشروعات ذات الاستثمار الأجنبي في الصين (CAEFI)"
+locationAr: "بكين، الصين"
+detail: true
 ---

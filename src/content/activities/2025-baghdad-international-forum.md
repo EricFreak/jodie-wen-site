@@ -8,4 +8,8 @@ locationZh: "伊拉克巴格达"
 date: 2025-02-21
 url: "https://mp.weixin.qq.com/s/thSJFPa6Gyp8fZjojARTPA"
 cover: "/images/activities/2025-baghdad-international-forum.jpg"
+titleAr: "مشاركة في جلسة «التعاون الاقتصادي والطاقة الإقليمي»"
+eventAr: "منتدى بغداد الدولي السابع (حوار بغداد: الترابط الإقليمي والتنمية)"
+locationAr: "بغداد، العراق"
+detail: true
 ---

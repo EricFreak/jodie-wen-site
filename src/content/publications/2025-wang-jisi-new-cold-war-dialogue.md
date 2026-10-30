@@ -5,4 +5,7 @@ outlet: "理想国 imaginist"
 date: 2025-07-25
 url: "https://mp.weixin.qq.com/s/ya57yEmi76IThCtTPvvgcw"
 lang: "zh"
+cover: "/images/articles/2025-wang-jisi-new-cold-war-dialogue.jpg"
+detail: true
+titleAr: "حوار مع وانغ جيسي: هل نتجه نحو «حرب باردة جديدة»؟"
 ---

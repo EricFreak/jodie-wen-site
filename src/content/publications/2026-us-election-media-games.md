@@ -5,4 +5,7 @@ outlet: "中国政治传播研究"
 date: 2026-01-13
 url: "https://mp.weixin.qq.com/s/TGK2mFz2xBljCxOZaMADig"
 lang: "zh"
+cover: "/images/articles/2026-us-election-media-games.jpg"
+detail: true
+titleAr: "المناورات الإعلامية في الانتخابات الأمريكية 2024: تطور الاستراتيجيات والاستجابة الصينية (بالاشتراك مع هان تسانغ)"
 ---
