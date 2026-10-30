@@ -3,7 +3,14 @@ import type { CollectionEntry } from 'astro:content';
 import type { Locale } from '../i18n/ui';
 import { localizePath } from '../i18n/utils';
 
-const activityHref = (url: string, locale: Locale) => url.startsWith('/') ? localizePath(url, locale) : url;
+// detail 条目进站内详情；url 以 / 开头的旧式站内链接也本地化；其余外链。
+const activityHref = (e: CollectionEntry<'activities'>, locale: Locale) => {
+  if (e.data.detail) return localizePath(`/activities/${e.id}/`, locale);
+  if (!e.data.url) return undefined;
+  return e.data.url.startsWith('/') ? localizePath(e.data.url, locale) : e.data.url;
+};
+const activityExternal = (e: CollectionEntry<'activities'>) =>
+  !e.data.detail && !!e.data.url && !e.data.url.startsWith('/');
 
 interface Props {
   entries: CollectionEntry<'activities'>[];
@@ -30,11 +37,13 @@ const visible = [
   ))}
   {entries.map((e, i) => {
     const d = e.data;
+    const href = activityHref(e, locale);
+    const external = activityExternal(e);
     return (
       <div class:list={['hidden', visible[i]]}>
         <div class="relative">
-          {d.url ? (
-            <a href={activityHref(d.url, locale)} target={d.url.startsWith('/') ? undefined : '_blank'} rel={d.url.startsWith('/') ? undefined : 'noopener'} class="group block aspect-video overflow-hidden rounded-lg">
+          {href ? (
+            <a href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined} class="group block aspect-video overflow-hidden rounded-lg">
               <img src={d.cover} alt="" loading={i === 0 ? 'eager' : 'lazy'} class="h-full w-full object-cover" />
             </a>
           ) : (
@@ -65,16 +74,18 @@ const visible = [
   )}
   {entries.map((e, i) => {
     const d = e.data;
-    const title = locale === 'zh' ? d.titleZh : d.titleEn;
-    const location = locale === 'zh' ? d.locationZh : d.location;
+    const title = locale === 'zh' ? d.titleZh : locale === 'ar' ? (d.titleAr ?? d.titleEn) : d.titleEn;
+    const location = locale === 'zh' ? d.locationZh : locale === 'ar' ? (d.locationAr ?? d.location) : d.location;
+    const href = activityHref(e, locale);
+    const external = activityExternal(e);
     return (
       <div class:list={['hidden', visible[i]]}>
-        {d.url ? (
-          <a href={activityHref(d.url, locale)} target={d.url.startsWith('/') ? undefined : '_blank'} rel={d.url.startsWith('/') ? undefined : 'noopener'} class="mt-3 block min-h-11 line-clamp-2 text-sm leading-snug font-medium text-neutral-800 hover:text-accent sm:text-base">{title}</a>
+        {href ? (
+          <a href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined} class="mt-3 block min-h-11 line-clamp-2 text-sm leading-snug font-medium text-neutral-800 hover:text-accent sm:text-base"><bdi>{title}</bdi></a>
         ) : (
-          <p class="mt-3 min-h-11 line-clamp-2 text-sm leading-snug font-medium text-neutral-800 sm:text-base">{title}</p>
+          <p class="mt-3 min-h-11 line-clamp-2 text-sm leading-snug font-medium text-neutral-800 sm:text-base"><bdi>{title}</bdi></p>
         )}
-        <p class="mt-1 text-xs text-neutral-500">{location} · {fmt(d.date)}</p>
+        <p class="mt-1 text-xs text-neutral-500"><bdi>{location}</bdi> · <bdi dir="ltr">{fmt(d.date)}</bdi></p>
       </div>
     );
   })}

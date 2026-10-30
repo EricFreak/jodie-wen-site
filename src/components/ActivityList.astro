@@ -10,6 +10,16 @@ interface Props {
 const { entries, locale } = Astro.props;
 const t = ui[locale];
 const fmt = (d: Date) => d.toISOString().slice(0, 10);
+// detail 条目进站内详情；url 以 / 开头的旧式站内链接也本地化；其余外链。
+const href = (e: CollectionEntry<'activities'>) => {
+  if (e.data.detail) return localizePath(`/activities/${e.id}/`, locale);
+  if (!e.data.url) return undefined;
+  return e.data.url.startsWith('/') ? localizePath(e.data.url, locale) : e.data.url;
+};
+const external = (e: CollectionEntry<'activities'>) =>
+  !e.data.detail && !!e.data.url && !e.data.url.startsWith('/');
+const linkLabel = (e: CollectionEntry<'activities'>) =>
+  e.data.detail || e.data.url?.startsWith('/') ? t['link.detail'] : t['link.source'];
 ---
 {entries.length === 0 ? (
   <p class="text-neutral-500">{t['empty']}</p>
@@ -17,10 +27,10 @@ const fmt = (d: Date) => d.toISOString().slice(0, 10);
   <ul class="space-y-8">
     {entries.map((e) => (
       <li class="border-s-2 border-accent ps-4">
-        <h3 class="text-lg font-semibold">{locale === 'zh' ? e.data.titleZh : e.data.titleEn}</h3>
-        <p class="mt-1 text-sm text-neutral-600">{locale === 'zh' ? e.data.eventZh : e.data.event} · {locale === 'zh' ? e.data.locationZh : e.data.location} · {fmt(e.data.date)}</p>
-        {e.data.url && (
-          <a href={e.data.url.startsWith('/') ? localizePath(e.data.url, locale) : e.data.url} target={e.data.url.startsWith('/') ? undefined : '_blank'} rel={e.data.url.startsWith('/') ? undefined : 'noopener'} class="text-sm text-accent hover:underline">{e.data.url.startsWith('/') ? t['link.detail'] : t['link.source']}</a>
+        <h3 class="text-lg font-semibold"><bdi>{locale === 'zh' ? e.data.titleZh : locale === 'ar' ? (e.data.titleAr ?? e.data.titleEn) : e.data.titleEn}</bdi></h3>
+        <p class="mt-1 text-sm text-neutral-600"><bdi>{locale === 'zh' ? e.data.eventZh : locale === 'ar' ? (e.data.eventAr ?? e.data.event) : e.data.event}</bdi> · <bdi>{locale === 'zh' ? e.data.locationZh : locale === 'ar' ? (e.data.locationAr ?? e.data.location) : e.data.location}</bdi> · <bdi dir="ltr">{fmt(e.data.date)}</bdi></p>
+        {href(e) && (
+          <a href={href(e)} target={external(e) ? '_blank' : undefined} rel={external(e) ? 'noopener' : undefined} class="text-sm text-accent hover:underline">{linkLabel(e)}</a>
         )}
       </li>
     ))}

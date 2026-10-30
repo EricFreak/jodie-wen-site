@@ -12,7 +12,7 @@ interface Props {
 }
 const { entry, locale, horizontal = false, summary } = Astro.props;
 const d = entry.data;
-const title = locale === 'zh' ? d.titleZh : d.titleEn;
+const title = locale === 'zh' ? d.titleZh : locale === 'ar' ? (d.titleAr ?? d.titleEn) : d.titleEn;
 const fmt = (dt: Date) => dt.toISOString().slice(0, 10);
 // 无封面时按平台用品牌色渐变占位（类名需完整出现以便 Tailwind 扫描）
 const gradients: Record<string, string> = {
@@ -40,9 +40,9 @@ const gradient = gradients[d.platform] ?? gradients.other;
       </div>
     </div>
     <div class="min-w-0 py-0.5">
-      <p class="line-clamp-2 text-sm leading-snug font-medium text-neutral-800 sm:text-base">{title}</p>
+      <p class="line-clamp-2 text-sm leading-snug font-medium text-neutral-800 sm:text-base"><bdi>{title}</bdi></p>
       {summary && <p class="mt-1.5 hidden line-clamp-3 text-sm leading-relaxed text-neutral-600 sm:block">{summary}</p>}
-      <p class="mt-1.5 text-xs text-neutral-500">{d.outlet} · {fmt(d.date)}</p>
+      <p class="mt-1.5 text-xs text-neutral-500"><bdi>{d.outlet}</bdi> · <bdi dir="ltr">{fmt(d.date)}</bdi></p>
     </div>
   </a>
 ) : (
@@ -62,8 +62,8 @@ const gradient = gradients[d.platform] ?? gradients.other;
       </div>
     </div>
     <div class="p-4">
-      <p class="line-clamp-2 text-base leading-snug font-semibold text-neutral-800 group-hover:text-accent">{title}</p>
-      <p class="mt-2 text-sm text-neutral-500">{d.outlet} · {fmt(d.date)}</p>
+      <p class="line-clamp-2 text-base leading-snug font-semibold text-neutral-800 group-hover:text-accent"><bdi>{title}</bdi></p>
+      <p class="mt-2 text-sm text-neutral-500"><bdi>{d.outlet}</bdi> · <bdi dir="ltr">{fmt(d.date)}</bdi></p>
     </div>
   </a>
 )}

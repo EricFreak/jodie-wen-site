@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { ui, type Locale } from '../i18n/ui';
+import { localizePath } from '../i18n/utils';
 
 interface Props {
   entries: CollectionEntry<'publications'>[];
@@ -19,7 +20,12 @@ for (const e of entries) {
 }
 const years = [...byYear.keys()].sort((a, b) => b - a);
 const fmt = (d: Date) => d.toISOString().slice(0, 10);
-const title = (e: CollectionEntry<'publications'>) => (locale === 'zh' ? e.data.titleZh : e.data.titleEn);
+const title = (e: CollectionEntry<'publications'>) =>
+  locale === 'zh' ? e.data.titleZh : locale === 'ar' ? (e.data.titleAr ?? e.data.titleEn) : e.data.titleEn;
+// detail 条目的正文在站内，列表直接进详情页；其余仍跳转原媒体。
+const href = (e: CollectionEntry<'publications'>) =>
+  e.data.detail ? localizePath(`/publications/${e.id}/`, locale) : e.data.url;
+const external = (e: CollectionEntry<'publications'>) => !e.data.detail;
 ---
 {entries.length === 0 ? (
   <p class="text-neutral-500">{t['empty']}</p>
@@ -28,9 +34,9 @@ const title = (e: CollectionEntry<'publications'>) => (locale === 'zh' ? e.data.
     {entries.map((e) => (
       <li class="border-b border-neutral-200 py-7">
         <h3 class="max-w-[75ch] text-[19px] leading-snug font-semibold">
-          <a href={e.data.url} target="_blank" rel="noopener" class="hover:text-accent">{title(e)}</a>
+          <a href={href(e)} target={external(e) ? '_blank' : undefined} rel={external(e) ? 'noopener' : undefined} class="hover:text-accent"><bdi>{title(e)}</bdi></a>
         </h3>
-        <p class="mt-2 text-sm text-neutral-500">{e.data.outlet} · {fmt(e.data.date)}</p>
+        <p class="mt-2 text-sm text-neutral-500"><bdi>{e.data.outlet}</bdi> · <bdi dir="ltr">{fmt(e.data.date)}</bdi></p>
       </li>
     ))}
   </ul>
@@ -42,9 +48,9 @@ const title = (e: CollectionEntry<'publications'>) => (locale === 'zh' ? e.data.
         {byYear.get(year)!.map((e) => (
           <li class="border-b border-neutral-200 py-7">
             <h4 class="max-w-[75ch] text-[19px] leading-snug font-semibold">
-              <a href={e.data.url} target="_blank" rel="noopener" class="hover:text-accent">{title(e)}</a>
+              <a href={href(e)} target={external(e) ? '_blank' : undefined} rel={external(e) ? 'noopener' : undefined} class="hover:text-accent"><bdi>{title(e)}</bdi></a>
             </h4>
-            <p class="mt-2 text-sm text-neutral-500">{e.data.outlet} · {fmt(e.data.date)}</p>
+            <p class="mt-2 text-sm text-neutral-500"><bdi>{e.data.outlet}</bdi> · <bdi dir="ltr">{fmt(e.data.date)}</bdi></p>
           </li>
         ))}
       </ul>

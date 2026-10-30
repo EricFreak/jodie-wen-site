@@ -1,0 +1,15 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import ArticleDetail from '../../../components/ArticleDetail.astro';
+import { getArticlePaths } from '../../../lib/articles';
+
+const locale = 'ar' as const;
+export async function getStaticPaths() {
+  return getArticlePaths('media', 'ar');
+}
+const { entry, body } = Astro.props as {
+  entry: CollectionEntry<'media'>;
+  body: CollectionEntry<'articleBodies'>;
+};
+---
+<ArticleDetail entry={entry} body={body} section="media" locale={locale} />
