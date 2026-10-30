@@ -5,4 +5,7 @@ outlet: "CISS, Tsinghua University"
 date: 2023-04-20
 url: "https://ciss.tsinghua.edu.cn/info/new_achievement_pl/1000000006041"
 lang: "zh"
+cover: "/images/articles/2023-us-middle-east-democratic-transformation.jpg"
+detail: true
+titleAr: "التحويل الديمقراطي الأمريكي للشرق الأوسط: مشروع هيمنة فاشل"
 ---

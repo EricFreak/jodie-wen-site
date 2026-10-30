@@ -5,4 +5,7 @@ outlet: "CISS, Tsinghua University"
 date: 2024-05-30
 url: "https://ciss.tsinghua.edu.cn/info/new_ChinaForumft/11639"
 lang: "zh"
+cover: "/images/articles/2024-precision-communication-regional-perspective.jpg"
+detail: true
+titleAr: "التواصل الدقيق من منظور الدراسات الإقليمية والقطرية"
 ---

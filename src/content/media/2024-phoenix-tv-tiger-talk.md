@@ -6,4 +6,7 @@ outlet: "Phoenix TV"
 date: 2024-10-19
 url: "https://ciss.tsinghua.edu.cn/info/new_communication_iqt/2000000007544"
 platform: "other"
+cover: "/images/articles/2024-phoenix-tv-tiger-talk.jpg"
+detail: true
+titleAr: "جودي ون في برنامج «تايغر توك» على تلفزيون فينيكس"
 ---

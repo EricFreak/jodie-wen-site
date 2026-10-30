@@ -7,4 +7,9 @@ eventZh: "中菲Z世代跨文化线上对话"
 locationZh: "线上"
 date: 2022-12-04
 url: "https://ciss.tsinghua.edu.cn/info/new_communication_iqt/2000000005649"
+titleAr: "مشاركة في حوار إلكتروني بين أجيال «زد» الصينية والفلبينية"
+eventAr: "الحوار الإلكتروني للتبادل الثقافي بين الصين والفلبين «الجيل زد»"
+locationAr: "عبر الإنترنت"
+cover: "/images/articles/2022-china-philippines-gen-z-dialogue.jpg"
+detail: true
 ---

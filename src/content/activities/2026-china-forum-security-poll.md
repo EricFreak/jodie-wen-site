@@ -7,4 +7,9 @@ eventZh: "第九届中国论坛专家媒体面对面，CISS"
 locationZh: "中国北京"
 date: 2026-01-15
 url: "https://ciss.tsinghua.edu.cn/info/new_ChinaForumhdmt/2296000014403"
+titleAr: "الجلسة التاسعة من «منتدى الصين: لقاء الخبراء والإعلام» حول تقرير الرأي العام الصيني 2025"
+eventAr: "الجلسة التاسعة من «منتدى الصين: لقاء الخبراء والإعلام»"
+locationAr: "بكين، الصين"
+cover: "/images/articles/2026-china-forum-security-poll.jpg"
+detail: true
 ---

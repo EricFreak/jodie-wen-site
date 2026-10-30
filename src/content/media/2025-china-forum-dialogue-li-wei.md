@@ -6,4 +6,7 @@ outlet: "CISS China Forum"
 date: 2025-02-11
 url: "https://ciss.tsinghua.edu.cn/info/new_ChinaForumft/11610"
 platform: "other"
+cover: "/images/articles/2025-china-forum-dialogue-li-wei.jpg"
+detail: true
+titleAr: "حوار مع لي وي: هل يستطيع ترامب 2.0 إعادة تشكيل المشهد السياسي والاقتصادي الأمريكي؟"
 ---
