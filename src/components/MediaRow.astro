@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import type { Locale } from '../i18n/ui';
+import { ui, type Locale } from '../i18n/ui';
 import { outletLabel } from '../data/outlets';
 import { localizePath } from '../i18n/utils';
 
@@ -9,13 +9,16 @@ interface Props {
   locale: Locale;
 }
 const { entry, locale } = Astro.props;
+const t = ui[locale];
 const d = entry.data;
 const title = locale === 'zh' ? d.titleZh : locale === 'ar' ? (d.titleAr ?? d.titleEn) : d.titleEn;
 const fmt = (dt: Date) => dt.toISOString().slice(0, 10);
 const href = d.detail ? localizePath(`/media/${entry.id}/`, locale) : d.url;
 const external = !d.detail;
+const arrow = locale === 'ar' ? '←' : '→';
 ---
 <div class="border-b border-neutral-100 py-3.5">
   <a href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined} class="block font-medium text-neutral-800 hover:text-accent"><bdi>{title}</bdi></a>
   <span class="mt-0.5 block text-sm text-neutral-500"><bdi>{outletLabel(d.outlet, locale)}</bdi> · <bdi dir="ltr">{fmt(d.date)}</bdi></span>
+  {d.detail && <a href={href} class="mt-1 inline-block text-xs text-accent hover:underline">{t['link.detail']} {arrow}</a>}
 </div>

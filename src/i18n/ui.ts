@@ -57,7 +57,8 @@ export const ui = {
     'article.lang.zh': 'Chinese',
     'article.lang.ar': 'Arabic',
     'link.source': 'Source',
-    'link.detail': 'Read more',
+    'link.detail': 'Read full text',
+    'video.watch': 'Watch video',
     'empty': 'Content being compiled.',
   },
   zh: {
@@ -115,6 +116,7 @@ export const ui = {
     'article.lang.ar': '阿拉伯语',
     'link.source': '来源',
     'link.detail': '阅读全文',
+    'video.watch': '观看视频',
     'empty': '内容整理中',
   },
   ar: {
@@ -171,7 +173,8 @@ export const ui = {
     'article.lang.zh': 'الصيني',
     'article.lang.ar': 'العربي',
     'link.source': 'المصدر',
-    'link.detail': 'اقرأ المزيد',
+    'link.detail': 'اقرأ النص الكامل',
+    'video.watch': 'شاهد الفيديو',
     'empty': 'المحتوى قيد الإعداد.',
   },
 } as const;

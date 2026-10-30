@@ -26,6 +26,7 @@ const title = (e: CollectionEntry<'publications'>) =>
 const href = (e: CollectionEntry<'publications'>) =>
   e.data.detail ? localizePath(`/publications/${e.id}/`, locale) : e.data.url;
 const external = (e: CollectionEntry<'publications'>) => !e.data.detail;
+const arrow = locale === 'ar' ? '←' : '→';
 ---
 {entries.length === 0 ? (
   <p class="text-neutral-500">{t['empty']}</p>
@@ -37,6 +38,7 @@ const external = (e: CollectionEntry<'publications'>) => !e.data.detail;
           <a href={href(e)} target={external(e) ? '_blank' : undefined} rel={external(e) ? 'noopener' : undefined} class="hover:text-accent"><bdi>{title(e)}</bdi></a>
         </h3>
         <p class="mt-2 text-sm text-neutral-500"><bdi>{e.data.outlet}</bdi> · <bdi dir="ltr">{fmt(e.data.date)}</bdi></p>
+        {e.data.detail && <a href={href(e)} class="mt-2 inline-block text-sm text-accent hover:underline">{t['link.detail']} {arrow}</a>}
       </li>
     ))}
   </ul>
@@ -51,6 +53,7 @@ const external = (e: CollectionEntry<'publications'>) => !e.data.detail;
               <a href={href(e)} target={external(e) ? '_blank' : undefined} rel={external(e) ? 'noopener' : undefined} class="hover:text-accent"><bdi>{title(e)}</bdi></a>
             </h4>
             <p class="mt-2 text-sm text-neutral-500"><bdi>{e.data.outlet}</bdi> · <bdi dir="ltr">{fmt(e.data.date)}</bdi></p>
+            {e.data.detail && <a href={href(e)} class="mt-2 inline-block text-sm text-accent hover:underline">{t['link.detail']} {arrow}</a>}
           </li>
         ))}
       </ul>

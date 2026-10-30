@@ -23,7 +23,7 @@ const fmt = (dt: Date) => dt.toISOString().slice(0, 10);
     </div>
     <figcaption class="mt-2 text-sm text-neutral-600">
       <bdi>{title}</bdi> · <bdi>{d.outlet}</bdi> · <bdi dir="ltr">{fmt(d.date)}</bdi> ·
-      <a href={d.url} target="_blank" rel="noopener" class="text-accent hover:underline">{t['link.source']}</a>
+      <a href={d.url} target="_blank" rel="noopener" class="text-accent hover:underline">{t['video.watch']}</a>
     </figcaption>
   </figure>
 ) : (
