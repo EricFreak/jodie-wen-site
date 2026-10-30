@@ -5,4 +5,7 @@ outlet: "The Oxford Middle East Review"
 date: 2021-10-18
 url: "https://omerjournal.com/2021/10/18/a-dialogue-with-professor-eugene-rogan/"
 lang: "en"
+detail: true
+cover: "/images/articles/2021-omer-dialogue-eugene-rogan.jpg"
+titleAr: "حوار مع البروفيسور يوجين روغان"
 ---

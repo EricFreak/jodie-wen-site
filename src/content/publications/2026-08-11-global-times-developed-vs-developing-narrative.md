@@ -5,4 +5,7 @@ outlet: "Global Times"
 date: 2026-08-11
 url: "https://www.globaltimes.cn/page/202608/1367974.shtml"
 lang: "en"
+detail: true
+cover: "/images/articles/2026-08-11-global-times-developed-vs-developing-narrative.jpg"
+titleAr: "خطاب «المتقدّم مقابل النامي» لا يكفي لاستيعاب تنوّع الواقع التنموي اليوم"
 ---
