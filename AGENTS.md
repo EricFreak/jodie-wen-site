@@ -21,7 +21,7 @@
 - `docs/superpowers/specs/2026-09-28-spacious-redesign-design.md` —— 2026-09-28 已实施的全站「大气化」改版：容器放宽至 `max-w-6xl`（`main` 全宽、各页面自带 `mx-auto max-w-6xl px-6` 容器，散文仍限 `.measure` 72ch）、Hero 通栏左文右图、首页 Activities 全宽色带、页底新增 `ContactBand` 联系带、页脚改深色居中。高保真设计稿在 `docs/prototypes/spacious-home/`。同日曾按用户要求加入 Name/Email/Message 静态表单（FormSubmit 转发），后因国内邮箱延迟/收不到，2026-09-29 已移除，恢复纯邮箱展示。
 - `materials/` —— 用户投放新素材的固定入口；解析后按 `materials/视频/` 与 `materials/文字/` 分目录归档（单条 Markdown，frontmatter 与集合字段对齐），再入库对应 collection 并去重（URL 相同或同文转载只留一条）。
 - `docs/pending-assets.md` —— 待用户补充的素材清单（社媒平台链接、More about Jodie 照片、文晶Talk 代表文章等）。
-- `docs/superpowers/specs/2026-10-30-article-detail-pages-design.md` —— 2026-10-30 已实现的「第三方文字内容站内详情页」试点设计：`detail` + `articleBodies` 数据模型、三语动态路由、ArticlePage/ArticleDetail 版式、列表内链、版权与 bidi 规则。
+- `docs/superpowers/specs/2026-10-30-article-detail-pages-design.md` —— 2026-10-30 已全量实现并上线的「第三方文字内容站内详情页」设计：`detail` + `articleBodies` 数据模型、三语动态路由、ArticlePage/ArticleDetail 版式、列表内链、版权与 bidi 规则。
 - `docs/content-operations-sop.md` —— 上线后的内容运营流程 SOP（2026-08-09 与用户确认：**不建后台**，保持「运营投素材到 `materials/` → AI 代理解析入库开 PR → 审核人合并 → Vercel 自动发布」）。部署方式：GitHub 托管代码 + Vercel 构建发布。
 
 ## 3. 技术栈（规格已确定）
