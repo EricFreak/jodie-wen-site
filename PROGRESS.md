@@ -4,11 +4,12 @@
 
 ## 当前状态
 
+- 2026-10-31：新增 FT 中文网《中期选举前，特朗普会对伊朗动武吗？》三语详情页；中文取自 FT 中文网微信公众号，英文标题与正文逐字取自用户提供的 Word 文档，阿语据英文翻译。累计 51 篇、153 个详情页、180 路由。
 - 2026-10-30：**第三方文字内容站内化全部完成**（50 篇 × 3 语）：30 篇放全文；20 篇做站内摘要（18 篇付费墙/反爬：SCMP 14、Berlingske 2、FT 中文 1、联合早报 1；另加 CGTN Radio 与 CISS 纯 PDF 页 2 篇）；新增 150 个详情页，整站 177 路由。所有条目加 `detail: true`、封面、阿语标题/活动字段，列表改内链。三语译文为 AI 初稿，待校对。
 - 2026-10-30：**第三方文字内容站内全文试点**上线分支（3 篇 × 3 语）：CISS《麦加协议》、中美聚焦《美伊谈判历史根源》、CISS 微信公众号《2026 阿布扎比希利论坛》。原条目加 `detail: true`，正文存 `src/content/articleBodies/<sourceId>.<locale>.md`；新增 `ArticlePage`/`ArticleDetail` 组件与 `/publications/[slug]`、`/media/[slug]`、`/activities/[slug]` 三语动态路由；列表自动改内链，文末保留原文链接与来源署名；阿语标题/活动名同步补 `titleAr`/`eventAr`/`locationAr`，并修了阿语列表日期与英文标题的 bidi 排序问题。所有译文为 AI 初稿，待校对。
 - 2026-10-30：修正 TRENDS 详情页英文职务为 Director of International Communication（与中/阿文及现场屏幕一致），已推送 main（`e9bae4d`）。
 
-**网站已上线**：`https://www.jodiewen.com`（Vercel，8 个基础页面 × 3 语言 + 150 个详情页 = 177 路由，图片资源正常）。
+**网站已上线**：`https://www.jodiewen.com`（Vercel，8 个基础页面 × 3 语言 + 153 个文字详情页 + 3 个 TRENDS 活动详情页 = 180 路由，图片资源正常）。
 
 - 2026-08-06（四轮）：个人品牌 logo 上线（Lovart 出图，已程序化去除假透明棋盘格底、只裁边距）：导航栏品牌位换为完整横版 logo（JW + Dr. Jodie Wen + Author & Commentator + 文晶印章，h-14），favicon/apple-touch-icon 用 JW 单标（`public/images/brand/`，favicon 404 遗留项解决）
 - 2026-08-06（三轮）：Media 页视频卡缩略图改垂直居中；29 条 media 外链全部经真实浏览器复验可达（SCMP 反爬 curl 但浏览器 200，无死链移除；SCMP 3/24 条目标题按官网现标题修正）；社媒挂载 LinkedIn / X（@JingWenOxford）/ 微博（uid 1969913095，昵称「文晶Talk」）三个已核实账号，页脚图标同步加微博
