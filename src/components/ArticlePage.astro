@@ -10,6 +10,7 @@ interface Props {
   coverCredit?: string;
   sourceUrl?: string;
   sourceName: string;
+  sourceNote?: string;
   dateLabel: string;
   sourceLang: 'en' | 'zh' | 'ar';
   backHref: string;
@@ -23,6 +24,7 @@ const {
   coverCredit,
   sourceUrl,
   sourceName,
+  sourceNote: sourceNoteOverride,
   dateLabel,
   sourceLang,
   backHref,
@@ -35,7 +37,8 @@ const langNames: Record<'en' | 'zh' | 'ar', string> = {
   ar: t['article.lang.ar'],
 };
 const isTranslated = locale !== sourceLang;
-const sourceNote = fillTemplate(t['article.sourceNote'], { source: sourceName, date: dateLabel });
+const defaultSourceNote = fillTemplate(t['article.sourceNote'], { source: sourceName, date: dateLabel });
+const sourceNoteText = sourceNoteOverride ?? defaultSourceNote;
 const translationNote = isTranslated
   ? fillTemplate(t['article.translationNote'], { lang: langNames[sourceLang] })
   : null;
@@ -64,7 +67,7 @@ const readArrow = locale === 'ar' ? '←' : '→';
   </div>
 
   <footer class="mt-14 border-t border-neutral-200 pt-6">
-    <p class="text-sm text-neutral-500">{sourceNote}</p>
+    <p class="text-sm text-neutral-500">{sourceNoteText}</p>
     {sourceUrl && (
       <a href={sourceUrl} target="_blank" rel="noopener" class="mt-3 inline-block text-sm font-medium text-accent hover:underline">
         {t['article.readOriginal']} <span aria-hidden="true">{readArrow}</span>

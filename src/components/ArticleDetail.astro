@@ -18,8 +18,9 @@ const { Content } = await render(body);
 const title = body.data.title;
 const dateLabel = formatDate(entry.data.date, locale);
 const cover = entry.data.cover;
+const isOriginal = section === 'publications' && Boolean((entry as CollectionEntry<'publications'>).data.original);
 const rawUrl = entry.data.url;
-const sourceUrl = rawUrl && !rawUrl.startsWith('/') ? rawUrl : undefined;
+const sourceUrl = !isOriginal && rawUrl && !rawUrl.startsWith('/') ? rawUrl : undefined;
 
 const siteName = locale === 'zh' ? '文晶' : locale === 'ar' ? 'جودي ون' : 'Jodie Wen';
 const sectionPath =
@@ -51,6 +52,7 @@ if (section === 'activities') {
     coverCredit={body.data.coverCredit}
     sourceUrl={sourceUrl}
     sourceName={body.data.sourceName}
+    sourceNote={isOriginal ? (locale === 'zh' ? `文晶撰文 · ${dateLabel}` : locale === 'ar' ? `بقلم جودي ون · ${dateLabel}` : `Written by Jodie Wen · ${dateLabel}`) : undefined}
     dateLabel={dateLabel}
     sourceLang={body.data.sourceLang}
     backHref={localizePath(sectionPath, locale)}
